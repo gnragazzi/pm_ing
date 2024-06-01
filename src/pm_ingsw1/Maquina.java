@@ -52,4 +52,8 @@ public class Maquina {
         return planta;
     }
 
+    public void setPlanta(Planta planta) {
+        this.planta = planta;
+    }        
+    
 }
