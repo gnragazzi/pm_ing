@@ -4,6 +4,7 @@
  */
 package Connection;
 import java.sql.*;
+import pm_ingsw1.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,13 +28,30 @@ public class BD {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public static String hola() throws SQLException{
+    public static void enviarPlanta(String color, int superficie) throws SQLException{
+        try{
         Statement sentencia=conexion.createStatement();
-        ResultSet holaa=sentencia.executeQuery("select * from Planta");
-        holaa.next();
-        return holaa.getString("color");
+        ResultSet chequeo=sentencia.executeQuery("select Color from Planta where Color like '" + color + "'");
+        if (!chequeo.next()){                                                                                                   //devuelve false si no encontro nada en select 
+        PreparedStatement envio;
+        envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + color + "', '" + superficie + "')");
+        envio.executeUpdate();
+        }else
+                System.out.println("No es posible");                                                                            // aca va un jpanel
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
  
+    public static void asignarPlanta(Maquina maquina, Planta planta){
+        try{
+            PreparedStatement envio=conexion.prepareStatement("insert into Planta(Planta_IdPlanta) values ..................  ");
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
     
    public static void connect(){ 
             try{
