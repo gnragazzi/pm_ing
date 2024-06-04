@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 /**
  *
  * @author ezebe
@@ -33,9 +34,9 @@ public class BD {
         Statement sentencia=conexion.createStatement();
         ResultSet chequeo=sentencia.executeQuery("select Color from Planta where Color like '" + color + "'");
         if (!chequeo.next()){                                                                                                   //devuelve false si no encontro nada en select 
-        PreparedStatement envio;
-        envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + color + "', '" + superficie + "')");
-        envio.executeUpdate();
+            PreparedStatement envio;
+            envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + color + "', '" + superficie + "')");
+            envio.executeUpdate();
         }else
                 System.out.println("No es posible");                                                                            // aca va un jpanel
         }
@@ -43,7 +44,20 @@ public class BD {
             System.out.println(e.getMessage());
         }
     }
- 
+    
+    
+    public static ArrayList<Planta> listarPlanta() throws SQLException{
+        ArrayList<Planta> planta;
+        Planta aux= new Planta();
+        Statement sentencia=conexion.createStatement();
+        ResultSet lista=sentencia.executeQuery("select * from planta");
+        while(lista.next()){
+            aux.setColor(lista.getString("color"));
+            aux.setSuperficie(lista.getInt("superficie"));
+            
+        }
+    }
+    
     public static void asignarPlanta(Maquina maquina, Planta planta){
         try{
             PreparedStatement envio=conexion.prepareStatement("insert into Planta(Planta_IdPlanta) values ..................  ");
@@ -56,7 +70,7 @@ public class BD {
    public static void connect(){ 
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver"); 
-                conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false","root","usuario");
+                conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false","root","24103");
                 
             }
             catch(ClassNotFoundException | SQLException ex){
