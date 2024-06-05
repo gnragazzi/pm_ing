@@ -51,10 +51,10 @@ public class BD {
         return false;
     }
             
-    public static void cargarPlanta(String color, int superficie) throws SQLException{
+    public static void cargarPlanta(Planta planta) throws SQLException{
         try{                                                                                                  //devuelve false si no encontro nada en select 
             PreparedStatement envio;
-            envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + color + "', '" + superficie + "')");
+            envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + planta.getColor() + "', '" + planta.getSuperficie() + "')");
             envio.executeUpdate();                                                                           // aca va un jpanel
         }
         catch(SQLException e){
