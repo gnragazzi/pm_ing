@@ -24,6 +24,11 @@ public class Registro {
         this.tecnico = tecnico;
     }
 
+    public Registro() {
+    }
+    
+    
+
     public String getFec_inicio() {
         return fec_inicio;
     }

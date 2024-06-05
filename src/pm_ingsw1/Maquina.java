@@ -8,24 +8,28 @@ package pm_ingsw1;
  * @author ezebe
  */
 public class Maquina {
-    private String NroID;
+    private int NroID;
     private String Marca;
     private String Modelo;
     private Planta planta;
     private Registro[] registro;
-    private enum Estado{
-        Activa,Reparación
-    }
-    
-    public Maquina(String NroID, String Marca, String Modelo, Planta planta,Registro[] registro) {
+    private Estado estado;
+
+    public Maquina(int NroID, String Marca, String Modelo, Planta planta, Registro[] registro, Estado estado) {
         this.NroID = NroID;
         this.Marca = Marca;
         this.Modelo = Modelo;
         this.planta = planta;
-        this.registro=registro;
+        this.registro = registro;
+        this.estado = estado;
     }
 
-    public String getNroID() {
+    public Maquina() {
+    }
+    
+    
+
+    public int getNroID() {
         return NroID;
     }
 
@@ -37,7 +41,7 @@ public class Maquina {
         return Modelo;
     }
 
-    public void setNroID(String NroID) {
+    public void setNroID(int NroID) {
         this.NroID = NroID;
     }
 
@@ -64,6 +68,16 @@ public class Maquina {
     public void setRegistro(Registro[] registro) {
         this.registro = registro;
     }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+    
     
     
 }

@@ -29,48 +29,127 @@ public class BD {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public static void enviarPlanta(String color, int superficie) throws SQLException{
+    
+    
+    
+    
+    
+    ///////////////////////////////////////////////////////////////////Planta////////////////////////////////////////////////////////////////////////
+    
+    public static boolean chequearPlanta(String color) throws SQLException{
         try{
-        Statement sentencia=conexion.createStatement();
-        ResultSet chequeo=sentencia.executeQuery("select Color from Planta where Color like '" + color + "'");
-        if (!chequeo.next()){                                                                                                   //devuelve false si no encontro nada en select 
+            Statement sentencia=conexion.createStatement();
+            ResultSet chequeo=sentencia.executeQuery("select Color from Planta where Color = '" + color + "'");
+            if(chequeo.next())
+                return true;
+            else
+                return false;
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+            
+    public static void cargarPlanta(String color, int superficie) throws SQLException{
+        try{                                                                                                  //devuelve false si no encontro nada en select 
             PreparedStatement envio;
             envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + color + "', '" + superficie + "')");
-            envio.executeUpdate();
-        }else
-                System.out.println("No es posible");                                                                            // aca va un jpanel
+            envio.executeUpdate();                                                                           // aca va un jpanel
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
-    
-    
-    public static ArrayList<Planta> listarPlanta() throws SQLException{
-        ArrayList<Planta> planta;
-        Planta aux= new Planta();
+ 
+   public static ArrayList<Planta> listarPlanta() throws SQLException{
+        ArrayList<Planta> planta= new ArrayList<Planta>();
+        int i=0;
         Statement sentencia=conexion.createStatement();
         ResultSet lista=sentencia.executeQuery("select * from planta");
         while(lista.next()){
-            aux.setColor(lista.getString("color"));
-            aux.setSuperficie(lista.getInt("superficie"));
-            
+            Planta aux= new Planta();
+            aux.setColor(lista.getString("Color"));
+            aux.setSuperficie(lista.getInt("Superficie"));
+            planta.add(i, aux);
+            i++;
         }
+        return planta;
     }
     
-    public static void asignarPlanta(Maquina maquina, Planta planta){
+   
+   
+   
+       ///////////////////////////////////////////////////////////////////Maquina////////////////////////////////////////////////////////////////////////
+
+  public static boolean chequearMaquina(int id) throws SQLException{
         try{
-            PreparedStatement envio=conexion.prepareStatement("insert into Planta(Planta_IdPlanta) values ..................  ");
+            Statement sentencia=conexion.createStatement();
+            ResultSet chequeo=sentencia.executeQuery("select NroID from Maquina where NroID = '" + id + "'");
+            if(chequeo.next())
+                return true;
+            else
+                return false;
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+               
+    public static void cargarMaquina(Maquina maquina, Planta planta) throws SQLException{
+        try{
+            Statement sentencia=conexion.createStatement();
+            ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + planta.getColor() + "' ");
+            id.next();
+            String carga= "insert into  Maquina (NroID,Marca,Modelo,Estado,Planta_IdPlanta) values ('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";            PreparedStatement envio=conexion.prepareStatement(carga);
+            envio.executeUpdate();
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
     
+    
+    
+    
+    
+    
+        ///////////////////////////////////////////////////////////////////Tecnico////////////////////////////////////////////////////////////////////////
+
+      public static boolean chequearTecnico(int dni) throws SQLException{
+        try{
+            Statement sentencia=conexion.createStatement();
+            ResultSet chequeo=sentencia.executeQuery("select DNI from Tecnico where DNI = '" + dni + "'");
+            if(chequeo.next())
+                return true;
+            else
+                return false;
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    
+    public static void cargarTecnico(Tecnico tecnico) throws SQLException{
+        try{
+            PreparedStatement envio=conexion.prepareStatement("insert into  Técnico (DNI, Nombre,Apellido,Fec_Nac,Contacto) values ('" + tecnico.getDni() + "' , '" + tecnico.getNombre() + "' , '" + tecnico.getApellido() + "' ,  '" + tecnico.getFec_nac() + "' , '" + tecnico.getContacto() + "') ;");
+            envio.executeUpdate();
+        }
+        catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    
+    
+        ///////////////////////////////////////////////////////////////////Conexion////////////////////////////////////////////////////////////////////////
+
    public static void connect(){ 
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver"); 
-                conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false","root","24103");
+                conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false","root","usuario");
                 
             }
             catch(ClassNotFoundException | SQLException ex){

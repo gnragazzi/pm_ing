@@ -21,6 +21,10 @@ public class Planta {
         this.procesos = procesos;
     }
 
+    public Planta() {
+    }
+    
+
     public String getColor() {
         return color;
     }
