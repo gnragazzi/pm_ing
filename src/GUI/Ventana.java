@@ -17,6 +17,7 @@ public class Ventana extends javax.swing.JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        System.out.flush();
         
     }
 }
