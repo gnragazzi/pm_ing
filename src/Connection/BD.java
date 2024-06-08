@@ -31,10 +31,7 @@ public class BD {
     
     
     
-    
-    
-    
-    ///////////////////////////////////////////////////////////////////Planta////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////Planta////////////////////////////////////////////////////////////////////////
     
     public static boolean chequearPlanta(String color) throws SQLException{
         try{
@@ -62,7 +59,7 @@ public class BD {
         }
     }
  
-   public static ArrayList<Planta> listarPlanta() throws SQLException{
+    public static ArrayList<Planta> listarPlanta() throws SQLException{
         ArrayList<Planta> planta= new ArrayList<Planta>();
         int i=0;
         Statement sentencia=conexion.createStatement();
@@ -80,9 +77,29 @@ public class BD {
    
    
    
-       ///////////////////////////////////////////////////////////////////Maquina////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////Maquina////////////////////////////////////////////////////////////////////////
 
-  public static boolean chequearMaquina(int id) throws SQLException{
+     public static ArrayList<Maquina> listarMaquina() throws SQLException{
+        ArrayList<Maquina> maquina= new ArrayList<Maquina>();
+        int i=0;
+        Statement sentencia=conexion.createStatement();
+        ResultSet lista=sentencia.executeQuery("select * from Maquina");
+        while(lista.next()){
+            Maquina aux= new Maquina();
+            aux.setNroID(lista.getInt("NroID"));
+            aux.setMarca(lista.getString("Marca"));
+            aux.setModelo(lista.getString("Modelo"));
+            if (lista.getString("Estado").equals("Activo"))
+                aux.setEstado(Estado.ACTIVO);
+            else 
+                aux.setEstado(Estado.REPARACION);
+            maquina.add(i, aux);
+            i++;
+        }
+        return maquina;
+    }
+     
+    public static boolean chequearMaquina(int id) throws SQLException{
         try{
             Statement sentencia=conexion.createStatement();
             ResultSet chequeo=sentencia.executeQuery("select NroID from Maquina where NroID = '" + id + "'");
@@ -110,31 +127,59 @@ public class BD {
         }
     }
     
-    
-    
-    
-    
-    
-        ///////////////////////////////////////////////////////////////////Tecnico////////////////////////////////////////////////////////////////////////
-
-      public static boolean chequearTecnico(int dni) throws SQLException{
-        try{
-            Statement sentencia=conexion.createStatement();
-            ResultSet chequeo=sentencia.executeQuery("select DNI from Tecnico where DNI = '" + dni + "'");
-            if(chequeo.next())
-                return true;
-            else
-                return false;
+    public static boolean isemptyMaquina() throws SQLException{
+        Statement sentencia=conexion.createStatement();
+        ResultSet resultado=sentencia.executeQuery("select IdPlanta from Planta");
+        if(!resultado.next()){
+            return true;
         }
-        catch(SQLException e){
-            System.out.println(e.getMessage());
+        else{
+            return false;
         }
-        return false;
     }
     
+    
+    
+    
+    
+///////////////////////////////////////////////////////////////////Tecnico////////////////////////////////////////////////////////////////////////
+
+      public static ArrayList<Tecnico> listarTecnico() throws SQLException{
+        ArrayList<Tecnico> tecnico= new ArrayList<Tecnico>();
+        int i=0;
+        Statement sentencia=conexion.createStatement();
+        ResultSet lista=sentencia.executeQuery("select * from tecnico");
+        while(lista.next()){
+            Tecnico aux= new Tecnico();
+            aux.setNombre(lista.getString("Nombre"));
+            aux.setApellido(lista.getString("Apellido"));
+            aux.setDni(lista.getInt("DNI"));
+            aux.setContacto(lista.getInt("Contacto"));
+            aux.setFec_nac(lista.getString("Fec_Nac"));
+            tecnico.add(i, aux);
+            i++;
+        }
+        return tecnico;
+    }
+      
+    public static boolean chequearTecnico(int dni) throws SQLException{
+      try{
+          Statement sentencia=conexion.createStatement();
+          ResultSet chequeo=sentencia.executeQuery("select DNI from Tecnico where DNI = '" + dni + "'");
+          if(chequeo.next())
+              return true;
+          else
+              return false;
+      }
+      catch(SQLException e){
+          System.out.println(e.getMessage());
+      }
+      return false;
+  }
+
     public static void cargarTecnico(Tecnico tecnico) throws SQLException{
         try{
-            PreparedStatement envio=conexion.prepareStatement("insert into  Técnico (DNI, Nombre,Apellido,Fec_Nac,Contacto) values ('" + tecnico.getDni() + "' , '" + tecnico.getNombre() + "' , '" + tecnico.getApellido() + "' ,  '" + tecnico.getFec_nac() + "' , '" + tecnico.getContacto() + "') ;");
+            PreparedStatement envio=conexion.prepareStatement("insert into  Tecnico (DNI, Nombre,Apellido,Fec_Nac,Contacto) values ('" + tecnico.getDni() + "' , '" + tecnico.getNombre() + "' , '" + tecnico.getApellido() + "' ,  '" + tecnico.getFec_nac() + "' , '" + tecnico.getContacto() + "') ;");
             envio.executeUpdate();
         }
         catch(SQLException e){
@@ -142,6 +187,32 @@ public class BD {
         }
     }
     
+      public static boolean isemptyTecnico() throws SQLException{
+        Statement sentencia=conexion.createStatement();
+        ResultSet resultado=sentencia.executeQuery("select Idtecnico from Tecnico");
+        if(!resultado.next()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+      
+      
+      
+      
+    
+///////////////////////////////////////////////////////////////////Registro////////////////////////////////////////////////////////////////////////
+
+    public static void asignarRegistro(Registro registro){
+        try{
+            PreparedStatement envio=conexion.prepareStatement("insert into  Registro (H_Inicio,H_Final,Turno,Maquina_NroID,Tecnico_DNI) values ('" + registro.getFec_inicio() + "' , '" + registro.getFec_final() + "' , '" + registro.getTurno() + "' ,  '" + registro.getMaquina().getNroID() + "' , '" + registro.getTecnico().getDni() + "') ;");
+            envio.executeUpdate();
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
     
     
         ///////////////////////////////////////////////////////////////////Conexion////////////////////////////////////////////////////////////////////////
