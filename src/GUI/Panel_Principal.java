@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class Panel_Principal extends JPanel{
     public Contenedor_MenuPrincipal formulario_actual;
     public JPanel barraSuperior;
-    public JPanel menuLateral;
+    public Menu_Lateral menuLateral;
     private GridBagConstraints menuLat = new GridBagConstraints();
     private GridBagConstraints c = new GridBagConstraints();
     
@@ -35,7 +35,7 @@ public class Panel_Principal extends JPanel{
         this.add(barraSuperior,c);
         
         //Menú Lateral
-        menuLateral = new JPanel();
+        menuLateral = new Menu_Lateral();
         menuLateral.setBackground(Color.RED);
         menuLat.fill = GridBagConstraints.BOTH;
         menuLat.weightx = 0.3;

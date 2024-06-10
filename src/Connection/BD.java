@@ -61,7 +61,7 @@ public class BD {
  
     public static ArrayList<Planta> listarPlanta() throws SQLException{
         ArrayList<Planta> planta= new ArrayList<Planta>();
-        int i=0;
+        /*int i=0;
         Statement sentencia=conexion.createStatement();
         ResultSet lista=sentencia.executeQuery("select * from planta");
         while(lista.next()){
@@ -70,6 +70,14 @@ public class BD {
             aux.setSuperficie(lista.getInt("Superficie"));
             planta.add(i, aux);
             i++;
+        }
+        return planta;
+        */
+        for(int i = 0; i < 5; i++){
+            Planta aux= new Planta();
+            aux.setColor("C" + i);
+            aux.setSuperficie( (i+1)*(i+1));
+            planta.add(i, aux);
         }
         return planta;
     }
@@ -114,7 +122,10 @@ public class BD {
         return false;
     }
                
-    public static void cargarMaquina(Maquina maquina, Planta planta) throws SQLException{
+    // creo que es innecesario pasar la planta como argumento, porque ya se encuentra como campo en el objeto (máquina.planta)
+    public static void cargarMaquina(Maquina maquina, Planta planta) throws SQLException{ 
+        System.out.println(maquina.toString());
+        /*
         try{
             Statement sentencia=conexion.createStatement();
             ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + planta.getColor() + "' ");
@@ -123,8 +134,10 @@ public class BD {
             envio.executeUpdate();
         }
         catch(SQLException e){
+            System.out.println("holiss... todo salió mal");
             System.out.println(e.getMessage());
         }
+        */
     }
     
     public static boolean isemptyMaquina() throws SQLException{
@@ -143,7 +156,7 @@ public class BD {
     
     
 ///////////////////////////////////////////////////////////////////Tecnico////////////////////////////////////////////////////////////////////////
-
+/*
       public static ArrayList<Tecnico> listarTecnico() throws SQLException{
         ArrayList<Tecnico> tecnico= new ArrayList<Tecnico>();
         int i=0;
@@ -161,7 +174,7 @@ public class BD {
         }
         return tecnico;
     }
-      
+      */
     public static boolean chequearTecnico(int dni) throws SQLException{
       try{
           Statement sentencia=conexion.createStatement();
@@ -203,7 +216,7 @@ public class BD {
       
     
 ///////////////////////////////////////////////////////////////////Registro////////////////////////////////////////////////////////////////////////
-
+/*
     public static void asignarRegistro(Registro registro){
         try{
             PreparedStatement envio=conexion.prepareStatement("insert into  Registro (H_Inicio,H_Final,Turno,Maquina_NroID,Tecnico_DNI) values ('" + registro.getFec_inicio() + "' , '" + registro.getFec_final() + "' , '" + registro.getTurno() + "' ,  '" + registro.getMaquina().getNroID() + "' , '" + registro.getTecnico().getDni() + "') ;");
@@ -214,7 +227,7 @@ public class BD {
         }
     }
     
-    
+    */
         ///////////////////////////////////////////////////////////////////Conexion////////////////////////////////////////////////////////////////////////
 
    public static void connect(){ 

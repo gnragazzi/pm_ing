@@ -9,6 +9,7 @@ package pm_ingsw1;
  * @author ezebe
  */
 public class Planta {
+    // planta no debería tener algún identificador? (Creo haber oido que el color no se podía usar como identificador)
     private String color;
     private int superficie;
     private Maquina[] maquinas;
