@@ -4,8 +4,6 @@
  */
 package pm_ingsw1;
 
-import java.util.logging.Logger;
-
 /**
  *
  * @author ezebe

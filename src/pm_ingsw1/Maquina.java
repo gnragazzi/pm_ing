@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pm_ingsw1;
+
+import Connection.BD;
+import java.sql.SQLException;
+
 /**
  *
  * @author ezebe
@@ -76,8 +80,22 @@ public class Maquina {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "NroID=" + NroID + ", Marca=" + Marca + ", Modelo=" + Modelo + ", estado=" + estado;
+    }
     
     
-    
+    public boolean cargarMaquina(Maquina maquina,Planta planta) throws SQLException{
+        if (BD.chequearMaquina(maquina.getNroID())==true){
+            return false;
+        }
+        else{
+            BD.cargarMaquina(maquina, planta);
+            return true;
+            }
+        }
+        
     
 }

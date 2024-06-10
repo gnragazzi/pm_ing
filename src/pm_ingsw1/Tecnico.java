@@ -25,6 +25,11 @@ public class Tecnico {
         this.registro = registro;
     }
 
+    public Tecnico() {
+    }
+    
+
+
     public String getNombre() {
         return nombre;
     }
@@ -71,6 +76,11 @@ public class Tecnico {
 
     public void setRegistro(Registro[] registro) {
         this.registro = registro;
+    }
+
+    @Override
+    public String toString() {
+        return "nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", fec_nac=" + fec_nac + ", contacto=" + contacto;
     }
     
     

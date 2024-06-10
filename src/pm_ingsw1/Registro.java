@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pm_ingsw1;
-
+import Connection.BD;
+import java.sql.SQLException;
 /**
  *
  * @author ezebe
@@ -13,22 +14,19 @@ public class Registro {
     private String fec_final;
     private Maquina maquina;
     private Tecnico tecnico;
-    private enum turno{
-        Mañana,Tarde,Noche
-    }
+    private Turno turno;
 
-    public Registro(String fec_inicio, String fec_final, Maquina maquina, Tecnico tecnico) {
+    public Registro(String fec_inicio, String fec_final, Maquina maquina, Tecnico tecnico, Turno turno) {
         this.fec_inicio = fec_inicio;
         this.fec_final = fec_final;
         this.maquina = maquina;
         this.tecnico = tecnico;
+        this.turno=turno;
     }
 
     public Registro() {
     }
     
-    
-
     public String getFec_inicio() {
         return fec_inicio;
     }
@@ -60,6 +58,17 @@ public class Registro {
     public void setTecnico(Tecnico tecnico) {
         this.tecnico = tecnico;
     }
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
     
-    
+    public boolean cargarRegistro(Registro registro){
+        BD.asignarRegistro(registro);
+        return true;
+    }
 }

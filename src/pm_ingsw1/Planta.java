@@ -4,6 +4,8 @@
  */
 package pm_ingsw1;
 
+import java.sql.SQLException;
+import Connection.BD;
 /**
  *
  * @author ezebe
@@ -57,6 +59,14 @@ public class Planta {
         this.procesos = procesos;
     }
     
-    
+    public boolean cargarPlanta(Planta planta)throws SQLException{
+        if(BD.chequearPlanta(planta.getColor())){
+            return false;
+        }
+        else{
+            BD.cargarPlanta(planta);
+            return true;
+        }
+    }
     
 }
