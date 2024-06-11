@@ -6,6 +6,7 @@ package pm_ingsw1;
 
 import Connection.BD;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,10 +17,10 @@ public class Maquina {
     private String Marca;
     private String Modelo;
     private Planta planta;
-    private Registro[] registro;
+    private ArrayList<Registro> registro;
     private Estado estado;
 
-    public Maquina(int NroID, String Marca, String Modelo, Planta planta, Registro[] registro, Estado estado) {
+    public Maquina(int NroID, String Marca, String Modelo, Planta planta, ArrayList<Registro> registro, Estado estado) {
         this.NroID = NroID;
         this.Marca = Marca;
         this.Modelo = Modelo;
@@ -65,11 +66,11 @@ public class Maquina {
         this.planta = planta;
     }        
 
-    public Registro[] getRegistro() {
+    public ArrayList<Registro> getRegistro() {
         return registro;
     }
 
-    public void setRegistro(Registro[] registro) {
+    public void setRegistro(ArrayList<Registro> registro) {
         this.registro = registro;
     }
 
@@ -87,15 +88,14 @@ public class Maquina {
     }
     
     
-    public boolean cargarMaquina(Maquina maquina,Planta planta) throws SQLException{
-        if (BD.chequearMaquina(maquina.getNroID())==true){
+    public boolean cargarMaquina() throws SQLException{
+        if (BD.chequearMaquina(this.getNroID())==true){
             return false;
         }
         else{
-            BD.cargarMaquina(maquina, planta);
+            BD.cargarMaquina(this);
             return true;
             }
         }
-        
     
 }

@@ -27,7 +27,7 @@ public class PM_IngSw1 {
         aux1.setColor("amarillo");
         aux1.setSuperficie(0);
         BD.cargarPlanta(aux1);
-        BD.cargarMaquina(aux2, aux1);
+        BD.cargarMaquina(aux2);
         BD.cargarTecnico(tecnico);
         BD.isemptyMaquina();
     }

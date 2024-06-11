@@ -52,7 +52,9 @@ public class BD {
         try{                                                                                                  //devuelve false si no encontro nada en select 
             PreparedStatement envio;
             envio = conexion.prepareStatement("insert into Planta (Color,Superficie) values ('" + planta.getColor() + "', '" + planta.getSuperficie() + "')");
-            envio.executeUpdate();                                                                           // aca va un jpanel
+            envio.executeUpdate();  
+            System.out.println("Ha cargado una planta");
+// aca va un jpanel
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
@@ -114,13 +116,15 @@ public class BD {
         return false;
     }
                
-    public static void cargarMaquina(Maquina maquina, Planta planta) throws SQLException{
+    public static void cargarMaquina(Maquina maquina) throws SQLException{
         try{
             Statement sentencia=conexion.createStatement();
-            ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + planta.getColor() + "' ");
+            ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + maquina.getPlanta().getColor() + "' ");
             id.next();
-            String carga= "insert into  Maquina (NroID,Marca,Modelo,Estado,Planta_IdPlanta) values ('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";            PreparedStatement envio=conexion.prepareStatement(carga);
+            String carga= "insert into  Maquina (NroID,Marca,Modelo,Estado,Planta_IdPlanta) values ('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";     
+            PreparedStatement envio=conexion.prepareStatement(carga);
             envio.executeUpdate();
+            System.out.println("Ha cargado una maquina");
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
@@ -175,19 +179,21 @@ public class BD {
           System.out.println(e.getMessage());
       }
       return false;
-  }
+     }
 
     public static void cargarTecnico(Tecnico tecnico) throws SQLException{
         try{
             PreparedStatement envio=conexion.prepareStatement("insert into  Tecnico (DNI, Nombre,Apellido,Fec_Nac,Contacto) values ('" + tecnico.getDni() + "' , '" + tecnico.getNombre() + "' , '" + tecnico.getApellido() + "' ,  '" + tecnico.getFec_nac() + "' , '" + tecnico.getContacto() + "') ;");
             envio.executeUpdate();
+            System.out.println("Ha cargado un tecnico");
+
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
         }
     }
     
-      public static boolean isemptyTecnico() throws SQLException{
+    public static boolean isemptyTecnico() throws SQLException{
         Statement sentencia=conexion.createStatement();
         ResultSet resultado=sentencia.executeQuery("select Idtecnico from Tecnico");
         if(!resultado.next()){
@@ -208,6 +214,8 @@ public class BD {
         try{
             PreparedStatement envio=conexion.prepareStatement("insert into  Registro (H_Inicio,H_Final,Turno,Maquina_NroID,Tecnico_DNI) values ('" + registro.getFec_inicio() + "' , '" + registro.getFec_final() + "' , '" + registro.getTurno() + "' ,  '" + registro.getMaquina().getNroID() + "' , '" + registro.getTecnico().getDni() + "') ;");
             envio.executeUpdate();
+            System.out.println("Ha cargado un registro");
+
         }
         catch(SQLException ex){
             System.out.println(ex.getMessage());

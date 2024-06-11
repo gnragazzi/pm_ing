@@ -4,6 +4,8 @@
  */
 package pm_ingsw1;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ezebe
@@ -14,9 +16,9 @@ public class Tecnico {
     private int dni;
     private String fec_nac;
     private int contacto;
-    private Registro[] registro;
+    private ArrayList<Registro> registro=new ArrayList<>();
 
-    public Tecnico(String nombre, String apellido, int dni, String fec_nac, int contacto, Registro[] registro) {
+    public Tecnico(String nombre, String apellido, int dni, String fec_nac, int contacto, ArrayList<Registro> registro) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -27,8 +29,6 @@ public class Tecnico {
 
     public Tecnico() {
     }
-    
-
 
     public String getNombre() {
         return nombre;
@@ -50,7 +50,7 @@ public class Tecnico {
         return contacto;
     }
 
-    public Registro[] getRegistro() {
+    public ArrayList<Registro> getRegistro() {
         return registro;
     }
 
@@ -74,7 +74,7 @@ public class Tecnico {
         this.contacto = contacto;
     }
 
-    public void setRegistro(Registro[] registro) {
+    public void setRegistro(ArrayList<Registro> registro) {
         this.registro = registro;
     }
 
