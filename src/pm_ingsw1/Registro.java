@@ -67,8 +67,4 @@ public class Registro {
         this.turno = turno;
     }
     
-    public boolean cargarRegistro(){
-        BD.asignarRegistro(this);
-        return true;
-    }
 }

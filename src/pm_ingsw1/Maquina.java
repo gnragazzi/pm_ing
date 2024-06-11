@@ -87,15 +87,6 @@ public class Maquina {
         return "NroID=" + NroID + ", Marca=" + Marca + ", Modelo=" + Modelo + ", estado=" + estado;
     }
     
-    
-    public boolean cargarMaquina() throws SQLException{
-        if (BD.chequearMaquina(this.getNroID())==true){
-            return false;
-        }
-        else{
-            BD.cargarMaquina(this);
-            return true;
-            }
-        }
+
     
 }

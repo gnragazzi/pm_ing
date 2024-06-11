@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author ezebe
  */
-public class BD {
+public class BD{
     
     public static Connection conexion;
     

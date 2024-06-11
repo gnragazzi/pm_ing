@@ -60,14 +60,6 @@ public class Planta {
         this.procesos = procesos;
     }
     
-    public boolean cargarPlanta()throws SQLException{
-        if(BD.chequearPlanta(this.getColor())){
-            return false;
-        }
-        else{
-            BD.cargarPlanta(this);
-            return true;
-        }
-    }
+  
     
 }
