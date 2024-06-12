@@ -182,7 +182,6 @@ public class BD{
         try{
             PreparedStatement envio=conexion.prepareStatement("insert into  Tecnico (DNI, Nombre,Apellido,Fec_Nac,Contacto) values ('" + tecnico.getDni() + "' , '" + tecnico.getNombre() + "' , '" + tecnico.getApellido() + "' ,  '" + tecnico.getFec_nac() + "' , '" + tecnico.getContacto() + "') ;");
             envio.executeUpdate();
-            System.out.println("Ha cargado un tecnico");
         }
         catch(SQLException e){
             System.out.println(e.getMessage());

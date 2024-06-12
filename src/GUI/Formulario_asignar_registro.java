@@ -245,6 +245,7 @@ public class Formulario_asignar_registro extends Formulario{
         this.turno.getInput().setSelectedIndex(-1);
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo, String.valueOf(pestaña));
+        this.cargarTecnico_flag = false;
     };
     public boolean esValido(){
         //fecha inicio
@@ -260,9 +261,18 @@ public class Formulario_asignar_registro extends Formulario{
         return  ret;
     };
     public void enviar(){
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
         Registro r = new Registro(fecha_inicio.getInput().getText(),fecha_fin.getInput().getText(),m, t,Turno.NOCHE);
+        if(cargarTecnico_flag)
+        {
+            try {
+                BD.cargarTecnico(t);
+            } catch (SQLException ex) {
+                c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            }
+        }
         BD.asignarRegistro(r);
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo,"3");

@@ -90,7 +90,7 @@ public class Formulario_cargar_máquina extends Formulario{
     public void enviar(){
         Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
-        Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
+        Maquina m = new Maquina(Integer.parseInt(id.getInput().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
         try {
             BD.cargarMaquina(m);
             c.setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
@@ -104,7 +104,7 @@ public class Formulario_cargar_máquina extends Formulario{
     public boolean esValido(){
         this.marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         boolean ret = true;
@@ -121,15 +121,15 @@ public class Formulario_cargar_máquina extends Formulario{
         if(!id.validarCampo())
         {
             ret = false;
-            id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
         }
         else if(!maquinas.isEmpty())
         {
             for(int i = 0; i < maquinas.size();i++)
             {
-                if (maquinas.get(i).getNroID() == Integer.parseInt(id.getNum().getText()))
+                if (maquinas.get(i).getNroID() == Integer.parseInt(id.getInput().getText()))
                 {
-                    id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                    id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
                     ret = false;
                     break;
                 }
@@ -151,12 +151,12 @@ public class Formulario_cargar_máquina extends Formulario{
     public void limpiarCampos(){
         this.marca.getInput().setText("");
         this.modelo.getInput().setText("");
-        this.id.getNum().setText("");
+        this.id.getInput().setText("");
         this.estado.getInput().setSelectedIndex(-1);
         this.plantas_combo.getInput().setSelectedIndex(-1);
         this.marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
     }

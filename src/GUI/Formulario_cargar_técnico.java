@@ -84,22 +84,22 @@ public class Formulario_cargar_técnico extends Formulario{
     public void limpiarCampos(){
         this.nombre.getInput().setText("");
         this.apellido.getInput().setText("");
-        this.dni.getNum().setText("");
-        this.contacto.getNum().setText("");
+        this.dni.getInput().setText("");
+        this.contacto.getInput().setText("");
         //fecha
         this.nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.contacto.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.contacto.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         //fecha
     }
         
     public boolean esValido(){
         this.nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         //this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.contacto.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.contacto.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         boolean ret = true;
         if(!nombre.validarCampo())
         {
@@ -114,15 +114,15 @@ public class Formulario_cargar_técnico extends Formulario{
         if(!dni.validarCampo())
         {
             ret = false;
-            dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
         }
         else if(!tecnicos.isEmpty())
         {
             for(int i = 0; i < tecnicos.size();i++)
             {
-                if (tecnicos.get(i).getDni()== Integer.parseInt(dni.getNum().getText()))
+                if (tecnicos.get(i).getDni()== Integer.parseInt(dni.getInput().getText()))
                 {
-                    dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                    dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
                     ret = false;
                     break;
                 }
@@ -131,12 +131,12 @@ public class Formulario_cargar_técnico extends Formulario{
         if(!contacto.validarCampo())
         {
             ret = false;
-            contacto.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            contacto.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
         }
         return  ret;
     };
     public void enviar(){
-        Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getNum().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getNum().getText()),null);
+        Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getInput().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getInput().getText()),null);
         Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
         p.continuar_carga_Tecnico(t);  
     };

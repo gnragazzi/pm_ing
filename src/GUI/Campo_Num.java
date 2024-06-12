@@ -4,35 +4,33 @@
  */
 package GUI;
 
+import java.text.CompactNumberFormat;
 import java.text.DecimalFormat;
+import java.text.FieldPosition;
 import java.text.NumberFormat;
+import java.text.ParsePosition;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author gera
  */
 public class Campo_Num extends Campo{
-    private NumberFormat nf = new DecimalFormat();
-    private JFormattedTextField num = new JFormattedTextField(nf);
+    //private JTextField num = new JTextField();
     
     public Campo_Num(String n){
         super(n);
-        super.add(num);
-        this.cambiaInput(num);
+        this.getInput().setDocument(new JTextFieldLimit(10));
+        //this.cambiaInput(num);
         
     }
     @Override
     public boolean validarCampo(){
-        String number = this.num.getText().replaceAll("[^0-9]","");
-        if(!number.isEmpty() && Integer.parseInt(number) > 0 && number.equals(this.num.getText()))
+        String number = this.getInput().getText().replaceAll("[^0-9]","");
+        if(!number.isEmpty() && Integer.parseInt(number) > 0 && number.equals(this.getInput().getText()))
             return true;
         else
             return false;
     }
-
-    public JFormattedTextField getNum() {
-        return num;
-    }
-    
 }
