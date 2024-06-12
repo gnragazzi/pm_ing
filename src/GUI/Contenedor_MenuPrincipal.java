@@ -1,29 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import pm_ingsw1.Tecnico;
 
-/**
- *
- * @author gera
- */
 public class Contenedor_MenuPrincipal extends JPanel{
     //private JPanel actual;
     private Formulario_cargar_máquina c_m = new Formulario_cargar_máquina("Agregar Máquina");
     private Formulario_cargar_técnico c_t = new Formulario_cargar_técnico("Agregar Técnico");
     private Formulario_asignar_registro l_t = new Formulario_asignar_registro();
     private CardLayout cl = new CardLayout();
-    private Carga_Exitosa carga_exitosa = new Carga_Exitosa();
+    private Carga_Exitosa Pantalla_mensaje = new Carga_Exitosa();
     
     public Contenedor_MenuPrincipal(){
         //actual = c_m;
@@ -32,7 +20,7 @@ public class Contenedor_MenuPrincipal extends JPanel{
         this.add(c_m,"Agregar Máquina");
         this.add(c_t,"Agregar Técnico");
         this.add(l_t,"Asignar Registro");
-        this.add(carga_exitosa,"Carga Exitosa");
+        this.add(Pantalla_mensaje,"Mensaje");
     }
     
     public void cambiar_actual(String s)
@@ -47,7 +35,7 @@ public class Contenedor_MenuPrincipal extends JPanel{
     }
     public void setPantallaCargaExitosa(String s)
     {
-        carga_exitosa.setTexto(s);
-        this.cl.show(this,"Carga Exitosa");
+        Pantalla_mensaje.setTexto(s);
+        this.cl.show(this,"Mensaje");
     }
 }

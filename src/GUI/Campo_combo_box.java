@@ -68,29 +68,14 @@ public class Campo_combo_box extends JPanel{
         return input;
     }
     
-    /*
-    public JLabel getNombre(){
-        return this.Nombre;
-    }
-    public void cambiaInput(JFormattedTextField t){
-        this.remove(input);
-        t.setMinimumSize(new Dimension(20,20));
-        t.setDocument(new JTextFieldLimit(Constantes.getLIM()));
-        t.setFont(Constantes.getFUENTE_CAMPO());
-        t.setBorder(null);
-        t.setBackground(null);
-        t.setForeground(Constantes.getCOLOR_MENU());
-        t.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.add(t);
-        
-    }
+    
     public boolean validarCampo(){
-        if(this.getInput().getText().equals(""))
+        if(input.getSelectedIndex() < 0)
         {
             return false;
         }
         else
             return true;
     }
-    */
+    
 }

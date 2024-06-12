@@ -77,15 +77,6 @@ public class BD{
             i++;
         }
         return planta;
-        /*
-        for(int i = 0; i < 5; i++){
-            Planta aux= new Planta();
-            aux.setColor("C" + i);
-            aux.setSuperficie( (i+1)*(i+1));
-            planta.add(i, aux);
-        }
-        return planta;
-        */
     }
     
    

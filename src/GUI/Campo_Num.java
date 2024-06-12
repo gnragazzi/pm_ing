@@ -28,10 +28,7 @@ public class Campo_Num extends Campo{
         if(!number.isEmpty() && Integer.parseInt(number) > 0)
             return true;
         else
-        {
-            
             return false;
-        }
     }
 
     public JFormattedTextField getNum() {
