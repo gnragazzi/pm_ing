@@ -26,16 +26,13 @@ public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Agregar{
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         
     }
-    /*
     @Override
     public void mouseClick(MouseEvent evt){
-        form.
-        this.form.enviarTecnico();
+        if(form.esValido())
+            form.enviar();
+        else
+            System.out.println("Invalido");
     };
-    public Formulario_Texto getFormularioActual(){
-        return this.formulario_actual;
-    }
-    */
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);

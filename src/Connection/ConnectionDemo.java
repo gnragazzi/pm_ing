@@ -27,7 +27,6 @@ public class ConnectionDemo {
             con=DriverManager.getConnection(url, userName, password);
             st=con.createStatement();
             System.out.println("Connection is successful");
-            System.out.println(con);
         } catch (Exception e) {
           e.printStackTrace();
         }

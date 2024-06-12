@@ -138,7 +138,7 @@ public class Formulario_cargar_técnico extends Formulario{
     public void enviar(){
         Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getNum().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getNum().getText()),null);
         Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
-        
+        p.continuar_carga_Tecnico(t);  
     };
     
     public void cargarDesdeBd(){

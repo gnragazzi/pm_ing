@@ -16,8 +16,8 @@ import javax.swing.JLabel;
  * @author gera
  */
 public class Boton_Formulario_Agregar_ar extends Boton{
-    private Formulario_asignar_registro form;
-    public Boton_Formulario_Agregar_ar(String n, Formulario_asignar_registro f)
+    private Formulario form;
+    public Boton_Formulario_Agregar_ar(String n, Formulario f)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
         this.form = f;
@@ -29,7 +29,13 @@ public class Boton_Formulario_Agregar_ar extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        this.form.enviarRegistro();
+        if(form.esValido())
+        {
+            Ventana v = (Ventana)this.getTopLevelAncestor();
+            v.getModal().desplegarDialog("Confirmar Asignación de Registro", form);
+        }
+        else
+            System.out.println("invalido");
     };
     /*
     public Formulario_Texto getFormularioActual(){

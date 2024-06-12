@@ -66,7 +66,7 @@ public class Panel_Principal extends JPanel{
     }
     public void cambiarPanel(String s)
     {
-        formulario_actual.cambiar_actual(s);
+        formulario_actual.cambiar_actual(s,false);
     }
     
 }

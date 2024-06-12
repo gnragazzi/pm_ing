@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +25,7 @@ import pm_ingsw1.Turno;
  *
  * @author gera
  */
-public class Formulario_asignar_registro extends JPanel{
+public class Formulario_asignar_registro extends Formulario{
     private JPanel titulo;
     private JPanel cuerpo;
     private JPanel lista_tec;
@@ -36,7 +37,7 @@ public class Formulario_asignar_registro extends JPanel{
     private short pestaña = 0;
     private Campo fecha_inicio;
     private Campo fecha_fin;
-    private Campo turno;
+    private Campo_combo_box turno;
     private String indicaciones[] = {"Seleccione un Técnico de la Lista", "Seleccione una Máquina de la Lista", "Para terminar, rellene el formulario"};
     private boolean cargarTecnico_flag = false;
     
@@ -107,7 +108,8 @@ public class Formulario_asignar_registro extends JPanel{
         for(int i = 0; i < maquinas.size();i++)
         {
             Maquina temp = maquinas.get(i);
-            String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),temp.getPlanta().getColor(),String.valueOf(temp.getEstado())};
+            //String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),temp.getPlanta().getColor(),String.valueOf(temp.getEstado())};
+            String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),String.valueOf(temp.getEstado())};
             Fila f = new Fila(aux,false,i);
             lista_maq.add(f);
         }
@@ -128,7 +130,11 @@ public class Formulario_asignar_registro extends JPanel{
         JPanel formulario = new JPanel();
         fecha_inicio = new Campo("Fecha Inicio");
         fecha_fin = new Campo("Fecha Finalización");
-        turno = new Campo("Turno");
+        turno = new Campo_combo_box("Turno");
+        turno.getInput().addItem(Turno.MAÑANA);
+        turno.getInput().addItem(Turno.TARDE);
+        turno.getInput().addItem(Turno.NOCHE);
+        turno.getInput().setSelectedIndex(-1);
         
         formulario.add(fecha_inicio);
         formulario.add(fecha_fin);
@@ -206,7 +212,7 @@ public class Formulario_asignar_registro extends JPanel{
                 this.pestaña = 0;
                 t.setText(indicaciones[pestaña]);
                 cl.show(cuerpo, "0");
-                p.cambiar_actual("Agregar Técnico");
+                p.cambiar_actual("Agregar Técnico",true);
                 this.cargarTecnico_flag = false;
             }
             else if (pestaña == 1)
@@ -222,18 +228,6 @@ public class Formulario_asignar_registro extends JPanel{
         
     }
 
-    public void enviarRegistro() {
-        //if(validar)
-        Tecnico t = tecnicos.get(tecnico_seleccionado);
-        Maquina m = maquinas.get(maquina_seleccionada);
-        Registro r = new Registro(fecha_inicio.getInput().getText(),fecha_fin.getInput().getText(),m, t,Turno.NOCHE);
-        BD.asignarRegistro(r);
-        //m.setRegistro(m.getRegistro().set); registro debería ser arraylist¿?
-        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
-        cl.show(this.cuerpo,"3");
-    }
-    
-    
     public void continuarCambiarTecnico(Tecnico e)
     {
         cargarTecnico_flag = true;
@@ -246,4 +240,44 @@ public class Formulario_asignar_registro extends JPanel{
         tecnicos.add(e);
         tecnico_seleccionado = 0;
     }
+    public void limpiarCampos(){
+        pestaña = 0;
+        this.turno.getInput().setSelectedIndex(-1);
+        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
+        cl.show(this.cuerpo, String.valueOf(pestaña));
+    };
+    public boolean esValido(){
+        //fecha inicio
+        //fecha fin
+        this.turno.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        boolean ret = true;
+        
+        if(!turno.validarCampo())
+        {
+            ret = false;
+            turno.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+        }
+        return  ret;
+    };
+    public void enviar(){
+        Tecnico t = tecnicos.get(tecnico_seleccionado);
+        Maquina m = maquinas.get(maquina_seleccionada);
+        Registro r = new Registro(fecha_inicio.getInput().getText(),fecha_fin.getInput().getText(),m, t,Turno.NOCHE);
+        BD.asignarRegistro(r);
+        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
+        cl.show(this.cuerpo,"3");
+    };
+    public void cargarDesdeBd(){
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
+        try {
+            tecnicos = BD.listarTecnico();
+        } catch (SQLException ex) {
+            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+        }
+        try {
+            maquinas = BD.listarMaquina();
+        } catch (SQLException ex) {
+            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+        }
+    };
 }
