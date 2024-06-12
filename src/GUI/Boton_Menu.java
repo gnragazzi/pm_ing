@@ -4,9 +4,6 @@
  */
 package GUI;
 
-/*import static Ejecuciones.Lab2023.biblioteca;
-import static GUI.Menúes.Formularios.Boton_Header_Agregar.seleccionFormulario;*/
-//import GUI.Menúes.Formularios.Formulario_Texto;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;

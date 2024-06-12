@@ -4,12 +4,7 @@
  */
 package GUI;
 
-//import static Ejecuciones.Lab2023.biblioteca;
-import GUI.Boton;
-import GUI.Constantes;
-//import static GUI.Menúes.Formularios.Boton_Header_Agregar.seleccionFormulario;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
@@ -18,7 +13,7 @@ import javax.swing.JLabel;
  * @author gera
  */
 public class Boton_Formulario_Agregar extends Boton{
-    private Formulario_cargar_máquina form;
+    private Formulario form;
     public Boton_Formulario_Agregar(String n, Formulario_cargar_máquina f)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
@@ -31,13 +26,15 @@ public class Boton_Formulario_Agregar extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        this.form.enviarMaquina();
+        if(form.esValido())
+        {
+            Ventana v = (Ventana)this.getTopLevelAncestor();
+            v.getModal().desplegarDialog("Confirmar Carga de Máquina", form);
+        }
+        else
+            System.out.println("Invalido");
     };
-    /*
-    public Formulario_Texto getFormularioActual(){
-        return this.formulario_actual;
-    }
-    */
+    
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);

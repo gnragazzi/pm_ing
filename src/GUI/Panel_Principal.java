@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -70,4 +68,5 @@ public class Panel_Principal extends JPanel{
     {
         formulario_actual.cambiar_actual(s);
     }
+    
 }

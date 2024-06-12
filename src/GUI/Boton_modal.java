@@ -4,10 +4,7 @@
  */
 package GUI;
 
-import GUI.Boton;
-import GUI.Constantes;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
@@ -15,12 +12,12 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar_ar extends Boton{
-    private Formulario_asignar_registro form;
-    public Boton_Formulario_Agregar_ar(String n, Formulario_asignar_registro f)
+public class Boton_modal extends Boton{
+    private Modal diag;
+    public Boton_modal(String n, Modal d)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
-        this.form = f;
+        this.diag = d;
         this.setLayout(Constantes.getLAYOUT_CENTRADO());
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
@@ -29,13 +26,10 @@ public class Boton_Formulario_Agregar_ar extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        this.form.enviarRegistro();
+        if(this.getNombre().getText() == "Aceptar")
+            diag.getActual().enviar();
+        diag.setVisible(false);
     };
-    /*
-    public Formulario_Texto getFormularioActual(){
-        return this.formulario_actual;
-    }
-    */
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);

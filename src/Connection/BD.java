@@ -86,7 +86,7 @@ public class BD{
 
      public static ArrayList<Maquina> listarMaquina() throws SQLException{
         ArrayList<Maquina> maquina= new ArrayList<Maquina>();
-        /*int i=0;
+        int i=0;
         Statement sentencia=conexion.createStatement();
         ResultSet lista=sentencia.executeQuery("select * from Maquina");
         while(lista.next()){
@@ -100,15 +100,9 @@ public class BD{
                 aux.setEstado(Estado.REPARACION);
             maquina.add(i, aux);
             i++;
-        }*/
-        for(int i = 1; i < 11; i++){
-            ArrayList<Registro> r = new ArrayList<Registro>();
-            Planta aux_p = new Planta();
-            aux_p.setColor("Amarillo");
-            //Maquina aux= new Maquina(i,"m"+i,"mod"+i,aux_p,r,Estado.REPARACION);
-            Maquina aux= new Maquina(i,"m"+i,"mod"+i,aux_p,r,Estado.ACTIVO);
-            maquina.add(i-1, aux);
         }
+        /*
+        */
         return maquina;
     }
      

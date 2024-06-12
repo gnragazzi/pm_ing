@@ -1,10 +1,10 @@
 package GUI;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 public class Ventana extends javax.swing.JFrame {
     public Panel_Principal cuerpo = new Panel_Principal();
+    private Modal modal = new Modal(this,"Confirmar");
     
     public Ventana(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -20,4 +20,9 @@ public class Ventana extends javax.swing.JFrame {
         System.out.flush();
         
     }
+    public Modal getModal()
+    {
+        return modal;
+    }
+
 }

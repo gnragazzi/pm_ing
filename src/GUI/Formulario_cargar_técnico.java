@@ -4,23 +4,14 @@
  */
 package GUI;
 
-import Connection.BD;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import pm_ingsw1.Estado;
-import pm_ingsw1.Maquina;
 import pm_ingsw1.Planta;
-import pm_ingsw1.Registro;
 import pm_ingsw1.Tecnico;
-import GUI.Campo_Num;
-import java.awt.CardLayout;
 
 /**
  *

@@ -6,26 +6,17 @@ package GUI;
 
 import Connection.BD;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.SpringLayout;
 import pm_ingsw1.Estado;
 import pm_ingsw1.Maquina;
 import pm_ingsw1.Planta;
-import pm_ingsw1.Registro;
-import pm_ingsw1.Tecnico;
 
 /**
  *
@@ -38,8 +29,10 @@ public class Formulario_cargar_máquina extends Formulario{
     private Campo modelo;
     private Campo_Num id;
     private ArrayList<Planta> plantas_Cargadas;
+    private ArrayList<Maquina> maquinas;
     private Campo_combo_box estado;
     private Campo_combo_box plantas_combo;
+    private JDialog confirmación;
     
     public Formulario_cargar_máquina(String t){
         titulo=new JPanel();
@@ -76,7 +69,7 @@ public class Formulario_cargar_máquina extends Formulario{
 
         // Asignar planta
         plantas_combo = new Campo_combo_box("Plantas");
-        cargarPlantas();
+        cargarDesdeBd();
         cuerpo.add(plantas_combo);
         //div_botones
         
@@ -93,23 +86,17 @@ public class Formulario_cargar_máquina extends Formulario{
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
     }
     
-    public void enviarMaquina(){
-        if(esValido())
-        {
-            Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
-            Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
-            Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, Estado.ACTIVO);
-            try {
-                BD.cargarMaquina(m);
-                c.setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
-                limpiarCampos();
-            } catch (SQLException ex) {
-                c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
-            }
-        }
-        else
-        {
-            //entradas inválidas
+    @Override
+    public void enviar(){
+        Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
+        Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
+        try {
+            BD.cargarMaquina(m);
+            c.setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
+            limpiarCampos();
+        } catch (SQLException ex) {
+            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
     };
     
@@ -136,6 +123,18 @@ public class Formulario_cargar_máquina extends Formulario{
             ret = false;
             id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
         }
+        else if(!maquinas.isEmpty())
+        {
+            for(int i = 0; i < maquinas.size();i++)
+            {
+                if (maquinas.get(i).getNroID() == Integer.parseInt(id.getNum().getText()))
+                {
+                    id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                    ret = false;
+                    break;
+                }
+            }
+        }
         if(!estado.validarCampo())
         {
             ret = false;
@@ -161,7 +160,7 @@ public class Formulario_cargar_máquina extends Formulario{
         this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
     }
-    public void cargarPlantas(){
+    public void cargarDesdeBd(){
         plantas_combo.getInput().removeAllItems();
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
@@ -174,7 +173,12 @@ public class Formulario_cargar_máquina extends Formulario{
             String st = "id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() ;
             plantas_combo.getInput().addItem(st);
         }
-        System.out.println(plantas_combo);
         plantas_combo.getInput().setSelectedIndex(-1);
+        //Cargar Máquinas
+        try {
+            maquinas = BD.listarMaquina();
+        } catch (SQLException ex) {
+            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+        }
     }
 }

@@ -25,7 +25,7 @@ public class Campo_Num extends Campo{
     @Override
     public boolean validarCampo(){
         String number = this.num.getText().replaceAll("[^0-9]","");
-        if(!number.isEmpty() && Integer.parseInt(number) > 0)
+        if(!number.isEmpty() && Integer.parseInt(number) > 0 && number.equals(this.num.getText()))
             return true;
         else
             return false;
@@ -34,6 +34,5 @@ public class Campo_Num extends Campo{
     public JFormattedTextField getNum() {
         return num;
     }
-    
     
 }
