@@ -89,7 +89,7 @@ public class BD {
 
      public static ArrayList<Maquina> listarMaquina() throws SQLException{
         ArrayList<Maquina> maquina= new ArrayList<Maquina>();
-        int i=0;
+        /*int i=0;
         Statement sentencia=conexion.createStatement();
         ResultSet lista=sentencia.executeQuery("select * from Maquina");
         while(lista.next()){
@@ -103,6 +103,13 @@ public class BD {
                 aux.setEstado(Estado.REPARACION);
             maquina.add(i, aux);
             i++;
+        }*/
+        for(int i = 1; i < 11; i++){
+            Registro[] r = {new Registro()};
+            Planta aux_p = new Planta();
+            aux_p.setColor("Amarillo");
+            Maquina aux= new Maquina(i,"m"+i,"mod"+i,aux_p,r,Estado.ACTIVO);
+            maquina.add(i-1, aux);
         }
         return maquina;
     }
@@ -123,9 +130,9 @@ public class BD {
     }
                
     // creo que es innecesario pasar la planta como argumento, porque ya se encuentra como campo en el objeto (máquina.planta)
-    public static void cargarMaquina(Maquina maquina, Planta planta) throws SQLException{ 
+    public static void cargarMaquina(Maquina maquina) throws SQLException{ 
         System.out.println(maquina.toString());
-        /*
+        Planta planta = maquina.getPlanta();
         try{
             Statement sentencia=conexion.createStatement();
             ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + planta.getColor() + "' ");
@@ -137,6 +144,7 @@ public class BD {
             System.out.println("holiss... todo salió mal");
             System.out.println(e.getMessage());
         }
+        /*
         */
     }
     
@@ -156,25 +164,29 @@ public class BD {
     
     
 ///////////////////////////////////////////////////////////////////Tecnico////////////////////////////////////////////////////////////////////////
-/*
       public static ArrayList<Tecnico> listarTecnico() throws SQLException{
-        ArrayList<Tecnico> tecnico= new ArrayList<Tecnico>();
+        ArrayList<Tecnico> tecnicos= new ArrayList<Tecnico>();
+        /*
         int i=0;
         Statement sentencia=conexion.createStatement();
         ResultSet lista=sentencia.executeQuery("select * from tecnico");
         while(lista.next()){
-            Tecnico aux= new Tecnico();
-            aux.setNombre(lista.getString("Nombre"));
-            aux.setApellido(lista.getString("Apellido"));
-            aux.setDni(lista.getInt("DNI"));
-            aux.setContacto(lista.getInt("Contacto"));
-            aux.setFec_nac(lista.getString("Fec_Nac"));
+            Tecnico_DNI
+            Registro r[] = ;
+            Tecnico aux= new Tecnico(lista.getString("Nombre"), lista.getString("Apellido"), lista.getInt("DNI"), lista.getString("Fec_Nac"), lista.getInt("Contacto"), );
             tecnico.add(i, aux);
             i++;
         }
         return tecnico;
+            */
+        for(int i = 1; i < 11; i++){
+            Registro[] r = {new Registro()};
+            Tecnico aux= new Tecnico("N"+i,"A"+i,i,"F"+i,i,r);
+            tecnicos.add(i-1, aux);
+        }
+        return tecnicos;
     }
-      */
+
     public static boolean chequearTecnico(int dni) throws SQLException{
       try{
           Statement sentencia=conexion.createStatement();
@@ -217,7 +229,9 @@ public class BD {
     
 ///////////////////////////////////////////////////////////////////Registro////////////////////////////////////////////////////////////////////////
 /*
+    */
     public static void asignarRegistro(Registro registro){
+        /*
         try{
             PreparedStatement envio=conexion.prepareStatement("insert into  Registro (H_Inicio,H_Final,Turno,Maquina_NroID,Tecnico_DNI) values ('" + registro.getFec_inicio() + "' , '" + registro.getFec_final() + "' , '" + registro.getTurno() + "' ,  '" + registro.getMaquina().getNroID() + "' , '" + registro.getTecnico().getDni() + "') ;");
             envio.executeUpdate();
@@ -225,9 +239,10 @@ public class BD {
         catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+        */
+        System.out.println("Registro Asignado!");
     }
     
-    */
         ///////////////////////////////////////////////////////////////////Conexion////////////////////////////////////////////////////////////////////////
 
    public static void connect(){ 

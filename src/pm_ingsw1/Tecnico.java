@@ -16,6 +16,10 @@ public class Tecnico {
     private int contacto;
     private Registro[] registro;
 
+    public Tecnico()
+    {
+        
+    }
     public Tecnico(String nombre, String apellido, int dni, String fec_nac, int contacto, Registro[] registro) {
         this.nombre = nombre;
         this.apellido = apellido;

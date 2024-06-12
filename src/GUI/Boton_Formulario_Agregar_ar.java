@@ -17,9 +17,9 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar extends Boton{
-    private Formulario_cargar_máquina form;
-    public Boton_Formulario_Agregar(String n, Formulario_cargar_máquina f)
+public class Boton_Formulario_Agregar_ar extends Boton{
+    private Formulario_asignar_registro form;
+    public Boton_Formulario_Agregar_ar(String n, Formulario_asignar_registro f)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
         this.form = f;
@@ -31,7 +31,7 @@ public class Boton_Formulario_Agregar extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        this.form.enviarMaquina();
+        this.form.enviarRegistro();
     };
     /*
     public Formulario_Texto getFormularioActual(){

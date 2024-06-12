@@ -25,12 +25,13 @@ import pm_ingsw1.Estado;
 import pm_ingsw1.Maquina;
 import pm_ingsw1.Planta;
 import pm_ingsw1.Registro;
+import pm_ingsw1.Tecnico;
 
 /**
  *
  * @author gera
  */
-public class Formulario extends JPanel{
+public class Formulario_cargar_máquina extends JPanel{
     private JPanel titulo;
     private JPanel cuerpo;
     private Campo marca;
@@ -40,13 +41,13 @@ public class Formulario extends JPanel{
     private ArrayList<Planta> plantas_Cargadas;
     private Campo_combo_box plantas_combo;
     
-    public Formulario(String t){
+    public Formulario_cargar_máquina(String t){
         titulo=new JPanel();
         titulo.setBackground(Color.ORANGE);
         titulo.setMaximumSize(new Dimension(6000,4000));
         titulo.setMinimumSize(new Dimension(600,20));
         titulo.setPreferredSize(new Dimension(600,40));
-        JLabel text = new JLabel("Cargar Máquina");
+        JLabel text = new JLabel(t);
         titulo.add(text);
         this.add(titulo);
         
@@ -75,7 +76,7 @@ public class Formulario extends JPanel{
         try {
             plantas_Cargadas = BD.listarPlanta();
         } catch (SQLException ex) {
-            Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Formulario_cargar_técnico.class.getName()).log(Level.SEVERE, null, ex);
         }
         for(int i = 0; i < plantas_Cargadas.size(); i++){
             Planta p = plantas_Cargadas.get(i);
@@ -103,14 +104,8 @@ public class Formulario extends JPanel{
         Registro a[] = {new Registro()};
         //planta
         Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
-        
-        Maquina m = new Maquina(123, marca.getInput().getText(), modelo.getInput().getText(), p, a, Estado.ACTIVO);
-        try {
-            BD.cargarMaquina(m, m.getPlanta());
-        } catch (SQLException ex) {
-            Logger.getLogger(Formulario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, a, Estado.ACTIVO);
+        //m.cargar();
         System.out.println("{msg}Cargar Máquina... marca: "+ marca.getInput().getText() + "modelo " + modelo.getInput().getText() + "id: " + id.getInput().getText() + "estado: "+estado.getInput().getText());
-        
     };
 }

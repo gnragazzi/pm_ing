@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+import GUI.Contenedor_MenuPrincipal;
 
 /**
  *
@@ -32,7 +33,9 @@ public class Boton_Menu extends Boton {
     };
     @Override
     public void mouseClick(MouseEvent evt){
-        switch(this.getNombre().getText()){
+        Panel_Principal n = (Panel_Principal) this.getParent().getParent();
+        n.cambiarPanel(this.getNombre().getText());
+        /*switch(this.getNombre().getText()){
             /*
             case "Inicio":
             {
@@ -85,8 +88,8 @@ public class Boton_Menu extends Boton {
                 getVentana().dispatchEvent(new WindowEvent(getVentana(), WindowEvent.WINDOW_CLOSING));
 
             }break;
-            */
         }
+            */
     }
     
     

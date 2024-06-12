@@ -12,7 +12,7 @@ public class Ventana extends javax.swing.JFrame {
         this.setContentPane(cuerpo);
         
         this.setMinimumSize(new Dimension(800,600));
-        this.setPreferredSize(new Dimension(1200,800));
+        this.setPreferredSize(new Dimension(1400,800));
         //this.setUndecorated(true);
         this.pack();
         this.setVisible(true);

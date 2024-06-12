@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  * @author gera
  */
 public class Boton_Formulario_Limpiar extends Boton_Formulario_Agregar {
-    public Boton_Formulario_Limpiar(String n, Formulario f){
+    public Boton_Formulario_Limpiar(String n, Formulario_cargar_máquina f){
         super(n,f);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);

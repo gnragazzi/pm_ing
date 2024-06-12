@@ -7,6 +7,7 @@ package GUI;
 //import static Ejecuciones.Lab2023.biblioteca;
 import GUI.Boton;
 import GUI.Constantes;
+import java.awt.CardLayout;
 //import static GUI.Menúes.Formularios.Boton_Header_Agregar.seleccionFormulario;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -17,12 +18,10 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar extends Boton{
-    private Formulario_cargar_máquina form;
-    public Boton_Formulario_Agregar(String n, Formulario_cargar_máquina f)
+public class Boton_Asignar_siguiente extends Boton{
+    public Boton_Asignar_siguiente(String n)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
-        this.form = f;
         this.setLayout(Constantes.getLAYOUT_CENTRADO());
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
@@ -31,7 +30,8 @@ public class Boton_Formulario_Agregar extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        this.form.enviarMaquina();
+        Formulario_asignar_registro p = (Formulario_asignar_registro)this.getParent().getParent().getParent().getParent();
+        p.cambiarListado(1);
     };
     /*
     public Formulario_Texto getFormularioActual(){

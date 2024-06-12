@@ -77,7 +77,11 @@ public class Maquina {
         this.estado = estado;
     }
     
-    
+    public boolean cargarMaquina(Maquina m)
+    {
+        System.out.println("Cargo la Maquina "+ m.toString());
+        return true;
+    }
     
     
 }

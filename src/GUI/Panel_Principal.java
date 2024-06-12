@@ -38,7 +38,7 @@ public class Panel_Principal extends JPanel{
         menuLateral = new Menu_Lateral();
         menuLateral.setBackground(Color.RED);
         menuLat.fill = GridBagConstraints.BOTH;
-        menuLat.weightx = 0.3;
+        menuLat.weightx = 0.5;
         menuLat.weighty = 0.950;
         menuLat.gridx = 0;
         menuLat.gridy = 1;
@@ -52,7 +52,7 @@ public class Panel_Principal extends JPanel{
         formulario.gridy = 1;
         formulario.gridwidth = GridBagConstraints.REMAINDER;
         formulario.gridheight = GridBagConstraints.REMAINDER;
-        formulario.weightx = 0.7;
+        formulario.weightx = 0.5;
         formulario.weighty = 0.950;
         formulario.fill = GridBagConstraints.BOTH;
         //formulario.anchor = GridBagConstraints.LAST_LINE_END;
@@ -66,5 +66,8 @@ public class Panel_Principal extends JPanel{
         */
         this.setPreferredSize(new Dimension(680,480));
     }
-    
+    public void cambiarPanel(String s)
+    {
+        formulario_actual.cambiar_actual(s);
+    }
 }

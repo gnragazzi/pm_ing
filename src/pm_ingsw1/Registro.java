@@ -13,10 +13,22 @@ public class Registro {
     private String fec_final;
     private Maquina maquina;
     private Tecnico tecnico;
+
+    public Registro() {
+        //System.out.println("Nuevo Registro");
+    }
+
+    public String getTurno() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private enum turno{
         Mañana,Tarde,Noche
     }
 
+    public Registro(String fec_inicio, String fec_final) {
+        this.fec_inicio = fec_inicio;
+        this.fec_final = fec_final;
+    }
     public Registro(String fec_inicio, String fec_final, Maquina maquina, Tecnico tecnico) {
         this.fec_inicio = fec_inicio;
         this.fec_final = fec_final;
@@ -24,8 +36,6 @@ public class Registro {
         this.tecnico = tecnico;
     }
 
-    public Registro() {
-    }
     
     
 
