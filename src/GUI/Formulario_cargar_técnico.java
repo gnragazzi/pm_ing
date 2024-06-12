@@ -87,10 +87,9 @@ public class Formulario_cargar_técnico extends JPanel{
     }
     
     public void enviarTecnico(){
-        Registro r[] = {new Registro()};
-        Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getNum().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getNum().getText()),r);
+        Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getNum().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getNum().getText()),null);
         Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
-        p.cambiar_actual("Asignar Registro");
+        p.continuar_carga_Tecnico(t);
     };
 }
 

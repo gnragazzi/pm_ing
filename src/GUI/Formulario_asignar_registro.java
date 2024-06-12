@@ -199,7 +199,16 @@ public class Formulario_asignar_registro extends JPanel{
         }
         else
         {
-            if(pestaña == 1)
+            if(pestaña == 1 && cargarTecnico_flag)
+            {
+                Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
+                this.pestaña = 0;
+                t.setText(indicaciones[pestaña]);
+                cl.show(cuerpo, "0");
+                p.cambiar_actual("Agregar Técnico");
+                this.cargarTecnico_flag = false;
+            }
+            else if (pestaña == 1)
             {
                 cl.show(this.cuerpo, String.valueOf(--pestaña));
             }
@@ -221,5 +230,18 @@ public class Formulario_asignar_registro extends JPanel{
         //m.setRegistro(m.getRegistro().set); registro debería ser arraylist¿?
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo,"3");
+    }
+    
+    public void continuarCambiarTecnico(Tecnico e)
+    {
+        cargarTecnico_flag = true;
+        pestaña = 1;
+        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
+        cl.show(this.cuerpo, "1");
+        JLabel t = (JLabel)titulo.getComponent(0);
+        t.setText(this.indicaciones[pestaña]);
+        tecnicos = new ArrayList<Tecnico>();
+        tecnicos.add(e);
+        tecnico_seleccionado = 0;
     }
 }

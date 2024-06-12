@@ -101,10 +101,8 @@ public class Formulario_cargar_máquina extends JPanel{
     }
     
     public void enviarMaquina(){
-        Registro a[] = {new Registro()};
-        //planta
         Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
-        Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, a, Estado.ACTIVO);
+        Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, Estado.ACTIVO);
         //m.cargar();
         System.out.println("{msg}Cargar Máquina... marca: "+ marca.getInput().getText() + "modelo " + modelo.getInput().getText() + "id: " + id.getInput().getText() + "estado: "+estado.getInput().getText());
     };

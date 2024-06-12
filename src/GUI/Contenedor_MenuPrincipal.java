@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import pm_ingsw1.Tecnico;
 
 /**
  *
@@ -36,6 +37,12 @@ public class Contenedor_MenuPrincipal extends JPanel{
         //System.out.println(s);
         CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, s);
+    }
+    
+    public void continuar_carga_Tecnico(Tecnico t){
+        l_t.continuarCambiarTecnico(t);
+        CardLayout cl = (CardLayout)(this.getLayout());
+        cl.show(this, "Asignar Registro");
     }
             
 }
