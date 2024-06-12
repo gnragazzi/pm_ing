@@ -21,6 +21,7 @@ public class Maquina {
     private Estado estado;
 
     public Maquina(int NroID, String Marca, String Modelo, Planta planta, ArrayList<Registro> registro, Estado estado) {
+    //public Maquina(int NroID, String Marca, String Modelo, Planta planta, ArrayList<Registro> registro) {
         this.NroID = NroID;
         this.Marca = Marca;
         this.Modelo = Modelo;

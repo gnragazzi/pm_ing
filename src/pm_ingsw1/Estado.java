@@ -22,4 +22,3 @@ public enum Estado {
         return estado;
     }
 }
-

@@ -1,8 +1,6 @@
-<<<<<<< OURS
 /nbproject/private/
-=======
 /build/
 /templates
 /nbproject/private/
 /dist/
->>>>>>> THEIRS
+/lib

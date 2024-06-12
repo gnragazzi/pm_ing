@@ -20,6 +20,7 @@ import pm_ingsw1.Maquina;
 import pm_ingsw1.Planta;
 import pm_ingsw1.Registro;
 import pm_ingsw1.Tecnico;
+import pm_ingsw1.Turno;
 
 /**
  *
@@ -73,6 +74,7 @@ public class Formulario_asignar_registro extends JPanel{
         //              LISTA_TEC
         /************************************************/
         /************************************************/
+       
         lista_tec = new JPanel();
         lista_tec.setLayout(new BoxLayout(lista_tec,BoxLayout.PAGE_AXIS));
         String c_t[] = {"Nombre","Apellido","DNI","Fecha de Nacimiento", "Contacto"};
@@ -91,6 +93,7 @@ public class Formulario_asignar_registro extends JPanel{
         Boton_Asignar_siguiente boton = new Boton_Asignar_siguiente("Siguiente");
         div_botones.add(boton);
         lista_tec.add(div_botones);
+
         /************************************************/
         /************************************************/
         //              LISTA_MAQ
@@ -123,6 +126,7 @@ public class Formulario_asignar_registro extends JPanel{
         //              FORMULARIO
         /************************************************/
         /************************************************/
+        
         JPanel formulario = new JPanel();
         fecha_inicio = new Campo("Fecha Inicio");
         fecha_fin = new Campo("Fecha Finalización");
@@ -146,6 +150,7 @@ public class Formulario_asignar_registro extends JPanel{
         //              FORMULARIO
         /************************************************/
         /************************************************/    
+
         JPanel pantalla_final = new JPanel();
         JLabel mensaje = new JLabel("El registro se cargo correctamente");
         pantalla_final.add(mensaje);
@@ -225,12 +230,13 @@ public class Formulario_asignar_registro extends JPanel{
         //if(validar)
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
-        Registro r = new Registro(fecha_inicio.getInput().getText(),fecha_fin.getInput().getText(),m, t);
+        Registro r = new Registro(fecha_inicio.getInput().getText(),fecha_fin.getInput().getText(),m, t,Turno.NOCHE);
         BD.asignarRegistro(r);
         //m.setRegistro(m.getRegistro().set); registro debería ser arraylist¿?
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo,"3");
     }
+    
     
     public void continuarCambiarTecnico(Tecnico e)
     {

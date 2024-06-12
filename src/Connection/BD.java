@@ -5,6 +5,7 @@
 package Connection;
 import java.sql.*;
 import pm_ingsw1.*;
+import pm_ingsw1.Estado;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,8 +19,9 @@ import java.util.ArrayList;
 public class BD{
     
     public static Connection conexion;
-    
     // Librería de MySQL
+    public static ConnectionDemo gen = new ConnectionDemo();
+    
 
     public BD() {
     }
@@ -35,6 +37,7 @@ public class BD{
     
     public static boolean chequearPlanta(String color) throws SQLException{
         try{
+            System.out.println(conexion.toString());
             Statement sentencia=conexion.createStatement();
             ResultSet chequeo=sentencia.executeQuery("select Color from Planta where Color = '" + color + "'");
             if(chequeo.next())
@@ -63,9 +66,9 @@ public class BD{
  
     public static ArrayList<Planta> listarPlanta() throws SQLException{
         ArrayList<Planta> planta= new ArrayList<Planta>();
-        /*int i=0;
+        int i=0;
         Statement sentencia=conexion.createStatement();
-        ResultSet lista=sentencia.executeQuery("select * from planta");
+        ResultSet lista=sentencia.executeQuery("select * from Planta");
         while(lista.next()){
             Planta aux= new Planta();
             aux.setColor(lista.getString("Color"));
@@ -74,7 +77,7 @@ public class BD{
             i++;
         }
         return planta;
-        */
+        /*
         for(int i = 0; i < 5; i++){
             Planta aux= new Planta();
             aux.setColor("C" + i);
@@ -82,6 +85,7 @@ public class BD{
             planta.add(i, aux);
         }
         return planta;
+        */
     }
     
    
@@ -110,6 +114,7 @@ public class BD{
             ArrayList<Registro> r = new ArrayList<Registro>();
             Planta aux_p = new Planta();
             aux_p.setColor("Amarillo");
+            //Maquina aux= new Maquina(i,"m"+i,"mod"+i,aux_p,r,Estado.REPARACION);
             Maquina aux= new Maquina(i,"m"+i,"mod"+i,aux_p,r,Estado.ACTIVO);
             maquina.add(i-1, aux);
         }
@@ -136,18 +141,16 @@ public class BD{
         try{
             Statement sentencia=conexion.createStatement();
             ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + maquina.getPlanta().getColor() + "' ");
+            System.out.println(id);
             id.next();
-            String carga= "insert into  Maquina (NroID,Marca,Modelo,Estado,Planta_IdPlanta) values ('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";     
+            String carga= "insert into  Maquina(NroID,Marca,Modelo,Estado,Planta_IdPlanta) values('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";     
             PreparedStatement envio=conexion.prepareStatement(carga);
             envio.executeUpdate();
             System.out.println("Ha cargado una maquina");
         }
         catch(SQLException e){
-            System.out.println("holiss... todo salió mal");
             System.out.println(e.getMessage());
         }
-        /*
-        */
     }
     
     public static boolean isemptyMaquina() throws SQLException{
@@ -209,7 +212,6 @@ public class BD{
             PreparedStatement envio=conexion.prepareStatement("insert into  Tecnico (DNI, Nombre,Apellido,Fec_Nac,Contacto) values ('" + tecnico.getDni() + "' , '" + tecnico.getNombre() + "' , '" + tecnico.getApellido() + "' ,  '" + tecnico.getFec_nac() + "' , '" + tecnico.getContacto() + "') ;");
             envio.executeUpdate();
             System.out.println("Ha cargado un tecnico");
-
         }
         catch(SQLException e){
             System.out.println(e.getMessage());
@@ -251,14 +253,7 @@ public class BD{
     
         ///////////////////////////////////////////////////////////////////Conexion////////////////////////////////////////////////////////////////////////
 
-   public static void connect(){ 
-            try{
-                Class.forName("com.mysql.cj.jdbc.Driver"); 
-                conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?useSSL=false","root","usuario");
-                
-            }
-            catch(ClassNotFoundException | SQLException ex){
-                System.out.println(ex.getMessage());
-            }
+   public static void connect() throws ClassNotFoundException{
+       conexion = gen.getConexión();
         }
 }
