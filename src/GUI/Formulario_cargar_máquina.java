@@ -102,11 +102,14 @@ public class Formulario_cargar_máquina extends JPanel{
     
     public void enviarMaquina(){
         Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         Maquina m = new Maquina(Integer.parseInt(id.getNum().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, Estado.ACTIVO);
         try {
             BD.cargarMaquina(m);
+            c.setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
         } catch (SQLException ex) {
-            Logger.getLogger(Formulario_cargar_máquina.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("xxx");
+            //Logger.getLogger(Formulario_cargar_máquina.class.getName()).log(Level.SEVERE, null, ex);
         }
     };
 }

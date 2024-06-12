@@ -147,13 +147,11 @@ public class Formulario_asignar_registro extends JPanel{
     
         /************************************************/
         /************************************************/
-        //              FORMULARIO
+        //              Carga Exitosa
         /************************************************/
         /************************************************/    
 
-        JPanel pantalla_final = new JPanel();
-        JLabel mensaje = new JLabel("El registro se cargo correctamente");
-        pantalla_final.add(mensaje);
+        Carga_Exitosa pantalla_final = new Carga_Exitosa("El registro se cargo correctamente");
         
         
         cuerpo.add(lista_tec,"0");

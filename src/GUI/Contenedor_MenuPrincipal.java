@@ -22,27 +22,32 @@ public class Contenedor_MenuPrincipal extends JPanel{
     private Formulario_cargar_máquina c_m = new Formulario_cargar_máquina("Agregar Máquina");
     private Formulario_cargar_técnico c_t = new Formulario_cargar_técnico("Agregar Técnico");
     private Formulario_asignar_registro l_t = new Formulario_asignar_registro();
+    private CardLayout cl = new CardLayout();
+    private Carga_Exitosa carga_exitosa = new Carga_Exitosa();
     
     public Contenedor_MenuPrincipal(){
         //actual = c_m;
         this.setBackground(Color.blue);
-        this.setLayout(new CardLayout());
+        this.setLayout(cl);
         this.add(c_m,"Agregar Máquina");
         this.add(c_t,"Agregar Técnico");
         this.add(l_t,"Asignar Registro");
+        this.add(carga_exitosa,"Carga Exitosa");
     }
     
     public void cambiar_actual(String s)
     {
         //System.out.println(s);
-        CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, s);
     }
     
     public void continuar_carga_Tecnico(Tecnico t){
         l_t.continuarCambiarTecnico(t);
-        CardLayout cl = (CardLayout)(this.getLayout());
         cl.show(this, "Asignar Registro");
     }
-            
+    public void setPantallaCargaExitosa(String s)
+    {
+        carga_exitosa.setTexto(s);
+        this.cl.show(this,"Carga Exitosa");
+    }
 }

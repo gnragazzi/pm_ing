@@ -138,19 +138,15 @@ public class BD{
                
 
     public static void cargarMaquina(Maquina maquina) throws SQLException{
-        try{
-            Statement sentencia=conexion.createStatement();
-            ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + maquina.getPlanta().getColor() + "' ");
-            System.out.println(id);
-            id.next();
-            String carga= "insert into  Maquina(NroID,Marca,Modelo,Estado,Planta_IdPlanta) values('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";     
-            PreparedStatement envio=conexion.prepareStatement(carga);
-            envio.executeUpdate();
-            System.out.println("Ha cargado una maquina");
-        }
-        catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
+        Statement sentencia=conexion.createStatement();
+        ResultSet id=sentencia.executeQuery("select Idplanta from Planta where Color like '" + maquina.getPlanta().getColor() + "' ");
+        System.out.println(id);
+        id.next();
+        String carga= "insert into  Maquina(NroID,Marca,Modelo,Estado,Planta_IdPlanta) values('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";     
+        PreparedStatement envio=conexion.prepareStatement(carga);
+        envio.executeUpdate();
+        //System.out.println("Ha cargado una maquina");
+
     }
     
     public static boolean isemptyMaquina() throws SQLException{
