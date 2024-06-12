@@ -10,6 +10,7 @@ public class Contenedor_MenuPrincipal extends JPanel{
     private Formulario_cargar_máquina c_m = new Formulario_cargar_máquina("Agregar Máquina");
     private Formulario_cargar_técnico c_t = new Formulario_cargar_técnico("Agregar Técnico");
     private Formulario_asignar_registro l_t = new Formulario_asignar_registro();
+    private Formulario actual;
     private CardLayout cl = new CardLayout();
     private Carga_Exitosa Pantalla_mensaje = new Carga_Exitosa();
     
@@ -17,6 +18,7 @@ public class Contenedor_MenuPrincipal extends JPanel{
         //actual = c_m;
         this.setBackground(Color.blue);
         this.setLayout(cl);
+        actual = c_m;
         this.add(c_m,"Agregar Máquina");
         this.add(c_t,"Agregar Técnico");
         this.add(l_t,"Asignar Registro");
@@ -25,7 +27,12 @@ public class Contenedor_MenuPrincipal extends JPanel{
     
     public void cambiar_actual(String s)
     {
-        //System.out.println(s);
+        actual.limpiarCampos();
+        if(s.equals("Agregar Máquina"))
+        {
+            actual = c_m;
+            c_m.cargarPlantas();
+        }
         cl.show(this, s);
     }
     

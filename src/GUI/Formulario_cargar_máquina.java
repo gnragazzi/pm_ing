@@ -31,7 +31,7 @@ import pm_ingsw1.Tecnico;
  *
  * @author gera
  */
-public class Formulario_cargar_máquina extends JPanel{
+public class Formulario_cargar_máquina extends Formulario{
     private JPanel titulo;
     private JPanel cuerpo;
     private Campo marca;
@@ -42,7 +42,6 @@ public class Formulario_cargar_máquina extends JPanel{
     private Campo_combo_box plantas_combo;
     
     public Formulario_cargar_máquina(String t){
-        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         titulo=new JPanel();
         titulo.setBackground(Color.ORANGE);
         titulo.setMaximumSize(new Dimension(6000,4000));
@@ -77,18 +76,7 @@ public class Formulario_cargar_máquina extends JPanel{
 
         // Asignar planta
         plantas_combo = new Campo_combo_box("Plantas");
-        try {
-            plantas_Cargadas = BD.listarPlanta();
-        } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
-        }
-        for(int i = 0; i < plantas_Cargadas.size(); i++){
-            Planta p = plantas_Cargadas.get(i);
-            String st = "id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() ;
-            plantas_combo.getInput().addItem(st);
-            //System.out.println("id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() );
-        }
-        plantas_combo.getInput().setSelectedIndex(-1);
+        cargarPlantas();
         cuerpo.add(plantas_combo);
         //div_botones
         
@@ -114,6 +102,7 @@ public class Formulario_cargar_máquina extends JPanel{
             try {
                 BD.cargarMaquina(m);
                 c.setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
+                limpiarCampos();
             } catch (SQLException ex) {
                 c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
             }
@@ -124,6 +113,7 @@ public class Formulario_cargar_máquina extends JPanel{
         }
     };
     
+    @Override
     public boolean esValido(){
         this.marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         this.modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
@@ -157,5 +147,34 @@ public class Formulario_cargar_máquina extends JPanel{
             plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
         }
         return  ret;
+    }
+    @Override
+    public void limpiarCampos(){
+        this.marca.getInput().setText("");
+        this.modelo.getInput().setText("");
+        this.id.getNum().setText("");
+        this.estado.getInput().setSelectedIndex(-1);
+        this.plantas_combo.getInput().setSelectedIndex(-1);
+        this.marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.id.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+    }
+    public void cargarPlantas(){
+        plantas_combo.getInput().removeAllItems();
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
+        try {
+            plantas_Cargadas = BD.listarPlanta();
+        } catch (SQLException ex) {
+            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+        }
+        for(int i = 0; i < plantas_Cargadas.size(); i++){
+            Planta p = plantas_Cargadas.get(i);
+            String st = "id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() ;
+            plantas_combo.getInput().addItem(st);
+        }
+        System.out.println(plantas_combo);
+        plantas_combo.getInput().setSelectedIndex(-1);
     }
 }
