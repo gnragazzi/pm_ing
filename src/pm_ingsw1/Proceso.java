@@ -4,7 +4,7 @@
  */
 package pm_ingsw1;
 
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 public class Proceso {
     private String nombre;
     private int complejidad;
-    private Planta[] plantas;
+    private ArrayList<Planta> plantas=new ArrayList<>();
 
-    public Proceso(String nombre, int complejidad, Planta[] plantas) {
+    public Proceso(String nombre, int complejidad, ArrayList<Planta> plantas) {
         this.nombre = nombre;
         this.complejidad = complejidad;
         this.plantas = plantas;
@@ -29,7 +29,7 @@ public class Proceso {
         return complejidad;
     }
 
-    public Planta[] getPlantas() {
+    public ArrayList<Planta> getPlantas() {
         return plantas;
     }
 
@@ -41,7 +41,7 @@ public class Proceso {
         this.complejidad = complejidad;
     }
 
-    public void setPlantas(Planta[] plantas) {
+    public void setPlantas(ArrayList<Planta> plantas) {
         this.plantas = plantas;
     }
     

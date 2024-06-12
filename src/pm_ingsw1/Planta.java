@@ -4,6 +4,9 @@
  */
 package pm_ingsw1;
 
+import java.sql.SQLException;
+import Connection.BD;
+import java.util.ArrayList;
 /**
  *
  * @author ezebe
@@ -12,10 +15,10 @@ public class Planta {
     // planta no debería tener algún identificador? (Creo haber oido que el color no se podía usar como identificador)
     private String color;
     private int superficie;
-    private Maquina[] maquinas;
-    private Proceso[] procesos;
+    private ArrayList<Maquina> maquinas;
+    private ArrayList<Proceso> procesos;
 
-    public Planta(String color, int superficie, Maquina[] maquinas, Proceso[] procesos) {
+    public Planta(String color, int superficie, ArrayList<Maquina> maquinas, ArrayList<Proceso> procesos) {
         this.color = color;
         this.superficie = superficie;
         this.maquinas = maquinas;
@@ -34,11 +37,11 @@ public class Planta {
         return superficie;
     }
 
-    public Maquina[] getMaquinas() {
+    public ArrayList<Maquina> getMaquinas() {
         return maquinas;
     }
 
-    public Proceso[] getProcesos() {
+    public ArrayList<Proceso> getProcesos() {
         return procesos;
     }
 
@@ -50,14 +53,14 @@ public class Planta {
         this.superficie = superficie;
     }
 
-    public void setMaquinas(Maquina[] maquinas) {
+    public void setMaquinas(ArrayList<Maquina> maquinas) {
         this.maquinas = maquinas;
     }
 
-    public void setProcesos(Proceso[] procesos) {
+    public void setProcesos(ArrayList<Proceso> procesos) {
         this.procesos = procesos;
     }
     
-    
+  
     
 }

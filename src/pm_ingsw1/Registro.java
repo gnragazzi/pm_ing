@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package pm_ingsw1;
-
+import Connection.BD;
+import java.sql.SQLException;
 /**
  *
  * @author ezebe
@@ -13,32 +14,17 @@ public class Registro {
     private String fec_final;
     private Maquina maquina;
     private Tecnico tecnico;
+    private Turno turno;
 
-    public Registro() {
-        //System.out.println("Nuevo Registro");
-    }
-
-    public String getTurno() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    private enum turno{
-        Mañana,Tarde,Noche
-    }
-
-    public Registro(String fec_inicio, String fec_final) {
-        this.fec_inicio = fec_inicio;
-        this.fec_final = fec_final;
-    }
-    public Registro(String fec_inicio, String fec_final, Maquina maquina, Tecnico tecnico) {
+    public Registro(String fec_inicio, String fec_final, Maquina maquina, Tecnico tecnico, Turno turno) {
         this.fec_inicio = fec_inicio;
         this.fec_final = fec_final;
         this.maquina = maquina;
         this.tecnico = tecnico;
+        this.turno=turno;
     }
 
     
-    
-
     public String getFec_inicio() {
         return fec_inicio;
     }
@@ -70,6 +56,13 @@ public class Registro {
     public void setTecnico(Tecnico tecnico) {
         this.tecnico = tecnico;
     }
-    
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
+    }
     
 }

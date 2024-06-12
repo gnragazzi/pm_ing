@@ -8,18 +8,19 @@ package pm_ingsw1;
  *
  * @author ezebe
  */
-public enum Estado {
-        ACTIVO(1),
-        REPARACION(2);
+public enum Turno {
+        MAÑANA(1),
+        TARDE(2),
+        NOCHE(3);
 
-    private final int estado;
+    private final int turno;
 
-    Estado(int estado) {
-        this.estado = estado;
+    Turno(int turno) {
+        this.turno = turno;
     }
-    
-    public int getEstado() {
-        return estado;
+
+    public int getTurno() {
+        return turno;
     }
 }
 
