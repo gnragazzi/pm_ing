@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 import pm_ingsw1.Tecnico;
 
 public class Contenedor_MenuPrincipal extends JPanel{
-    //private JPanel actual;
     private Formulario_cargar_máquina c_m = new Formulario_cargar_máquina("Agregar Máquina");
     private Formulario_cargar_técnico c_t = new Formulario_cargar_técnico("Agregar Técnico");
     //private Formulario_asignar_registro l_t = new Formulario_asignar_registro();
@@ -31,8 +30,10 @@ public class Contenedor_MenuPrincipal extends JPanel{
         if(s.equals("Agregar Máquina"))
         {
             actual = c_m;
-            c_m.cargarDesdeBd();
         }
+        else if(s.equals("Agregar Técnico"))
+            actual = c_t;
+        actual.cargarDesdeBd();
         cl.show(this, s);
     }
     

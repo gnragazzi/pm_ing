@@ -15,23 +15,23 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar_ct extends Boton{
-    private Formulario_cargar_técnico form;
-    public Boton_Formulario_Agregar_ct(String n, Formulario_cargar_técnico f)
+public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Agregar{
+    private Formulario form;
+    public Boton_Formulario_Agregar_ct(String n, Formulario f)
     {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        super(n,f);
         this.form = f;
         this.setLayout(Constantes.getLAYOUT_CENTRADO());
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         
     }
-
+    /*
     @Override
     public void mouseClick(MouseEvent evt){
+        form.
         this.form.enviarTecnico();
     };
-    /*
     public Formulario_Texto getFormularioActual(){
         return this.formulario_actual;
     }
@@ -57,6 +57,5 @@ public class Boton_Formulario_Agregar_ct extends Boton{
         //setear color
         return Constantes.getCOLOR_MENU();
     }
-    
 
 }

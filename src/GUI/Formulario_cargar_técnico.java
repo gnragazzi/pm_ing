@@ -4,9 +4,14 @@
  */
 package GUI;
 
+import Connection.BD;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +22,7 @@ import pm_ingsw1.Tecnico;
  *
  * @author gera
  */
-public class Formulario_cargar_técnico extends JPanel{
+public class Formulario_cargar_técnico extends Formulario{
     private JPanel titulo;
     private JPanel cuerpo;
     private Campo nombre;
@@ -25,8 +30,7 @@ public class Formulario_cargar_técnico extends JPanel{
     private Campo_Num dni;
     private Campo fecha_nac;
     private Campo_Num contacto;
-    private ArrayList<Planta> plantas_Cargadas;
-    private Campo_combo_box plantas_combo;
+    private ArrayList<Tecnico> tecnicos;
     
     public Formulario_cargar_técnico(String t){
         titulo=new JPanel();
@@ -77,11 +81,75 @@ public class Formulario_cargar_técnico extends JPanel{
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
     }
     
-    public void enviarTecnico(){
+    public void limpiarCampos(){
+        this.nombre.getInput().setText("");
+        this.apellido.getInput().setText("");
+        this.dni.getNum().setText("");
+        this.contacto.getNum().setText("");
+        //fecha
+        this.nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.contacto.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        //fecha
+    }
+        
+    public boolean esValido(){
+        this.nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        //this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        this.contacto.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        boolean ret = true;
+        if(!nombre.validarCampo())
+        {
+            ret = false;
+            nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+        }
+        if(!apellido.validarCampo())
+        {
+            ret = false;
+            apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+        }
+        if(!dni.validarCampo())
+        {
+            ret = false;
+            dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+        }
+        else if(!tecnicos.isEmpty())
+        {
+            for(int i = 0; i < tecnicos.size();i++)
+            {
+                if (tecnicos.get(i).getDni()== Integer.parseInt(dni.getNum().getText()))
+                {
+                    dni.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                    ret = false;
+                    break;
+                }
+            }
+        }
+        if(!contacto.validarCampo())
+        {
+            ret = false;
+            contacto.getNum().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+        }
+        return  ret;
+    };
+    public void enviar(){
         Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getNum().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getNum().getText()),null);
         Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
-        p.continuar_carga_Tecnico(t);
+        
     };
+    
+    public void cargarDesdeBd(){
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
+        try {
+            tecnicos = BD.listarTecnico();
+        } catch (SQLException ex) {
+            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+        }
+    }
+
 }
 
 

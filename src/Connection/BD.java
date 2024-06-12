@@ -151,24 +151,14 @@ public class BD{
     
 ///////////////////////////////////////////////////////////////////Tecnico////////////////////////////////////////////////////////////////////////
       public static ArrayList<Tecnico> listarTecnico() throws SQLException{
-        ArrayList<Tecnico> tecnicos= new ArrayList<Tecnico>();
-        /*
+        ArrayList<Tecnico> tecnicos= new ArrayList<>();
         int i=0;
         Statement sentencia=conexion.createStatement();
-        ResultSet lista=sentencia.executeQuery("select * from tecnico");
+        ResultSet lista=sentencia.executeQuery("select * from Tecnico");
         while(lista.next()){
-            Tecnico_DNI
-            Registro r[] = ;
-            Tecnico aux= new Tecnico(lista.getString("Nombre"), lista.getString("Apellido"), lista.getInt("DNI"), lista.getString("Fec_Nac"), lista.getInt("Contacto"), );
-            tecnico.add(i, aux);
+            Tecnico aux= new Tecnico(lista.getString("Nombre"), lista.getString("Apellido"), lista.getInt("DNI"), lista.getString("Fec_Nac"), lista.getInt("Contacto"), null);
+            tecnicos.add(i, aux);
             i++;
-        }
-        return tecnico;
-            */
-        for(int i = 1; i < 11; i++){
-            ArrayList <Registro> r = new ArrayList<Registro>();
-            Tecnico aux= new Tecnico("N"+i,"A"+i,i,"F"+i,i,r);
-            tecnicos.add(i-1, aux);
         }
         return tecnicos;
     }

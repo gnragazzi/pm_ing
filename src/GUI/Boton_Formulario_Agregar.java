@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  */
 public class Boton_Formulario_Agregar extends Boton{
     private Formulario form;
-    public Boton_Formulario_Agregar(String n, Formulario_cargar_máquina f)
+    public Boton_Formulario_Agregar(String n, Formulario f)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
         this.form = f;
