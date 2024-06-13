@@ -35,11 +35,13 @@ public class Formulario_asignar_registro extends Formulario{
     private int tecnico_seleccionado = -1;
     private int maquina_seleccionada = -1;
     private short pestaña = 0;
-    private Campo fecha_inicio;
-    private Campo fecha_fin;
+    private Campo_Texto fecha_inicio;
+    private Campo_Texto fecha_fin;
     private Campo_combo_box turno;
     private String indicaciones[] = {"Seleccione un Técnico de la Lista", "Seleccione una Máquina de la Lista", "Para terminar, rellene el formulario"};
     private boolean cargarTecnico_flag = false;
+    private JPanel contenedor_maq;
+    private JPanel contenedor_tec;
     
     public Formulario_asignar_registro() {
         try {
@@ -76,17 +78,10 @@ public class Formulario_asignar_registro extends Formulario{
        
         lista_tec = new JPanel();
         lista_tec.setLayout(new BoxLayout(lista_tec,BoxLayout.PAGE_AXIS));
-        String c_t[] = {"Nombre","Apellido","DNI","Fecha de Nacimiento", "Contacto"};
-        Fila cat_t = new Fila(c_t,true,-1);
-        lista_tec.add(cat_t);
+        contenedor_tec = new JPanel();
+        contenedor_tec.setLayout(new BoxLayout(contenedor_tec,BoxLayout.PAGE_AXIS));
         
-        for(int i = 0; i < tecnicos.size();i++)
-        {
-            Tecnico temp = tecnicos.get(i);
-            String aux[] = {temp.getNombre(),temp.getApellido(),String.valueOf(temp.getDni()),temp.getFec_nac(),String.valueOf(temp.getContacto())};
-            Fila f = new Fila(aux,false,i);
-            lista_tec.add(f);
-        }
+        lista_tec.add(contenedor_tec);
         
         JPanel div_botones = new JPanel();
         Boton_Asignar_siguiente boton = new Boton_Asignar_siguiente("Siguiente");
@@ -101,19 +96,10 @@ public class Formulario_asignar_registro extends Formulario{
 
         lista_maq = new JPanel();
         lista_maq.setLayout(new BoxLayout(lista_maq,BoxLayout.PAGE_AXIS));
-        String c_m[] = {"NroID","Marca","Modelo","Planta", "Estado"};
-        Fila cat_m = new Fila(c_m,true,-1);
-        lista_maq.add(cat_m);
-        
-        for(int i = 0; i < maquinas.size();i++)
-        {
-            Maquina temp = maquinas.get(i);
-            //String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),temp.getPlanta().getColor(),String.valueOf(temp.getEstado())};
-            String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),String.valueOf(temp.getEstado())};
-            Fila f = new Fila(aux,false,i);
-            lista_maq.add(f);
-        }
-        
+        contenedor_maq = new JPanel();
+        contenedor_maq.setLayout(new BoxLayout(contenedor_maq,BoxLayout.PAGE_AXIS));
+
+        lista_maq.add(contenedor_maq);
         JPanel div_botones_maq = new JPanel();
         Boton_Asignar_siguiente boton_maq = new Boton_Asignar_siguiente("Siguiente");
         Boton_Asignar_volver boton_volver_maq = new Boton_Asignar_volver("Volver");
@@ -128,8 +114,8 @@ public class Formulario_asignar_registro extends Formulario{
         /************************************************/
         
         JPanel formulario = new JPanel();
-        fecha_inicio = new Campo("Fecha Inicio");
-        fecha_fin = new Campo("Fecha Finalización");
+        fecha_inicio = new Campo_Texto("Fecha Inicio");
+        fecha_fin = new Campo_Texto("Fecha Finalización");
         turno = new Campo_combo_box("Turno");
         turno.getInput().addItem(Turno.MAÑANA);
         turno.getInput().addItem(Turno.TARDE);
@@ -171,7 +157,7 @@ public class Formulario_asignar_registro extends Formulario{
         {
             for(int i = 1; i <= tecnicos.size();i++)
             {
-                Fila temp= (Fila)lista_tec.getComponent(i);
+                Fila temp= (Fila)contenedor_tec.getComponent(i);
                 temp.setSelected(false);
                 temp.setBackground(Color.white);
             }
@@ -181,7 +167,7 @@ public class Formulario_asignar_registro extends Formulario{
         {
             for(int i = 1; i <= maquinas.size();i++)
             {
-                Fila temp= (Fila)lista_maq.getComponent(i);
+                Fila temp= (Fila)contenedor_tec.getComponent(i);
                 temp.setSelected(false);
                 temp.setBackground(Color.white);
             }
@@ -246,6 +232,16 @@ public class Formulario_asignar_registro extends Formulario{
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo, String.valueOf(pestaña));
         this.cargarTecnico_flag = false;
+        tecnico_seleccionado = -1;
+        for(int i = 1; i <= tecnicos.size();i++)
+        {
+            Fila temp= (Fila)contenedor_tec.getComponent(i);
+            temp.setSelected(false);
+            temp.setBackground(Color.white);
+        }
+        maquina_seleccionada = -1;
+        contenedor_maq.removeAll();
+        contenedor_tec.removeAll();
     };
     public boolean esValido(){
         //fecha inicio
@@ -281,11 +277,41 @@ public class Formulario_asignar_registro extends Formulario{
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
             tecnicos = BD.listarTecnico();
+            
+            String c_t[] = {"Nombre","Apellido","DNI","Fecha de Nacimiento", "Contacto"};
+            Fila cat_t = new Fila(c_t,true,-1,this);
+            contenedor_tec.add(cat_t);
+            for(int i = 0; i < tecnicos.size();i++)
+            {
+                Tecnico temp = tecnicos.get(i);
+                String aux[] = {temp.getNombre(),temp.getApellido(),String.valueOf(temp.getDni()),temp.getFec_nac(),String.valueOf(temp.getContacto())};
+                Fila f = new Fila(aux,false,i,this);
+                contenedor_tec.add(f);
+            }
         } catch (SQLException ex) {
             c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
         try {
             maquinas = BD.listarMaquina();
+            // Carga las máquinas en el panel
+            String c_m[] = {"NroID","Marca","Modelo","Planta", "Estado"};
+            Fila cat_m = new Fila(c_m,true,-1,this);
+            contenedor_maq.add(cat_m);
+            for(int i = 0; i < maquinas.size();i++)
+            {
+                Maquina temp = maquinas.get(i);
+                //String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),temp.getPlanta().getColor(),String.valueOf(temp.getEstado())};
+                String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),String.valueOf(temp.getEstado())};
+                Fila f = new Fila(aux,false,i,this);
+                contenedor_maq.add(f);
+            }
+            /*
+            System.out.println("Se carga las máquinas");
+            for(int i = 0; i < maquinas.size();i++)
+            {
+                System.out.println(maquinas.get(i).getNroID());
+            }
+            */
         } catch (SQLException ex) {
             c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
