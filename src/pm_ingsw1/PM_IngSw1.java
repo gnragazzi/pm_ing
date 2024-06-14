@@ -11,6 +11,8 @@ public class PM_IngSw1 {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         System.getProperty("java.classpath");
         BD.connect();
+        BD.eliminarBase();
+        BD.insertarBase();
         Ventana principal = new Ventana(); 
     }
 }

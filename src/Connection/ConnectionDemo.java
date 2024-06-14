@@ -17,16 +17,17 @@ public class ConnectionDemo {
     Connection con;
     Statement st;
 
-    public ConnectionDemo() {
+public ConnectionDemo() {
         userName="root";
-        password="123456rg";
-        url="jdbc:mariadb://localhost:3306/mydb";
-        driver="org.mariadb.jdbc.Driver";
+        password="usuario";
+        url="jdbc:mysql://localhost:3306/mydb";
+        driver="com.mysql.cj.jdbc.Driver";
         try {
             Class.forName(driver);
             con=DriverManager.getConnection(url, userName, password);
             st=con.createStatement();
             System.out.println("Connection is successful");
+            System.out.println(con);
         } catch (Exception e) {
           e.printStackTrace();
         }

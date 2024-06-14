@@ -154,7 +154,7 @@ public class BD{
         Statement sentencia=conexion.createStatement();
         ResultSet lista=sentencia.executeQuery("select * from Tecnico");
         while(lista.next()){
-            Tecnico aux= new Tecnico(lista.getString("Nombre"), lista.getString("Apellido"), lista.getInt("DNI"), lista.getString("Fec_Nac"), lista.getInt("Contacto"), null);
+            Tecnico aux= new Tecnico(lista.getString("Nombre"), lista.getString("Apellido"), lista.getInt("DNI"), lista.getString("Fec_Nac"), lista.getString("Contacto"), null);
             tecnicos.add(i, aux);
             i++;
         }
@@ -213,6 +213,49 @@ public class BD{
             System.out.println(ex.getMessage());
         }
     }
+    
+    
+    
+///////////////////////////////////////////////////////////////////eliminar y rellenar////////////////////////////////////////////////////////////////////////
+
+    public static void eliminarBase() throws SQLException{
+        try{
+            PreparedStatement elimina=conexion.prepareStatement("delete from Registro");
+            elimina.executeUpdate();
+            elimina=conexion.prepareStatement("delete from Tecnico");
+            elimina.executeUpdate();
+            elimina=conexion.prepareStatement("delete from Maquina");
+            elimina.executeUpdate();
+            elimina=conexion.prepareStatement("delete from Planta");
+            elimina.executeUpdate();
+        }
+        catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        } 
+    }
+    
+    public static void insertarBase(){
+        try{
+            PreparedStatement inserta=conexion.prepareStatement("ALTER TABLE planta AUTO_INCREMENT = 1;");
+            inserta.executeUpdate();
+            inserta=conexion.prepareStatement("ALTER TABLE Tecnico AUTO_INCREMENT = 1;");
+            inserta.executeUpdate();
+            inserta=conexion.prepareStatement("insert into planta (color, superficie) values('Amarillo',30),('Azul', 40),('Verde',50),('Rojo',90),('Negro',100);");
+            inserta.executeUpdate();
+            inserta=conexion.prepareStatement("insert into maquina(NroID, Marca, Modelo, Estado, Planta_IdPlanta) values(1,'CaterPillar', 'R570',1,1),(2,'Hyundai','MB1634',1,2),(3,'Volvo','FH-750',2,3),(4,'Daewoo','619',2,4),(5,'John Deere','T-113',1,5);");
+            inserta.executeUpdate();
+            inserta=conexion.prepareStatement("insert into Tecnico(DNI,Nombre,Apellido,Fec_Nac,Contacto) values (44993379,'Pablo','Alcaraz','30/09/2003','2664669561'),(45382516,'Ezequiel','Bernaldez','20/01/2004','2655077582'),(44643551,'Ezequiel','Nodar','24/01/2003','2665789899'),(23999999,'Sococho','Grosso','20/10/1986','2665788888')");
+            inserta.executeUpdate();
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+    
+    
+    
+    
     
         ///////////////////////////////////////////////////////////////////Conexion////////////////////////////////////////////////////////////////////////
 

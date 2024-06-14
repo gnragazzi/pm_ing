@@ -15,10 +15,10 @@ public class Tecnico {
     private String apellido;
     private int dni;
     private String fec_nac;
-    private int contacto;
+    private String contacto;
     private ArrayList<Registro> registro=new ArrayList<>();
 
-    public Tecnico(String nombre, String apellido, int dni, String fec_nac, int contacto, ArrayList<Registro> registro) {
+    public Tecnico(String nombre, String apellido, int dni, String fec_nac, String contacto, ArrayList<Registro> registro) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -46,7 +46,7 @@ public class Tecnico {
         return fec_nac;
     }
 
-    public int getContacto() {
+    public String getContacto() {
         return contacto;
     }
 
@@ -70,7 +70,7 @@ public class Tecnico {
         this.fec_nac = fec_nac;
     }
 
-    public void setContacto(int contacto) {
+    public void setContacto(String contacto) {
         this.contacto = contacto;
     }
 
