@@ -26,7 +26,7 @@ public class Campo_combo_box extends JPanel{
         this.setBackground(null);
         Nombre.setText(n);
         Nombre.setFont(Constantes.getFUENTE_CAMPO());
-        Nombre.setForeground(Constantes.getCOLOR_MENU());
+        Nombre.setForeground(Constantes.COLOR_PRINCIPAL);
         Nombre.setHorizontalAlignment(JLabel.LEFT);
         Nombre.setVerticalAlignment(JLabel.BOTTOM);
         
@@ -36,8 +36,8 @@ public class Campo_combo_box extends JPanel{
         input.setFont(Constantes.getFUENTE_CAMPO());
         input.setBorder(null);
         input.setBackground(null);
-        input.setForeground(Constantes.getCOLOR_MENU());
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        input.setForeground(Constantes.COLOR_PRINCIPAL);
+        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
         */
         
         this.add(Nombre);
@@ -60,14 +60,14 @@ public class Campo_combo_box extends JPanel{
         }
         else
         {
-            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
             return true;
         }
     }
     public void limpiarCampo()
     {
         input.setSelectedIndex(-1);
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
     }
     
 }

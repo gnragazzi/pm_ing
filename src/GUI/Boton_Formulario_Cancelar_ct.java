@@ -32,7 +32,7 @@ public class Boton_Formulario_Cancelar_ct extends Boton_Formulario_Agregar_ct {
     @Override
     public void mouseSale(MouseEvent evt, Color c) {                                  
         super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.getCOLOR_MENU());
+        this.getNombre().setForeground(Constantes.COLOR_PRINCIPAL);
     }    
         
     @Override
@@ -43,6 +43,6 @@ public class Boton_Formulario_Cancelar_ct extends Boton_Formulario_Agregar_ct {
     @Override
     public Color getHighlight(){
         //setear color
-        return Constantes.getCOLOR_MENU();
+        return Constantes.COLOR_PRINCIPAL;
     }
 }

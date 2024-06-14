@@ -61,9 +61,6 @@ public class Constantes {
         return LAYOUT_CENTRADO;
     }
 
-    public static Color getCOLOR_MENU() {
-        return COLOR_MENU;
-    }
 
     public static Color getCOLOR_MENU_HIGHLIGHT() {
         return COLOR_MENU_HIGHLIGHT;

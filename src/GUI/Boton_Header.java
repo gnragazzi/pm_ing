@@ -61,7 +61,7 @@ public class Boton_Header extends Boton{
     @Override
     public Color getHighlight(){
         //setear color
-        return Constantes.getCOLOR_MENU();
+        return Constantes.COLOR_PRINCIPAL;
     }
     /*
     */

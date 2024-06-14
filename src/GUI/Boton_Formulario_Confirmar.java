@@ -21,7 +21,8 @@ public class Boton_Formulario_Confirmar extends Boton{
         this.setLayout(Constantes.getLAYOUT_CENTRADO());
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
-        
+        this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);
+        this.nombre.setFont(Constantes.FUENTE_HEADER);
     }
 
     @Override
@@ -39,13 +40,11 @@ public class Boton_Formulario_Confirmar extends Boton{
     
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
-        super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.getCOLOR_MENU_Fuente());
+        this.nombre.setForeground(Constantes.COLOR_SELECCIÓN);
     }                                  
     @Override
     public void mouseSale(MouseEvent evt, Color c) {                                  
-        super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.getCOLOR_MENU());
+        this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);
     }    
         
     @Override
@@ -56,7 +55,7 @@ public class Boton_Formulario_Confirmar extends Boton{
     @Override
     public Color getHighlight(){
         //setear color
-        return Constantes.getCOLOR_MENU();
+        return Constantes.COLOR_PRINCIPAL;
     }
     
 

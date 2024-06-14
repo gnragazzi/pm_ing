@@ -4,11 +4,13 @@
  */
 package GUI;
 
-import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -25,11 +27,25 @@ public class Fila extends JPanel{
         indice = indx;
         esCabecera = b;
         form_actual = f;
+        
+        if(esCabecera)
+        {
+            this.setBackground(Constantes.COLOR_PRINCIPAL);
+            
+        }
+        
         for(int i = 0; i < s.length;i++)
         {
+            JLabel temp = new JLabel(s[i],SwingConstants.CENTER);
+            if(esCabecera)
+                temp.setForeground(Constantes.COLOR_SECUNDARIO);
+            temp.setBorder(new LineBorder(Constantes.COLOR_BORDE,1));
             col.add(s[i]);
-            this.add(new JLabel(s[i]));
+            this.add(temp);
         }
+        
+        this.setLayout(new GridLayout(1,s.length));
+        
         this.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent evt) {
@@ -47,7 +63,7 @@ public class Fila extends JPanel{
     }
     public void mouseEntra(MouseEvent evt) {                                   
         if(!this.selected && !esCabecera)
-            this.setBackground(Color.RED);
+            this.setBackground(Constantes.COLOR_SECUNDARIO);
     }                                  
 
     public void mouseSale(MouseEvent evt) {                                  
@@ -65,7 +81,7 @@ public class Fila extends JPanel{
         {
             form_actual.asignar_seleccion(this);
             this.selected = true;
-            this.setBackground(Color.blue);
+            this.setBackground(Constantes.COLOR_SELECCIÓN);
         }
     };
     public void setSelected(boolean b)

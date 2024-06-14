@@ -5,10 +5,12 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicTreeUI;
 
 /**
@@ -76,9 +78,13 @@ public class Campo_fecha extends Campo{
          }
 });
         limpiarCampo();
+        contenedor.add(new JPanel());
+        contenedor.add(new JPanel());
+        contenedor.add(new JPanel());
         contenedor.add(dia);
         contenedor.add(mes);
         contenedor.add(año);
+        contenedor.setLayout(new GridLayout(2,3));
         this.add(contenedor);
     }
     

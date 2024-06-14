@@ -40,7 +40,7 @@ public class Administrar_técnico extends Administrar{
         pestaña_cargar.add(dni);
         
         //fecha nac
-        fecha_nac = new Campo_fecha("Fecha de Nacimiento",2006,1954,-1);
+        fecha_nac = new Campo_fecha("Fecha de Nacimiento(d/m/a)",2006,1954,-1);
         pestaña_cargar.add(fecha_nac);
         
         //contacto

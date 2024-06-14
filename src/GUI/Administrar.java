@@ -18,16 +18,15 @@ public abstract class Administrar extends JPanel{
     protected JPanel cuerpo;
     private JPanel pestaña_blank;
     protected JPanel pestaña_cargar;
-    protected JPanel pestaña_en_construcción;
+    protected Carga_Exitosa pestaña_en_construcción;
     protected CardLayout layout_cuerpo;
     private Carga_Exitosa pantalla_mensaje;
     
     public Administrar(String t) {
         pestaña_blank = new JPanel();
         pestaña_cargar = new JPanel();
-        pestaña_en_construcción= new JPanel();
-        pestaña_en_construcción.add(new JTextField("En Construcción"));
-        pantalla_mensaje = new Carga_Exitosa();
+        pestaña_en_construcción = new Carga_Exitosa("En construcción");
+        pantalla_mensaje = new Carga_Exitosa("");
 
 
         cuerpo = new JPanel();

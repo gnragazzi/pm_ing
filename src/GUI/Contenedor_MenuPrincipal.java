@@ -48,7 +48,10 @@ public class Contenedor_MenuPrincipal extends JPanel{
         }
             
         if(!paso_entre_Formuarios)
+        {
             actual.limpiarCampos();
+            actual.header.limpiarSelección();
+        }
         actual.cargarDesdeBd();
         cl.show(this, s);
     }

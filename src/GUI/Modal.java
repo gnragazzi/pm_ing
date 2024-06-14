@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -23,8 +22,8 @@ public class Modal extends JDialog{
     public Modal(JFrame f, String s) {
         super(f,s);
         JPanel modal = new JPanel();
-
         JLabel text = new JLabel(s,SwingConstants.CENTER);
+        text.setFont(Constantes.FUENTE_HEADER);
         JPanel div_boton = new JPanel();
         Boton_modal aceptar = new Boton_modal("Aceptar",this);
         Boton_modal cancelar = new Boton_modal("Cancelar",this);

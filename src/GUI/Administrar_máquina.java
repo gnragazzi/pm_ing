@@ -6,6 +6,7 @@ package GUI;
 
 import Connection.BD;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -64,7 +65,6 @@ public class Administrar_máquina extends Administrar{
         Boton_Formulario_Cancelar b_limp = new Boton_Formulario_Cancelar("Cancelar", this);
         div_botones.add(boton);
         div_botones.add(b_limp);
-        
         pestaña_cargar.add(div_botones);
         pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
     }

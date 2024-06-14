@@ -43,11 +43,12 @@ public class Administrar_registro extends Administrar{
     public Administrar_registro(String t) {
         super(t);
         titulo=new JPanel();
-        titulo.setBackground(Color.ORANGE);
         titulo.setMaximumSize(new Dimension(6000,4000));
         titulo.setMinimumSize(new Dimension(600,20));
         titulo.setPreferredSize(new Dimension(600,40));
         JLabel text = new JLabel(indicaciones[0]);
+        text.setFont(Constantes.FUENTE_HEADER);
+        text.setForeground(Constantes.COLOR_PRINCIPAL);
         titulo.add(text);
         
         subpestaña_listar = new JPanel();
@@ -281,7 +282,7 @@ public class Administrar_registro extends Administrar{
         try {
             maquinas = BD.listarMaquina();
             // Carga las máquinas en el panel
-            String c_m[] = {"NroID","Marca","Modelo","Planta", "Estado"};
+            String c_m[] = {"NroID","Marca","Modelo", "Estado"};
             Fila cat_m = new Fila(c_m,true,-1,this);
             contenedor_maq.add(cat_m);
             for(int i = 0; i < maquinas.size();i++)

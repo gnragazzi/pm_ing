@@ -29,7 +29,7 @@ public abstract class Campo extends JPanel{
         this.setBackground(null);
         Nombre.setText(n);
         Nombre.setFont(Constantes.getFUENTE_CAMPO());
-        Nombre.setForeground(Constantes.getCOLOR_MENU());
+        Nombre.setForeground(Constantes.COLOR_PRINCIPAL);
         Nombre.setHorizontalAlignment(JLabel.LEFT);
         Nombre.setVerticalAlignment(JLabel.BOTTOM);
         
@@ -39,8 +39,8 @@ public abstract class Campo extends JPanel{
         input.setFont(Constantes.getFUENTE_CAMPO());
         input.setBorder(null);
         input.setBackground(null);
-        input.setForeground(Constantes.getCOLOR_MENU());
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        input.setForeground(Constantes.COLOR_PRINCIPAL);
+        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
         
         
         this.add(Nombre);
@@ -69,8 +69,8 @@ public abstract class Campo extends JPanel{
         t.setFont(Constantes.getFUENTE_CAMPO());
         t.setBorder(null);
         t.setBackground(null);
-        t.setForeground(Constantes.getCOLOR_MENU());
-        t.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        t.setForeground(Constantes.COLOR_PRINCIPAL);
+        t.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
         this.add(t);
         
     }

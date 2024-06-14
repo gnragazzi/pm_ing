@@ -25,25 +25,5 @@ public class Boton_Formulario_Cancelar extends Boton_Formulario_Confirmar {
     public void mouseClick(MouseEvent evt){
             ((CardLayout)form.getCuerpo().getLayout()).show(form.getCuerpo(),"blank");
     };
-        @Override
-    public void mouseEntra(MouseEvent evt, Color c) {                                   
-        super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.getCOLOR_MENU_Fuente());
-    }                                  
-    @Override
-    public void mouseSale(MouseEvent evt, Color c) {                                  
-        super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.getCOLOR_MENU());
-    }    
-        
-    @Override
-    public Color getCol(){
-        return null;
-    }
-    
-    @Override
-    public Color getHighlight(){
-        //setear color
-        return Constantes.getCOLOR_MENU();
-    }
+
 }

@@ -25,7 +25,7 @@ public class Campo_Num extends Campo_Texto{
         String number = this.getInput().getText().replaceAll("[^0-9]","");
         if(!number.isEmpty() && number.equals(this.getInput().getText()))
         {
-            getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+            getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
             return true;
         }
         else
