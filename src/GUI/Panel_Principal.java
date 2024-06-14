@@ -1,10 +1,12 @@
 package GUI;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -23,11 +25,18 @@ public class Panel_Principal extends JPanel{
         this.setBackground(Constantes.COLOR_FONDO);
         //configuración de la barra superior
         barraSuperior = new JPanel();
+        JLabel tit = new JLabel("Empresa de Vidrios S.A.",SwingConstants.RIGHT);
+        tit.setFont(Constantes.FUENTE_TITULO);
+        tit.setForeground(Constantes.COLOR_SECUNDARIO);
+        barraSuperior.add(tit);
+        
         barraSuperior.setBackground(Constantes.COLOR_PRINCIPAL);
         barraSuperior.setMinimumSize(new Dimension(1000,33));
         barraSuperior.setPreferredSize(new Dimension(1000,33));
         barraSuperior.setMaximumSize(new Dimension(1000,33));
-        //barraSuperior.setPreferredSize(new Dimension(680,40));
+        barraSuperior.setPreferredSize(new Dimension(680,40));
+        barraSuperior.setLayout(new GridLayout(1,8));
+        
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;

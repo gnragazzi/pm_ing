@@ -16,9 +16,9 @@ public class Boton_Formulario_Confirmar extends Boton{
     protected Administrar form;
     public Boton_Formulario_Confirmar(String n, Administrar f)
     {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        super(n,Constantes.FUENTE_BOTON_LATERAL);
         this.form = f;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);

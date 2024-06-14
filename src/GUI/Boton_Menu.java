@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 public class Boton_Menu extends Boton {
 
     public Boton_Menu(String texto, JLabel icono){
-        super(texto, Constantes.getFUENTE_BOTON_LATERAL());
+        super(texto, Constantes.FUENTE_BOTON_LATERAL);
         this.getNombre().setBorder(new EmptyBorder(10, 10, 10, 10));
         this.getNombre().setForeground(Constantes.COLOR_PRINCIPAL);
     };

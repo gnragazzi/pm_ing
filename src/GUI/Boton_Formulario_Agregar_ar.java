@@ -14,9 +14,9 @@ public class Boton_Formulario_Agregar_ar extends Boton{
     private Administrar form;
     public Boton_Formulario_Agregar_ar(String n, Administrar f)
     {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        super(n,Constantes.FUENTE_BOTON_LATERAL);
         this.form = f;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         this.setFont(Constantes.FUENTE_HEADER);

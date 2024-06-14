@@ -13,12 +13,10 @@ public class Ventana extends javax.swing.JFrame {
         
         this.setMinimumSize(new Dimension(800,600));
         this.setPreferredSize(new Dimension(1400,800));
-        //this.setUndecorated(true);
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         System.out.flush();
-        
     }
     public Modal getModal()
     {

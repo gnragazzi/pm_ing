@@ -19,10 +19,10 @@ public class Boton_Header extends Boton{
     private JPanel padre;
     private Header header;
     public Boton_Header(String nombre, JPanel cuerpo,Header h){
-        super(nombre, Constantes.getFUENTE_BOTON_HEADER());
+        super(nombre, Constantes.FUENTE_BOTON_HEADER);
         padre = cuerpo;
         header = h;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setForeground(Constantes.COLOR_PRINCIPAL);
     }
     @Override

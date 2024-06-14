@@ -30,7 +30,7 @@ public class Campo_Texto extends JPanel{
     public Campo_Texto(String n){
         this.setBackground(null);
         Nombre.setText(n);
-        Nombre.setFont(Constantes.getFUENTE_CAMPO());
+        Nombre.setFont(Constantes.FUENTE_CAMPO);
         Nombre.setForeground(Constantes.COLOR_PRINCIPAL);
         Nombre.setHorizontalAlignment(JLabel.LEFT);
         Nombre.setVerticalAlignment(JLabel.BOTTOM);
@@ -39,8 +39,8 @@ public class Campo_Texto extends JPanel{
         input.setMinimumSize(new Dimension(20,10));
         input.setPreferredSize(new Dimension(20,10));
         input.setMaximumSize(new Dimension(20,10));
-        input.setDocument(new JTextFieldLimit(Constantes.getLIM()));
-        input.setFont(Constantes.getFUENTE_CAMPO());
+        input.setDocument(new JTextFieldLimit(Constantes.LIM));
+        input.setFont(Constantes.FUENTE_CAMPO);
         input.setBorder(null);
         input.setBackground(null);
         input.setForeground(Constantes.COLOR_PRINCIPAL);
@@ -69,8 +69,8 @@ public class Campo_Texto extends JPanel{
     public void cambiaInput(JFormattedTextField t){
         this.remove(input);
         t.setMinimumSize(new Dimension(20,20));
-        t.setDocument(new JTextFieldLimit(Constantes.getLIM()));
-        t.setFont(Constantes.getFUENTE_CAMPO());
+        t.setDocument(new JTextFieldLimit(Constantes.LIM));
+        t.setFont(Constantes.FUENTE_CAMPO);
         t.setBorder(null);
         t.setBackground(null);
         t.setForeground(Constantes.COLOR_PRINCIPAL);

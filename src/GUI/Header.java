@@ -28,7 +28,7 @@ public class Header extends JPanel{
         this.setMaximumSize(new Dimension(1600,130));
         this.titulo.setText(t);
         this.setBorder(new EmptyBorder(20, 20, 0, 20));
-        titulo.setFont(Constantes.getFUENTE_HEADER());
+        titulo.setFont(Constantes.FUENTE_HEADER);
         titulo.setForeground(Constantes.COLOR_PRINCIPAL);
         this.setLayout(new GridLayout(1, 2));
         this.add(titulo);
@@ -54,7 +54,7 @@ public class Header extends JPanel{
             botone.getNombre().setHorizontalAlignment(JLabel.CENTER);
         }
         div.add(info);
-        info.setFont(Constantes.getFUENTE_INFO());
+        info.setFont(Constantes.FUENTE_INFO);
         botonera.setBackground(null);
         div.add(botonera);
     }

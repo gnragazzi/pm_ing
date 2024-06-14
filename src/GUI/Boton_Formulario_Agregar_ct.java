@@ -19,7 +19,7 @@ public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
     {
         super(n,f);
         this.form = f;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         
@@ -39,7 +39,6 @@ public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.getCOLOR_MENU_Fuente());
     }                                  
     @Override
     public void mouseSale(MouseEvent evt, Color c) {                                  

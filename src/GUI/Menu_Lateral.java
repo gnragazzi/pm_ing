@@ -38,7 +38,7 @@ public class Menu_Lateral extends JPanel {
     }
     private void setMenuBotones(){
         int longitud = this.menu.length;
-        this.add(Box.createRigidArea(Constantes.getAREA_RIGIDA_LATERAL()));
+        this.add(Box.createRigidArea(Constantes.AREA_RIGIDA_LATERAL));
         //this.add(logo_container);
         this.add(Box.createVerticalGlue());
         for(int i = 0;i < longitud ; i++)
@@ -69,13 +69,13 @@ public class Menu_Lateral extends JPanel {
     private void setLogoContainer(){
         //this.logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Iconos/logo2.png"))); // NOI18N
         /*this.logo.setText("LabBiblio");
-        this.logo.setFont(Constantes.getFUENTE_HEADER());
+        this.logo.setFont(Constantes.FUENTE_HEADER);
         this.logo.setForeground(Constantes.getCOLOR_MENU_Fuente());//**********Color de Fuente
         this.logo.setHorizontalAlignment(JLabel.CENTER);
         this.logo.setVerticalAlignment(JLabel.CENTER);
         this.logo_container.add(logo);
         this.logo_container.setBackground(null);
-        this.logo_container.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.logo_container.setLayout(Constantes.LAYOUT_CENTRADO);
         
     }
 */

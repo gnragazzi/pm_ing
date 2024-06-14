@@ -16,9 +16,9 @@ public class Boton_modal extends Boton{
     private Modal diag;
     public Boton_modal(String n, Modal d)
     {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        super(n,Constantes.FUENTE_BOTON_LATERAL);
         this.diag = d;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         

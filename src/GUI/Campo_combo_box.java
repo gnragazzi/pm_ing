@@ -25,7 +25,7 @@ public class Campo_combo_box extends JPanel{
     public Campo_combo_box(String n){
         this.setBackground(null);
         Nombre.setText(n);
-        Nombre.setFont(Constantes.getFUENTE_CAMPO());
+        Nombre.setFont(Constantes.FUENTE_CAMPO);
         Nombre.setForeground(Constantes.COLOR_PRINCIPAL);
         Nombre.setHorizontalAlignment(JLabel.LEFT);
         Nombre.setVerticalAlignment(JLabel.BOTTOM);
@@ -33,7 +33,7 @@ public class Campo_combo_box extends JPanel{
         /*
         input.setMinimumSize(new Dimension(20,20));
         input.setDocument(new JTextFieldLimit(Constantes.getLIM()));
-        input.setFont(Constantes.getFUENTE_CAMPO());
+        input.setFont(Constantes.FUENTE_CAMPO);
         input.setBorder(null);
         input.setBackground(null);
         input.setForeground(Constantes.COLOR_PRINCIPAL);

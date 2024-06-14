@@ -18,9 +18,9 @@ public class Boton_Asignar_volver extends Boton{
     private Administrar_registro padre;
     public Boton_Asignar_volver(String n, Administrar_registro p)
     {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        super(n,Constantes.FUENTE_BOTON_LATERAL);
         padre = p;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         this.setFont(Constantes.FUENTE_HEADER);

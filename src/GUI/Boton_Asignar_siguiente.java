@@ -18,9 +18,9 @@ public class Boton_Asignar_siguiente extends Boton{
     private Administrar_registro padre;
     public Boton_Asignar_siguiente(String n, Administrar_registro f)
     {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        super(n,Constantes.FUENTE_BOTON_LATERAL);
         padre = f;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.setLayout(Constantes.LAYOUT_CENTRADO);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
         this.setFont(Constantes.FUENTE_HEADER);
