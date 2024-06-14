@@ -25,10 +25,10 @@ import pm_ingsw1.Tecnico;
 public class Formulario_cargar_técnico extends Formulario{
     private JPanel titulo;
     private JPanel cuerpo;
-    private Campo nombre;
-    private Campo apellido;
+    private Campo_Texto nombre;
+    private Campo_Texto apellido;
     private Campo_Num dni;
-    private Campo fecha_nac;
+    private Campo_fecha fecha_nac;
     private Campo_Num contacto;
     private ArrayList<Tecnico> tecnicos;
     
@@ -47,11 +47,11 @@ public class Formulario_cargar_técnico extends Formulario{
         //cuerpo.setBackground(Color.blue);
 
         //nombre del técnico, 
-        nombre = new Campo("Nombre");
+        nombre = new Campo_Texto("Nombre");
         cuerpo.add(nombre);
         
         //Apellido
-        apellido = new Campo("Apellido");
+        apellido = new Campo_Texto("Apellido");
         cuerpo.add(apellido);
         
         //dni
@@ -59,7 +59,7 @@ public class Formulario_cargar_técnico extends Formulario{
         cuerpo.add(dni);
         
         //fecha nac
-        fecha_nac = new Campo_Num("Fecha de Nacimiento");
+        fecha_nac = new Campo_fecha("Fecha de Nacimiento",2006,1954,-1);
         cuerpo.add(fecha_nac);
         
         //contacto
@@ -82,40 +82,21 @@ public class Formulario_cargar_técnico extends Formulario{
     }
     
     public void limpiarCampos(){
-        this.nombre.getInput().setText("");
-        this.apellido.getInput().setText("");
-        this.dni.getInput().setText("");
-        this.contacto.getInput().setText("");
-        //fecha
-        this.nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.contacto.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        //fecha
+        this.nombre.limpiarCampo();
+        this.apellido.limpiarCampo();
+        this.dni.limpiarCampo();
+        this.contacto.limpiarCampo();
+        this.fecha_nac.limpiarCampo();
     }
         
     public boolean esValido(){
-        this.nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        //this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.contacto.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         boolean ret = true;
         if(!nombre.validarCampo())
-        {
             ret = false;
-            nombre.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         if(!apellido.validarCampo())
-        {
             ret = false;
-            apellido.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         if(!dni.validarCampo())
-        {
             ret = false;
-            dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         else if(!tecnicos.isEmpty())
         {
             for(int i = 0; i < tecnicos.size();i++)
@@ -128,15 +109,14 @@ public class Formulario_cargar_técnico extends Formulario{
                 }
             }
         }
-        if(!contacto.validarCampo())
-        {
+        if(!fecha_nac.validarCampo())
             ret = false;
-            contacto.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
+        if(!contacto.validarCampo())
+            ret = false;
         return  ret;
     };
     public void enviar(){
-        Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getInput().getText()),fecha_nac.getInput().getText(),Integer.parseInt(contacto.getInput().getText()),null);
+        Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getInput().getText()),fecha_nac.toString(),Integer.parseInt(contacto.getInput().getText()),null);
         Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
         p.continuar_carga_Tecnico(t);  
     };

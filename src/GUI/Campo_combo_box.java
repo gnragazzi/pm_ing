@@ -4,9 +4,11 @@
  */
 package GUI;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.border.EmptyBorder;
 /**
@@ -47,24 +49,25 @@ public class Campo_combo_box extends JPanel{
 
     }
     
-    /*
-    public void setInput(JTextField t){
-        this.input = t;
-    }
-    */
-    
     public JComboBox getInput(){
         return input;
     }
-    
-    
     public boolean validarCampo(){
         if(input.getSelectedIndex() < 0)
         {
+            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
             return false;
         }
         else
+        {
+            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
             return true;
+        }
+    }
+    public void limpiarCampo()
+    {
+        input.setSelectedIndex(-1);
+        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
     }
     
 }

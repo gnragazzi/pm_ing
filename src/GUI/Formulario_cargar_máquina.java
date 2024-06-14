@@ -25,8 +25,8 @@ import pm_ingsw1.Planta;
 public class Formulario_cargar_máquina extends Formulario{
     private JPanel titulo;
     private JPanel cuerpo;
-    private Campo marca;
-    private Campo modelo;
+    private Campo_Texto marca;
+    private Campo_Texto modelo;
     private Campo_Num id;
     private ArrayList<Planta> plantas_Cargadas;
     private ArrayList<Maquina> maquinas;
@@ -49,11 +49,11 @@ public class Formulario_cargar_máquina extends Formulario{
         //cuerpo.setBackground(Color.blue);
 
         //marca de la máquina, 
-        marca = new Campo("Marca");
+        marca = new Campo_Texto("Marca");
         cuerpo.add(marca);
         
         //el modelo del mismo, 
-        modelo = new Campo("Modelo");
+        modelo = new Campo_Texto("Modelo");
         cuerpo.add(modelo);
         
         //su número de identificación y 
@@ -102,27 +102,13 @@ public class Formulario_cargar_máquina extends Formulario{
     
     @Override
     public boolean esValido(){
-        this.marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
         boolean ret = true;
         if(!marca.validarCampo())
-        {
             ret = false;
-            marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         if(!modelo.validarCampo())
-        {
             ret = false;
-            modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         if(!id.validarCampo())
-        {
             ret = false;
-            id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         else if(!maquinas.isEmpty())
         {
             for(int i = 0; i < maquinas.size();i++)
@@ -136,29 +122,18 @@ public class Formulario_cargar_máquina extends Formulario{
             }
         }
         if(!estado.validarCampo())
-        {
             ret = false;
-            estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         if(!plantas_combo.validarCampo())
-        {
             ret = false;
-            plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
-        }
         return  ret;
     }
     @Override
     public void limpiarCampos(){
-        this.marca.getInput().setText("");
-        this.modelo.getInput().setText("");
-        this.id.getInput().setText("");
-        this.estado.getInput().setSelectedIndex(-1);
-        this.plantas_combo.getInput().setSelectedIndex(-1);
-        this.marca.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.modelo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.estado.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        this.plantas_combo.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
+        id.limpiarCampo();
+        marca.limpiarCampo();
+        modelo.limpiarCampo();
+        estado.limpiarCampo();
+        plantas_combo.limpiarCampo();
     }
     public void cargarDesdeBd(){
         plantas_combo.getInput().removeAllItems();
@@ -177,6 +152,7 @@ public class Formulario_cargar_máquina extends Formulario{
         //Cargar Máquinas
         try {
             maquinas = BD.listarMaquina();
+
         } catch (SQLException ex) {
             c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }

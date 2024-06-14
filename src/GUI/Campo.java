@@ -18,12 +18,11 @@ import javax.swing.border.EmptyBorder;
  * @author gera
  */
 
-public class Campo extends JPanel{
+public abstract class Campo extends JPanel{
 
     private JLabel Nombre = new JLabel();
-    private JPanel input_panel = new JPanel();
     private JPanel underline = new JPanel();
-    private JTextField input = new JTextField();
+    protected JTextField input = new JTextField();
     private GridLayout layout = new GridLayout(1,4);
     
     public Campo(String n){
@@ -75,13 +74,5 @@ public class Campo extends JPanel{
         this.add(t);
         
     }
-    public boolean validarCampo(){
-        if(this.getInput().getText().equals(""))
-        {
-            return false;
-        }
-        else
-            return true;
-    }
-    
+    public boolean validarCampo(){return false;}
 }

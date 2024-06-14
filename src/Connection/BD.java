@@ -130,8 +130,6 @@ public class BD{
         String carga= "insert into  Maquina(NroID,Marca,Modelo,Estado,Planta_IdPlanta) values('" + maquina.getNroID() + "' , '" + maquina.getMarca() + "' , '" + maquina.getModelo() + "' ,  '" + maquina.getEstado() + "' , '" + id.getInt("IdPlanta") + "')";     
         PreparedStatement envio=conexion.prepareStatement(carga);
         envio.executeUpdate();
-        //System.out.println("Ha cargado una maquina");
-
     }
     
     public static boolean isemptyMaquina() throws SQLException{

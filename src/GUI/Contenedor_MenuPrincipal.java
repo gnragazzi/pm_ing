@@ -43,6 +43,8 @@ public class Contenedor_MenuPrincipal extends JPanel{
     
     public void continuar_carga_Tecnico(Tecnico t){
         l_t.continuarCambiarTecnico(t);
+        l_t.limpiarCampos();
+        l_t.cargarDesdeBd();
         cl.show(this, "Asignar Registro");
     }
     public void setPantallaCargaExitosa(String s)

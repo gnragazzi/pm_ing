@@ -5,6 +5,7 @@
 package GUI;
 
 import GUI.Constantes;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ import javax.swing.border.EmptyBorder;
  * @author gera
  */
 
-public class Campo extends JPanel{
+public class Campo_Texto extends JPanel{
 
     private JLabel Nombre = new JLabel();
     private JPanel input_panel = new JPanel();
@@ -26,7 +27,7 @@ public class Campo extends JPanel{
     private JTextField input = new JTextField();
     private GridLayout layout = new GridLayout(1,4);
     
-    public Campo(String n){
+    public Campo_Texto(String n){
         this.setBackground(null);
         Nombre.setText(n);
         Nombre.setFont(Constantes.getFUENTE_CAMPO());
@@ -78,10 +79,19 @@ public class Campo extends JPanel{
     public boolean validarCampo(){
         if(this.getInput().getText().equals(""))
         {
+            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
             return false;
         }
         else
+        {
+            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
             return true;
+        }
+    }
+    public void limpiarCampo()
+    {
+        input.setText("");
+        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
     }
     
 }

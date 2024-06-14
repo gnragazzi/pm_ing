@@ -28,8 +28,11 @@ public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Agregar{
     }
     @Override
     public void mouseClick(MouseEvent evt){
+        System.out.println("Retorno: " + String.valueOf(form.esValido()));
         if(form.esValido())
+        {
             form.enviar();
+        }
         else
             System.out.println("Invalido");
     };

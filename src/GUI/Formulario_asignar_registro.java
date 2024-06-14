@@ -35,8 +35,8 @@ public class Formulario_asignar_registro extends Formulario{
     private int tecnico_seleccionado = -1;
     private int maquina_seleccionada = -1;
     private short pestaña = 0;
-    private Campo_Texto fecha_inicio;
-    private Campo_Texto fecha_fin;
+    private Campo_fecha fecha_inicio;
+    private Campo_fecha fecha_fin;
     private Campo_combo_box turno;
     private String indicaciones[] = {"Seleccione un Técnico de la Lista", "Seleccione una Máquina de la Lista", "Para terminar, rellene el formulario"};
     private boolean cargarTecnico_flag = false;
@@ -114,8 +114,8 @@ public class Formulario_asignar_registro extends Formulario{
         /************************************************/
         
         JPanel formulario = new JPanel();
-        fecha_inicio = new Campo_Texto("Fecha Inicio");
-        fecha_fin = new Campo_Texto("Fecha Finalización");
+        fecha_inicio = new Campo_fecha("Fecha Inicio",2034,2024,1);
+        fecha_fin = new Campo_fecha("Fecha Finalización",2034,2024,1);
         turno = new Campo_combo_box("Turno");
         turno.getInput().addItem(Turno.MAÑANA);
         turno.getInput().addItem(Turno.TARDE);
@@ -167,7 +167,7 @@ public class Formulario_asignar_registro extends Formulario{
         {
             for(int i = 1; i <= maquinas.size();i++)
             {
-                Fila temp= (Fila)contenedor_tec.getComponent(i);
+                Fila temp= (Fila)contenedor_maq.getComponent(i);
                 temp.setSelected(false);
                 temp.setBackground(Color.white);
             }
@@ -228,39 +228,42 @@ public class Formulario_asignar_registro extends Formulario{
     }
     public void limpiarCampos(){
         pestaña = 0;
-        this.turno.getInput().setSelectedIndex(-1);
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo, String.valueOf(pestaña));
         this.cargarTecnico_flag = false;
         tecnico_seleccionado = -1;
-        for(int i = 1; i <= tecnicos.size();i++)
-        {
-            Fila temp= (Fila)contenedor_tec.getComponent(i);
-            temp.setSelected(false);
-            temp.setBackground(Color.white);
-        }
         maquina_seleccionada = -1;
         contenedor_maq.removeAll();
         contenedor_tec.removeAll();
-    };
-    public boolean esValido(){
-        //fecha inicio
-        //fecha fin
-        this.turno.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.getCOLOR_MENU()));
-        boolean ret = true;
         
+        turno.limpiarCampo();
+        fecha_inicio.limpiarCampo();
+        fecha_fin.limpiarCampo();
+    };
+    @Override
+    public boolean esValido(){
+        boolean i_v = fecha_inicio.validarCampo();
+        boolean f_v = fecha_fin.validarCampo();
+        boolean ret = true;
         if(!turno.validarCampo())
-        {
             ret = false;
-            turno.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+        if(!i_v || !f_v)
+            ret = false;
+        else if(!fecha_inicio.esAntes(fecha_fin))
+        {
+            System.out.println("NO es antes");
+            fecha_inicio.setBackground(Color.red);
+            fecha_fin.setBackground(Color.red);
+            ret = false;
         }
+        
         return  ret;
     };
     public void enviar(){
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
-        Registro r = new Registro(fecha_inicio.getInput().getText(),fecha_fin.getInput().getText(),m, t,Turno.NOCHE);
+        Registro r = new Registro(fecha_inicio.toString(),fecha_fin.toString(),m, t,Turno.NOCHE);
         if(cargarTecnico_flag)
         {
             try {
@@ -305,13 +308,6 @@ public class Formulario_asignar_registro extends Formulario{
                 Fila f = new Fila(aux,false,i,this);
                 contenedor_maq.add(f);
             }
-            /*
-            System.out.println("Se carga las máquinas");
-            for(int i = 0; i < maquinas.size();i++)
-            {
-                System.out.println(maquinas.get(i).getNroID());
-            }
-            */
         } catch (SQLException ex) {
             c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
