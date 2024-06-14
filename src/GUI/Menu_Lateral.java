@@ -31,8 +31,9 @@ public class Menu_Lateral extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setBackground(Constantes.COLOR_FONDO);
         this.setBorder(new LineBorder(Constantes.COLOR_BORDE,1));
-        this.setPreferredSize(new Dimension(1200, 800));
-        this.setMinimumSize(new Dimension(1200, 800));
+        this.setPreferredSize(new Dimension(600, 800));
+        this.setMinimumSize(new Dimension(600, 800));
+        this.setMaximumSize(new Dimension(600, 800));
         this.setMenuBotones();
     }
     private void setMenuBotones(){

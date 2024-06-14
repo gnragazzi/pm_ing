@@ -24,12 +24,12 @@ public class Constantes {
     public static Color COLOR_PRINCIPAL = new Color(31, 32, 65);
     public static Color COLOR_SECUNDARIO = new Color(147, 229, 171);
     public static Color COLOR_SELECCIÓN = new Color(127, 209, 151);
+    public static Color COLOR_Header = new Color(207, 207, 207);
     
     
     private static Color COLOR_MENU = new Color(11, 79, 108);
     private static Color COLOR_MENU_HIGHLIGHT = new Color(99, 72, 110);
     private static Color COLOR_MENU_SELECCION = new Color(84, 57, 95);
-    private static Color COLOR_Header = new Color(229, 218, 230);
     private static final int LIM = 20;
     private static final int ALT = 70;
     /*
@@ -37,7 +37,8 @@ public class Constantes {
     private static final float PROPORCION = 16/9;
     */
     //private static final Font FUENTE_HEADER = new Font(fuente,0,48);
-    private static final Font FUENTE_HEADER = new Font(fuente,Font.BOLD,48);
+    public static final Font FUENTE_HEADER = new Font(fuente,Font.BOLD,26);
+   
     private static final Font FUENTE_INFO = new Font(fuente,Font.PLAIN,32);
     private static final Font FUENTE_CAMPO = new Font(fuente, Font.BOLD, 30);
     private static final Font FUENTE_BOTON_LATERAL = new Font(fuente, Font.BOLD, 18);

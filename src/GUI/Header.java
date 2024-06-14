@@ -23,27 +23,29 @@ public class Header extends JPanel{
     private final Boton_Header botones[] = new Boton_Header[4];
     
     public Header(String t, JPanel cuerpo){
+        this.setMinimumSize(new Dimension(800,130));
+        this.setPreferredSize(new Dimension(800,130));
+        this.setMaximumSize(new Dimension(1600,130));
         this.titulo.setText(t);
         this.setBorder(new EmptyBorder(20, 20, 0, 20));
         titulo.setFont(Constantes.getFUENTE_HEADER());
-        titulo.setForeground(Constantes.getCOLOR_MENU());
+        titulo.setForeground(Constantes.COLOR_PRINCIPAL);
         this.setLayout(new GridLayout(1, 2));
         this.add(titulo);
-        this.setBackground(Constantes.getCOLOR_Header());
+        this.setBackground(Constantes.COLOR_Header);
         
-        info.setForeground(Constantes.getCOLOR_MENU());
+        info.setForeground(Constantes.COLOR_PRINCIPAL);
         info.setVerticalAlignment(JLabel.BOTTOM);
-        botones[0] = new Boton_Header("Cargar",cuerpo);
-        botones[1] = new Boton_Header("Eliminar",cuerpo);
-        botones[2] = new Boton_Header("Modificar",cuerpo);
-        botones[3] = new Boton_Header("Consultar",cuerpo);
+        botones[0] = new Boton_Header("Cargar",cuerpo,this);
+        botones[1] = new Boton_Header("Eliminar",cuerpo,this);
+        botones[2] = new Boton_Header("Modificar",cuerpo,this);
+        botones[3] = new Boton_Header("Consultar",cuerpo,this);
         this.configurarDiv();
         this.add(div);
         
     }
     private void configurarDiv()
     {
-        
         div.setLayout(new GridLayout(2, 1));
         div.setBackground(null);
         this.botonera.setLayout(new GridLayout(1,botones.length));
@@ -55,5 +57,11 @@ public class Header extends JPanel{
         info.setFont(Constantes.getFUENTE_INFO());
         botonera.setBackground(null);
         div.add(botonera);
+    }
+    public void limpiarSelección(){
+            for (var botone : botones) {
+                botone.setSeleccion(false);
+                botone.setBackground(null);
+        }
     }
 }

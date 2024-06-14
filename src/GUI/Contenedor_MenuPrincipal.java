@@ -3,6 +3,7 @@ package GUI;
 import static GUI.Boton.getVentana;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +18,9 @@ public class Contenedor_MenuPrincipal extends JPanel{
     private CardLayout cl = new CardLayout();
     
     public Contenedor_MenuPrincipal(){
+        this.setMinimumSize(new Dimension(1100,800));
+        this.setPreferredSize(new Dimension(1100,800));
+        this.setMaximumSize(new Dimension(1100,800));
         this.setBackground(Color.blue);
         this.setLayout(cl);
         pant_default = new Carga_Exitosa("En construcción");

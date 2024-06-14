@@ -61,7 +61,6 @@ public abstract class Administrar extends JPanel{
     }
     public void setPantallaCargaExitosa(String s)
     {
-        System.out.println("Holitas, este es el string " + s);
         pantalla_mensaje.setTexto(s);
         layout_cuerpo.show(cuerpo,"mensaje");
     }

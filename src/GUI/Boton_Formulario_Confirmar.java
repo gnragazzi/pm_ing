@@ -32,7 +32,9 @@ public class Boton_Formulario_Confirmar extends Boton{
             v.getModal().desplegarDialog("Confirmar Carga de Máquina", form);
         }
         else
-            System.out.println("Invalido");
+        {
+            
+        }
     };
     
     @Override

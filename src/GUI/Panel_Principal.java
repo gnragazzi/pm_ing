@@ -23,7 +23,10 @@ public class Panel_Principal extends JPanel{
         this.setBackground(Constantes.COLOR_FONDO);
         //configuración de la barra superior
         barraSuperior = new JPanel();
-        barraSuperior.setBackground(Color.green);
+        barraSuperior.setBackground(Constantes.COLOR_PRINCIPAL);
+        barraSuperior.setMinimumSize(new Dimension(1000,33));
+        barraSuperior.setPreferredSize(new Dimension(1000,33));
+        barraSuperior.setMaximumSize(new Dimension(1000,33));
         //barraSuperior.setPreferredSize(new Dimension(680,40));
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -36,7 +39,7 @@ public class Panel_Principal extends JPanel{
         //Menú Lateral
         menuLateral = new Menu_Lateral();
         menuLat.fill = GridBagConstraints.BOTH;
-        menuLat.weightx = 0.5;
+        menuLat.weightx = 0.99;
         menuLat.weighty = 0.950;
         menuLat.gridx = 0;
         menuLat.gridy = 1;
@@ -62,7 +65,7 @@ public class Panel_Principal extends JPanel{
         setBackground(Color.red);
         // setear barra superior
         */
-        this.setPreferredSize(new Dimension(680,480));
+        this.setPreferredSize(new Dimension(1600,800));
     }
     public void cambiarPanel(String s)
     {

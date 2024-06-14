@@ -239,7 +239,6 @@ public class Administrar_registro extends Administrar{
             ret = false;
         else if(!fecha_inicio.esAntes(fecha_fin))
         {
-            System.out.println("NO es antes");
             fecha_inicio.setBackground(Color.red);
             fecha_fin.setBackground(Color.red);
             ret = false;

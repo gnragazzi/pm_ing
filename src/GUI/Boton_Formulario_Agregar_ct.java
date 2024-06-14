@@ -32,7 +32,9 @@ public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
             form.enviar();
         }
         else
-            System.out.println("Invalido");
+        {
+            
+        }
     };
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   

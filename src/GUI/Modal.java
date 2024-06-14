@@ -4,12 +4,15 @@
  */
 package GUI;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -21,7 +24,7 @@ public class Modal extends JDialog{
         super(f,s);
         JPanel modal = new JPanel();
 
-        JLabel text = new JLabel(s);
+        JLabel text = new JLabel(s,SwingConstants.CENTER);
         JPanel div_boton = new JPanel();
         Boton_modal aceptar = new Boton_modal("Aceptar",this);
         Boton_modal cancelar = new Boton_modal("Cancelar",this);
@@ -29,14 +32,14 @@ public class Modal extends JDialog{
         div_boton.add(cancelar);
         div_boton.setLayout(new BoxLayout(div_boton, BoxLayout.X_AXIS));
 
-        modal.setLayout(new BoxLayout(modal,BoxLayout.PAGE_AXIS));
         modal.add(text);
         modal.add(div_boton);
+        modal.setLayout(new GridLayout(2, 1));
 
         this.setContentPane(modal);
         this.setUndecorated(true);
-        this.setMinimumSize(new Dimension(640,80));
-        this.setPreferredSize(new Dimension(640,80));
+        this.setMinimumSize(new Dimension(400,80));
+        this.setPreferredSize(new Dimension(400,80));
         this.setLocationRelativeTo(this);
         this.setModal(true);
         this.pack();
