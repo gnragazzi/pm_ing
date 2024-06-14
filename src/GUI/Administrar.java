@@ -6,8 +6,10 @@ package GUI;
 
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -18,15 +20,16 @@ public abstract class Administrar extends JPanel{
     protected JPanel cuerpo;
     private JPanel pestaña_blank;
     protected JPanel pestaña_cargar;
-    protected Carga_Exitosa pestaña_en_construcción;
+    protected Pantalla_Mensaje pestaña_en_construcción;
     protected CardLayout layout_cuerpo;
-    private Carga_Exitosa pantalla_mensaje;
+    private Pantalla_Mensaje pantalla_mensaje;
+    protected JLabel error_carga = new JLabel("",SwingConstants.CENTER);
     
     public Administrar(String t) {
         pestaña_blank = new JPanel();
         pestaña_cargar = new JPanel();
-        pestaña_en_construcción = new Carga_Exitosa("En construcción");
-        pantalla_mensaje = new Carga_Exitosa("");
+        pestaña_en_construcción = new Pantalla_Mensaje("En construcción");
+        pantalla_mensaje = new Pantalla_Mensaje("");
 
 
         cuerpo = new JPanel();

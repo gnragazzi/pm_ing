@@ -25,7 +25,7 @@ public class Panel_Principal extends JPanel{
         this.setBackground(Constantes.COLOR_FONDO);
         //configuración de la barra superior
         barraSuperior = new JPanel();
-        JLabel tit = new JLabel("Empresa de Vidrios S.A.",SwingConstants.RIGHT);
+        JLabel tit = new JLabel("Empresa de Vidrios S.A.",SwingConstants.CENTER);
         tit.setFont(Constantes.FUENTE_TITULO);
         tit.setForeground(Constantes.COLOR_SECUNDARIO);
         barraSuperior.add(tit);

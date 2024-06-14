@@ -14,11 +14,11 @@ import javax.swing.SwingConstants;
  *
  * @author gera
  */
-public class Carga_Exitosa extends JPanel{
+public class Pantalla_Mensaje extends JPanel{
     private JLabel mensaje;
 
 
-    public Carga_Exitosa(String s) {
+    public Pantalla_Mensaje(String s) {
         mensaje = new JLabel(s,SwingConstants.CENTER);
         mensaje.setFont(Constantes.FUENTE_HEADER);
         this.setLayout(new GridLayout(1,1));

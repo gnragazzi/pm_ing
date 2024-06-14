@@ -13,9 +13,10 @@ public class Contenedor_MenuPrincipal extends JPanel{
     private Administrar_máquina c_m = new Administrar_máquina("Administrar Máquina");
     private Administrar_técnico c_t = new Administrar_técnico("Administrar Técnico");
     private Administrar_registro l_t = new Administrar_registro("Administrar Registros");
-    private Carga_Exitosa pant_default;
+    private Pantalla_Mensaje pant_default;
     private Administrar actual;
     private CardLayout cl = new CardLayout();
+    private Pantalla_Mensaje error;
     
     public Contenedor_MenuPrincipal(){
         this.setMinimumSize(new Dimension(1100,800));
@@ -23,13 +24,15 @@ public class Contenedor_MenuPrincipal extends JPanel{
         this.setMaximumSize(new Dimension(1100,800));
         this.setBackground(Color.blue);
         this.setLayout(cl);
-        pant_default = new Carga_Exitosa("En construcción");
+        pant_default = new Pantalla_Mensaje("En construcción");
+        error = new Pantalla_Mensaje("");
         
         actual = c_m;
         this.add(c_m,"Administrar Máquina");
         this.add(c_t,"Administrar Técnico");
         this.add(l_t,"Administrar Registros");
         this.add(pant_default,"default");
+        this.add(error,"error");
     }
     
     public void cambiar_actual(String s, boolean paso_entre_Formuarios)
@@ -62,5 +65,10 @@ public class Contenedor_MenuPrincipal extends JPanel{
         l_t.continuarCambiarTecnico(t);
         actual = l_t;
         cl.show(this, "Administrar Registros");
+    }
+    public void error(String s)
+    {
+        error.setTexto(s);
+        cl.show(this,"error");
     }
 }

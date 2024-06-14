@@ -264,6 +264,7 @@ public class Administrar_registro extends Administrar{
     };
     
     public void cargarDesdeBd(){
+        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
             tecnicos = BD.listarTecnico();
             String c_t[] = {"Nombre","Apellido","DNI","Fecha de Nacimiento", "Contacto"};
@@ -294,6 +295,14 @@ public class Administrar_registro extends Administrar{
             }
         } catch (SQLException ex) {
             setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+        }
+        if(maquinas.size()==0)
+        {
+            c.error("ERROR: No Hay Máquinas Cargadas");
+        }
+        else if(tecnicos.size()==0 && !cargarTecnico_flag)
+        {
+            c.error("ERROR: No Hay Técnicos Cargados");
         }
     };
     public int getPestaña()

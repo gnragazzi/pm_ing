@@ -126,18 +126,25 @@ public class Administrar_máquina extends Administrar{
         } catch (SQLException ex) {
             setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
-        for(int i = 0; i < plantas_Cargadas.size(); i++){
-            Planta p = plantas_Cargadas.get(i);
-            String st = "id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() ;
-            plantas_combo.getInput().addItem(st);
+        if(plantas_Cargadas.size()==0)
+        {
+            c.error("ERROR No hay Plantas Cargadas.");
         }
-        plantas_combo.getInput().setSelectedIndex(-1);
-        //Cargar Máquinas
-        try {
-            maquinas = BD.listarMaquina();
+        else
+        {
+            for(int i = 0; i < plantas_Cargadas.size(); i++){
+                Planta p = plantas_Cargadas.get(i);
+                String st = "id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() ;
+                plantas_combo.getInput().addItem(st);
+            }
+            plantas_combo.getInput().setSelectedIndex(-1);
+            //Cargar Máquinas
+            try {
+                maquinas = BD.listarMaquina();
 
-        } catch (SQLException ex) {
-            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            } catch (SQLException ex) {
+                setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            }
         }
     }
 }
