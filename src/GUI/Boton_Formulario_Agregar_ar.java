@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
 
 import GUI.Boton;
 import GUI.Constantes;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
@@ -37,11 +32,6 @@ public class Boton_Formulario_Agregar_ar extends Boton{
         else
             System.out.println("invalido");
     };
-    /*
-    public Formulario_Texto getFormularioActual(){
-        return this.formulario_actual;
-    }
-    */
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);

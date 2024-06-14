@@ -57,7 +57,7 @@ public class Fila extends JPanel{
     public void mouseClick(MouseEvent evt){
         if(!this.selected && !esCabecera)
         {
-            ((Formulario_asignar_registro)form_actual).prueba(this);
+            ((Formulario_asignar_registro)form_actual).desplegar_listado(this);
             this.selected = true;
             this.setBackground(Color.blue);
         }

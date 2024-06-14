@@ -56,13 +56,12 @@ public class Formulario_asignar_registro extends Formulario{
         }
         
         
-        this.setBackground(Color.CYAN);
         titulo=new JPanel();
         titulo.setBackground(Color.ORANGE);
         titulo.setMaximumSize(new Dimension(6000,4000));
         titulo.setMinimumSize(new Dimension(600,20));
         titulo.setPreferredSize(new Dimension(600,40));
-        JLabel text = new JLabel("Seleccione un Técnico de la lista: ");
+        JLabel text = new JLabel(indicaciones[0]);
         titulo.add(text);
         this.add(titulo);
         
@@ -152,7 +151,7 @@ public class Formulario_asignar_registro extends Formulario{
         this.add(cuerpo);
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
     }
-    public void prueba(Fila f){
+    public void desplegar_listado(Fila f){
         if(pestaña == 0)
         {
             for(int i = 1; i <= tecnicos.size();i++)
@@ -176,7 +175,6 @@ public class Formulario_asignar_registro extends Formulario{
     }
     public void cambiarListado(int direccion)
     {
-        //System.out.println("Pestaña: "+pestaña + "maquina seleccionada: " + String.valueOf(maquina_seleccionada));
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         JLabel t = (JLabel)titulo.getComponent(0);
         if(direccion == 1)
@@ -231,6 +229,8 @@ public class Formulario_asignar_registro extends Formulario{
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo, String.valueOf(pestaña));
         this.cargarTecnico_flag = false;
+        ((JLabel)titulo.getComponent(0)).setText(indicaciones[0]);
+        
         tecnico_seleccionado = -1;
         maquina_seleccionada = -1;
         contenedor_maq.removeAll();
@@ -276,6 +276,7 @@ public class Formulario_asignar_registro extends Formulario{
         CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
         cl.show(this.cuerpo,"3");
     };
+    
     public void cargarDesdeBd(){
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
@@ -312,4 +313,8 @@ public class Formulario_asignar_registro extends Formulario{
             c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
     };
+    public int getPestaña()
+    {
+        return pestaña;
+    }
 }
