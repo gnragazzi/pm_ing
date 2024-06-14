@@ -18,14 +18,14 @@ public class Contenedor_MenuPrincipal extends JPanel{
         actual = c_m;
         this.add(c_m,"Administrar Máquina");
         this.add(c_t,"Administrar Técnico");
-        this.add(l_t,"Asignar Registro");
+        this.add(l_t,"Administrar Registros");
     }
     
     public void cambiar_actual(String s, boolean paso_entre_Formuarios)
     {
         if(s.equals("Administrar Máquina"))
             actual = c_m;
-        else if(s.equals("Agregar Técnico"))
+        else if(s.equals("Administrar Técnico"))
             actual = c_t;
         else
             actual = l_t;
@@ -40,6 +40,6 @@ public class Contenedor_MenuPrincipal extends JPanel{
         l_t.cargarDesdeBd();
         l_t.continuarCambiarTecnico(t);
         actual = l_t;
-        cl.show(this, "Asignar Registro");
+        cl.show(this, "Administrar Registros");
     }
 }

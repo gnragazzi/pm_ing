@@ -181,12 +181,9 @@ public class Administrar_registro extends Administrar{
         {
             if(pestaña == 1 && cargarTecnico_flag)
             {
-                Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
-                this.pestaña = 0;
-                t.setText(indicaciones[pestaña]);
-                cl.show(subpestaña_listar, "0");
-                p.cambiar_actual("Agregar Técnico",true);
                 this.cargarTecnico_flag = false;
+                Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
+                p.cambiar_actual("Administrar Técnico",true);
             }
             else if (pestaña == 1)
             {
@@ -269,7 +266,6 @@ public class Administrar_registro extends Administrar{
     public void cargarDesdeBd(){
         try {
             tecnicos = BD.listarTecnico();
-            
             String c_t[] = {"Nombre","Apellido","DNI","Fecha de Nacimiento", "Contacto"};
             Fila cat_t = new Fila(c_t,true,-1,this);
             contenedor_tec.add(cat_t);

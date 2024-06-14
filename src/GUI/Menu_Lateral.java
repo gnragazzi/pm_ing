@@ -18,7 +18,7 @@ public class Menu_Lateral extends JPanel {
     private String []menu_text = {
         "Administrar Máquina",
         "Administrar Técnico",
-        "Asignar Registro",
+        "Administrar Registros",
     };
     private String []menu_iconos = {
         "/GUI/Iconos/home.png",

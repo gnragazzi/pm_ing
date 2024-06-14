@@ -5,6 +5,7 @@
 package GUI;
 
 import GUI.Constantes;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -13,16 +14,15 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Limpiar_ct extends Boton_Formulario_Agregar_ct {
-    public Boton_Formulario_Limpiar_ct(String n, Administrar_técnico f){
+public class Boton_Formulario_Cancelar_ct extends Boton_Formulario_Agregar_ct {
+    public Boton_Formulario_Cancelar_ct(String n, Administrar_técnico f){
         super(n,f);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
     }
     @Override
     public void mouseClick(MouseEvent evt){
-            //this.getParent()
-            
+        ((CardLayout)form.getCuerpo().getLayout()).show(form.getCuerpo(),"blank");            
     };
         @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   

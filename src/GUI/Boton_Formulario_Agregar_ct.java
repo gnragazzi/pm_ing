@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  * @author gera
  */
 public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
-    private Administrar form;
+    protected Administrar form;
     public Boton_Formulario_Agregar_ct(String n, Administrar f)
     {
         super(n,f);
