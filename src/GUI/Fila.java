@@ -16,12 +16,12 @@ import javax.swing.JPanel;
  */
 public class Fila extends JPanel{
     private ArrayList<String> col = new ArrayList<String>();
-    private Formulario form_actual;
+    private Administrar_registro form_actual;
     private boolean selected = false;
     private boolean esCabecera = false;
     private int indice;
     
-    public Fila(String s[],boolean b, int indx, Formulario f) {
+    public Fila(String s[],boolean b, int indx, Administrar_registro f) {
         indice = indx;
         esCabecera = b;
         form_actual = f;
@@ -52,12 +52,18 @@ public class Fila extends JPanel{
 
     public void mouseSale(MouseEvent evt) {                                  
         if(!this.selected && !esCabecera)
-            this.setBackground(Color.white);
+            this.setBackground(null);
     }    
     public void mouseClick(MouseEvent evt){
-        if(!this.selected && !esCabecera)
+        if(this.selected)
         {
-            ((Formulario_asignar_registro)form_actual).desplegar_listado(this);
+            this.selected = false;
+            this.setBackground(null);
+            form_actual.desasignar_seleccion();
+        }
+        else if(!this.selected && !esCabecera)
+        {
+            form_actual.asignar_seleccion(this);
             this.selected = true;
             this.setBackground(Color.blue);
         }

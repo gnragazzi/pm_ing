@@ -90,14 +90,14 @@ public class Campo_fecha extends Campo{
         }
         else 
         {
-            this.setBackground(Color.WHITE);
+            this.setBackground(null);
             return true;
         }
     }
     
     public void limpiarCampo()
     {
-        this.setBackground(Color.white);
+        this.setBackground(null);
         dia.setSelectedIndex(-1);        
         mes.setSelectedIndex(-1);
         año.setSelectedIndex(-1);

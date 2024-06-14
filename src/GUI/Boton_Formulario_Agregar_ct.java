@@ -4,10 +4,8 @@
  */
 package GUI;
 
-import GUI.Boton;
 import GUI.Constantes;
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
@@ -15,9 +13,9 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Agregar{
-    private Formulario form;
-    public Boton_Formulario_Agregar_ct(String n, Formulario f)
+public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
+    private Administrar form;
+    public Boton_Formulario_Agregar_ct(String n, Administrar f)
     {
         super(n,f);
         this.form = f;

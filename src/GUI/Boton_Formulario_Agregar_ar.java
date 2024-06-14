@@ -11,8 +11,8 @@ import javax.swing.JLabel;
  * @author gera
  */
 public class Boton_Formulario_Agregar_ar extends Boton{
-    private Formulario form;
-    public Boton_Formulario_Agregar_ar(String n, Formulario f)
+    private Administrar form;
+    public Boton_Formulario_Agregar_ar(String n, Administrar f)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
         this.form = f;

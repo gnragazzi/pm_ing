@@ -6,13 +6,11 @@ package GUI;
 
 import Connection.BD;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pm_ingsw1.Estado;
 import pm_ingsw1.Maquina;
@@ -22,9 +20,7 @@ import pm_ingsw1.Planta;
  *
  * @author gera
  */
-public class Formulario_cargar_máquina extends Formulario{
-    private JPanel titulo;
-    private JPanel cuerpo;
+public class Administrar_máquina extends Administrar{
     private Campo_Texto marca;
     private Campo_Texto modelo;
     private Campo_Num id;
@@ -34,56 +30,43 @@ public class Formulario_cargar_máquina extends Formulario{
     private Campo_combo_box plantas_combo;
     private JDialog confirmación;
     
-    public Formulario_cargar_máquina(String t){
-        titulo=new JPanel();
-        titulo.setBackground(Color.ORANGE);
-        titulo.setMaximumSize(new Dimension(6000,4000));
-        titulo.setMinimumSize(new Dimension(600,20));
-        titulo.setPreferredSize(new Dimension(600,40));
-        JLabel text = new JLabel(t);
-        titulo.add(text);
-        this.add(titulo);
+    public Administrar_máquina(String t){
+        super(t);
         
-        
-        cuerpo = new JPanel();
-        //cuerpo.setBackground(Color.blue);
-
+        //construcción del formulario
         //marca de la máquina, 
         marca = new Campo_Texto("Marca");
-        cuerpo.add(marca);
+        pestaña_cargar.add(marca);
         
         //el modelo del mismo, 
         modelo = new Campo_Texto("Modelo");
-        cuerpo.add(modelo);
+        pestaña_cargar.add(modelo);
         
         //su número de identificación y 
         id = new Campo_Num("Número de Identificación");
-        cuerpo.add(id);
+        pestaña_cargar.add(id);
         
         //el estado en que se encuentra. (E-2)        
         estado = new Campo_combo_box("Estado");
         estado.getInput().addItem("Activo");
         estado.getInput().addItem("En Reparación");
         estado.getInput().setSelectedIndex(-1);
-        cuerpo.add(estado);
+        pestaña_cargar.add(estado);
 
         // Asignar planta
         plantas_combo = new Campo_combo_box("Plantas");
         cargarDesdeBd();
-        cuerpo.add(plantas_combo);
+        pestaña_cargar.add(plantas_combo);
         //div_botones
         
         JPanel div_botones = new JPanel();
-        Boton_Formulario_Agregar boton = new Boton_Formulario_Agregar("Confirmar", this);
-        Boton_Formulario_Limpiar b_limp = new Boton_Formulario_Limpiar("Cancelar", this);
+        Boton_Formulario_Confirmar boton = new Boton_Formulario_Confirmar("Confirmar", this);
+        Boton_Formulario_Cancelar b_limp = new Boton_Formulario_Cancelar("Cancelar", this);
         div_botones.add(boton);
         div_botones.add(b_limp);
-        cuerpo.add(div_botones);
         
-        
-        cuerpo.setLayout(new BoxLayout(cuerpo,BoxLayout.PAGE_AXIS));
-        this.add(cuerpo);
-        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+        pestaña_cargar.add(div_botones);
+        pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
     }
     
     @Override
@@ -93,10 +76,9 @@ public class Formulario_cargar_máquina extends Formulario{
         Maquina m = new Maquina(Integer.parseInt(id.getInput().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
         try {
             BD.cargarMaquina(m);
-            c.setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
-            limpiarCampos();
+            setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
         } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
     };
     
@@ -129,6 +111,7 @@ public class Formulario_cargar_máquina extends Formulario{
     }
     @Override
     public void limpiarCampos(){
+        super.limpiarCampos();
         id.limpiarCampo();
         marca.limpiarCampo();
         modelo.limpiarCampo();
@@ -141,7 +124,7 @@ public class Formulario_cargar_máquina extends Formulario{
         try {
             plantas_Cargadas = BD.listarPlanta();
         } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
         for(int i = 0; i < plantas_Cargadas.size(); i++){
             Planta p = plantas_Cargadas.get(i);
@@ -154,7 +137,7 @@ public class Formulario_cargar_máquina extends Formulario{
             maquinas = BD.listarMaquina();
 
         } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
     }
 }

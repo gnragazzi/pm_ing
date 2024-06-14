@@ -9,22 +9,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import pm_ingsw1.Planta;
 import pm_ingsw1.Tecnico;
 
 /**
  *
  * @author gera
  */
-public class Formulario_cargar_técnico extends Formulario{
-    private JPanel titulo;
-    private JPanel cuerpo;
+public class Administrar_técnico extends Administrar{
     private Campo_Texto nombre;
     private Campo_Texto apellido;
     private Campo_Num dni;
@@ -32,39 +27,25 @@ public class Formulario_cargar_técnico extends Formulario{
     private Campo_Num contacto;
     private ArrayList<Tecnico> tecnicos;
     
-    public Formulario_cargar_técnico(String t){
-        titulo=new JPanel();
-        titulo.setBackground(Color.ORANGE);
-        titulo.setMaximumSize(new Dimension(6000,4000));
-        titulo.setMinimumSize(new Dimension(600,20));
-        titulo.setPreferredSize(new Dimension(600,40));
-        JLabel text = new JLabel(t);
-        titulo.add(text);
-        this.add(titulo);
-        
-        
-        cuerpo = new JPanel();
-        //cuerpo.setBackground(Color.blue);
-
-        //nombre del técnico, 
+    public Administrar_técnico(String t){
+        super(t);
         nombre = new Campo_Texto("Nombre");
-        cuerpo.add(nombre);
-        
+        pestaña_cargar.add(nombre);
         //Apellido
         apellido = new Campo_Texto("Apellido");
-        cuerpo.add(apellido);
+        pestaña_cargar.add(apellido);
         
         //dni
         dni = new Campo_Num("DNI");
-        cuerpo.add(dni);
+        pestaña_cargar.add(dni);
         
         //fecha nac
         fecha_nac = new Campo_fecha("Fecha de Nacimiento",2006,1954,-1);
-        cuerpo.add(fecha_nac);
+        pestaña_cargar.add(fecha_nac);
         
         //contacto
         contacto = new Campo_Num("Contacto");
-        cuerpo.add(contacto);
+        pestaña_cargar.add(contacto);
 
         //div_botones
         
@@ -73,15 +54,12 @@ public class Formulario_cargar_técnico extends Formulario{
         Boton_Formulario_Limpiar_ct b_limp = new Boton_Formulario_Limpiar_ct("Cancelar", this);
         div_botones.add(boton);
         div_botones.add(b_limp);
-        cuerpo.add(div_botones);
-        
-        
-        cuerpo.setLayout(new BoxLayout(cuerpo,BoxLayout.PAGE_AXIS));
-        this.add(cuerpo);
-        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+        pestaña_cargar.add(div_botones);
+        pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
     }
     
     public void limpiarCampos(){
+        super.limpiarCampos();
         this.nombre.limpiarCampo();
         this.apellido.limpiarCampo();
         this.dni.limpiarCampo();
@@ -126,7 +104,7 @@ public class Formulario_cargar_técnico extends Formulario{
         try {
             tecnicos = BD.listarTecnico();
         } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
     }
 

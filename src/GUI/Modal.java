@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @author gera
  */
 public class Modal extends JDialog{
-    private Formulario actual;
+    private Administrar actual;
     public Modal(JFrame f, String s) {
         super(f,s);
         JPanel modal = new JPanel();
@@ -42,13 +42,13 @@ public class Modal extends JDialog{
         this.pack();
     }
     
-    public void desplegarDialog(String s, Formulario f)
+    public void desplegarDialog(String s, Administrar f)
     {
         actual = f;
         this.setVisible(true);
         System.out.flush();
     }
-    public Formulario getActual()
+    public Administrar getActual()
     {
         return actual;
     }

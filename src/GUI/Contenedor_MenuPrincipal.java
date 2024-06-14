@@ -6,26 +6,24 @@ import javax.swing.JPanel;
 import pm_ingsw1.Tecnico;
 
 public class Contenedor_MenuPrincipal extends JPanel{
-    private Formulario_cargar_máquina c_m = new Formulario_cargar_máquina("Agregar Máquina");
-    private Formulario_cargar_técnico c_t = new Formulario_cargar_técnico("Agregar Técnico");
-    private Formulario_asignar_registro l_t = new Formulario_asignar_registro();
-    private Formulario actual;
+    private Administrar_máquina c_m = new Administrar_máquina("Administrar Máquina");
+    private Administrar_técnico c_t = new Administrar_técnico("Administrar Técnico");
+    private Administrar_registro l_t = new Administrar_registro("Administrar Registros");
+    private Administrar actual;
     private CardLayout cl = new CardLayout();
-    private Carga_Exitosa Pantalla_mensaje = new Carga_Exitosa();
     
     public Contenedor_MenuPrincipal(){
         this.setBackground(Color.blue);
         this.setLayout(cl);
         actual = c_m;
-        this.add(c_m,"Agregar Máquina");
-        this.add(c_t,"Agregar Técnico");
+        this.add(c_m,"Administrar Máquina");
+        this.add(c_t,"Administrar Técnico");
         this.add(l_t,"Asignar Registro");
-        this.add(Pantalla_mensaje,"Mensaje");
     }
     
     public void cambiar_actual(String s, boolean paso_entre_Formuarios)
     {
-        if(s.equals("Agregar Máquina"))
+        if(s.equals("Administrar Máquina"))
             actual = c_m;
         else if(s.equals("Agregar Técnico"))
             actual = c_t;
@@ -43,10 +41,5 @@ public class Contenedor_MenuPrincipal extends JPanel{
         l_t.continuarCambiarTecnico(t);
         actual = l_t;
         cl.show(this, "Asignar Registro");
-    }
-    public void setPantallaCargaExitosa(String s)
-    {
-        Pantalla_mensaje.setTexto(s);
-        this.cl.show(this,"Mensaje");
     }
 }

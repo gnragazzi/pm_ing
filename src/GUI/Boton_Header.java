@@ -4,27 +4,42 @@
  */
 package GUI;
 
+import GUI.Boton;
 import GUI.Constantes;
-import java.awt.Color;
+import java.awt.CardLayout;
 import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author gera
  */
-public class Boton_Formulario_Limpiar_ct extends Boton_Formulario_Agregar_ct {
-    public Boton_Formulario_Limpiar_ct(String n, Administrar_técnico f){
-        super(n,f);
-        this.getNombre().setHorizontalAlignment(JLabel.CENTER);
-        this.getNombre().setVerticalAlignment(JLabel.CENTER);
+public class Boton_Header extends Boton{
+    private JPanel padre;
+    public Boton_Header(String nombre, JPanel cuerpo){
+        super(nombre, Constantes.getFUENTE_BOTON_HEADER());
+        padre = cuerpo;
+        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+        this.getNombre().setForeground(Constantes.getCOLOR_MENU());
     }
     @Override
     public void mouseClick(MouseEvent evt){
-            //this.getParent()
-            
-    };
-        @Override
+        switch(this.getNombre().getText()){
+            case "Cargar":
+            {
+                ((Administrar)padre.getParent()).limpiarCampos();
+                ((Administrar)padre.getParent()).cargarDesdeBd();
+                ((CardLayout)padre.getLayout()).show(padre,"Cargar");
+            }break;
+            default:
+            {
+                ((CardLayout)padre.getLayout()).show(padre,"en_construcción");
+            }break;
+        }
+    }
+    
+    /*
+    @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);
         this.getNombre().setForeground(Constantes.getCOLOR_MENU_Fuente());
@@ -45,4 +60,5 @@ public class Boton_Formulario_Limpiar_ct extends Boton_Formulario_Agregar_ct {
         //setear color
         return Constantes.getCOLOR_MENU();
     }
+    */
 }

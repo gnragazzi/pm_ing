@@ -19,9 +19,9 @@ public class ConnectionDemo {
 
 public ConnectionDemo() {
         userName="root";
-        password="usuario";
-        url="jdbc:mysql://localhost:3306/mydb";
-        driver="com.mysql.cj.jdbc.Driver";
+        password="123456rg";
+        url="jdbc:mariadb://localhost:3306/mydb";
+        driver="org.mariadb.jdbc.Driver";
         try {
             Class.forName(driver);
             con=DriverManager.getConnection(url, userName, password);

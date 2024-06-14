@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 public class Menu_Lateral extends JPanel {
     private Boton_Menu []menu = new Boton_Menu[3];
     private String []menu_text = {
-        "Agregar Máquina",
-        "Agregar Técnico",
+        "Administrar Máquina",
+        "Administrar Técnico",
         "Asignar Registro",
     };
     private String []menu_iconos = {

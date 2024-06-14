@@ -97,12 +97,6 @@ public class Boton extends JPanel{
     public Color getHighlight(){
         return null;
     }
-    /*
-    static public void setCuerpo(Cuerpo c)
-    {
-        Boton.cuerpo = c;
-    }
-    */
     
     static public void setVentana(Ventana v)
     {

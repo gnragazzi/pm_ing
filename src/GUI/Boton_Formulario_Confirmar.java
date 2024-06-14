@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import GUI.Constantes;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -13,18 +12,30 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Limpiar extends Boton_Formulario_Agregar {
-    public Boton_Formulario_Limpiar(String n, Formulario_cargar_máquina f){
-        super(n,f);
+public class Boton_Formulario_Confirmar extends Boton{
+    protected Administrar form;
+    public Boton_Formulario_Confirmar(String n, Administrar f)
+    {
+        super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        this.form = f;
+        this.setLayout(Constantes.getLAYOUT_CENTRADO());
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
+        
     }
+
     @Override
     public void mouseClick(MouseEvent evt){
-            //this.getFormularioActual().limpiarCampos();
-            System.out.println("Otro Click");
+        if(form.esValido())
+        {
+            Ventana v = (Ventana)this.getTopLevelAncestor();
+            v.getModal().desplegarDialog("Confirmar Carga de Máquina", form);
+        }
+        else
+            System.out.println("Invalido");
     };
-        @Override
+    
+    @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);
         this.getNombre().setForeground(Constantes.getCOLOR_MENU_Fuente());
@@ -45,4 +56,6 @@ public class Boton_Formulario_Limpiar extends Boton_Formulario_Agregar {
         //setear color
         return Constantes.getCOLOR_MENU();
     }
+    
+
 }

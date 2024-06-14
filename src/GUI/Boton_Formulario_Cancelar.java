@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import GUI.Constantes;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -12,30 +14,18 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar extends Boton{
-    private Formulario form;
-    public Boton_Formulario_Agregar(String n, Formulario f)
-    {
-        super(n,Constantes.getFUENTE_BOTON_LATERAL());
-        this.form = f;
-        this.setLayout(Constantes.getLAYOUT_CENTRADO());
+public class Boton_Formulario_Cancelar extends Boton_Formulario_Confirmar {
+    
+    public Boton_Formulario_Cancelar(String n, Administrar_máquina f){
+        super(n,f);
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
-        
     }
-
     @Override
     public void mouseClick(MouseEvent evt){
-        if(form.esValido())
-        {
-            Ventana v = (Ventana)this.getTopLevelAncestor();
-            v.getModal().desplegarDialog("Confirmar Carga de Máquina", form);
-        }
-        else
-            System.out.println("Invalido");
+            ((CardLayout)form.getCuerpo().getLayout()).show(form.getCuerpo(),"blank");
     };
-    
-    @Override
+        @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);
         this.getNombre().setForeground(Constantes.getCOLOR_MENU_Fuente());
@@ -56,6 +46,4 @@ public class Boton_Formulario_Agregar extends Boton{
         //setear color
         return Constantes.getCOLOR_MENU();
     }
-    
-
 }

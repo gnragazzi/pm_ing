@@ -15,9 +15,11 @@ import javax.swing.JLabel;
  * @author gera
  */
 public class Boton_Asignar_volver extends Boton{
-    public Boton_Asignar_volver(String n)
+    private Administrar_registro padre;
+    public Boton_Asignar_volver(String n, Administrar_registro p)
     {
         super(n,Constantes.getFUENTE_BOTON_LATERAL());
+        padre = p;
         this.setLayout(Constantes.getLAYOUT_CENTRADO());
         this.getNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getNombre().setVerticalAlignment(JLabel.CENTER);
@@ -26,8 +28,7 @@ public class Boton_Asignar_volver extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        Formulario_asignar_registro p = (Formulario_asignar_registro)this.getParent().getParent().getParent().getParent();
-        p.cambiarListado(-1);
+        padre.cambiarListado(-1);
     };
 
     @Override

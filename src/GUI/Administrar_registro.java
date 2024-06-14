@@ -10,9 +10,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,9 +22,9 @@ import pm_ingsw1.Turno;
  *
  * @author gera
  */
-public class Formulario_asignar_registro extends Formulario{
+public class Administrar_registro extends Administrar{
     private JPanel titulo;
-    private JPanel cuerpo;
+    private JPanel subpestaña_listar;
     private JPanel lista_tec;
     private JPanel lista_maq;
     private ArrayList<Tecnico> tecnicos;
@@ -43,19 +40,8 @@ public class Formulario_asignar_registro extends Formulario{
     private JPanel contenedor_maq;
     private JPanel contenedor_tec;
     
-    public Formulario_asignar_registro() {
-        try {
-            tecnicos = BD.listarTecnico();
-        } catch (SQLException ex) {
-            Logger.getLogger(Formulario_asignar_registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            maquinas = BD.listarMaquina();
-        } catch (SQLException ex) {
-            Logger.getLogger(Formulario_asignar_registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+    public Administrar_registro(String t) {
+        super(t);
         titulo=new JPanel();
         titulo.setBackground(Color.ORANGE);
         titulo.setMaximumSize(new Dimension(6000,4000));
@@ -63,11 +49,9 @@ public class Formulario_asignar_registro extends Formulario{
         titulo.setPreferredSize(new Dimension(600,40));
         JLabel text = new JLabel(indicaciones[0]);
         titulo.add(text);
-        this.add(titulo);
         
-        
-        cuerpo = new JPanel();
-        cuerpo.setLayout(new CardLayout());
+        subpestaña_listar = new JPanel();
+        subpestaña_listar.setLayout(new CardLayout());
         
         /************************************************/
         /************************************************/
@@ -83,7 +67,7 @@ public class Formulario_asignar_registro extends Formulario{
         lista_tec.add(contenedor_tec);
         
         JPanel div_botones = new JPanel();
-        Boton_Asignar_siguiente boton = new Boton_Asignar_siguiente("Siguiente");
+        Boton_Asignar_siguiente boton = new Boton_Asignar_siguiente("Siguiente",this);
         div_botones.add(boton);
         lista_tec.add(div_botones);
 
@@ -100,8 +84,8 @@ public class Formulario_asignar_registro extends Formulario{
 
         lista_maq.add(contenedor_maq);
         JPanel div_botones_maq = new JPanel();
-        Boton_Asignar_siguiente boton_maq = new Boton_Asignar_siguiente("Siguiente");
-        Boton_Asignar_volver boton_volver_maq = new Boton_Asignar_volver("Volver");
+        Boton_Asignar_siguiente boton_maq = new Boton_Asignar_siguiente("Siguiente",this);
+        Boton_Asignar_volver boton_volver_maq = new Boton_Asignar_volver("Volver",this);
         div_botones_maq.add(boton_volver_maq);
         div_botones_maq.add(boton_maq);
         lista_maq.add(div_botones_maq);
@@ -127,7 +111,7 @@ public class Formulario_asignar_registro extends Formulario{
         formulario.setLayout(new BoxLayout(formulario,BoxLayout.PAGE_AXIS));
         JPanel div_botones_form = new JPanel();
         Boton_Formulario_Agregar_ar boton_form = new Boton_Formulario_Agregar_ar("Confirmar", this);
-        Boton_Asignar_volver boton_volver_form = new Boton_Asignar_volver("Volver");
+        Boton_Asignar_volver boton_volver_form = new Boton_Asignar_volver("Volver",this);
         div_botones_form.add(boton_volver_form);
         div_botones_form.add(boton_form);
         formulario.add(div_botones_form);
@@ -139,26 +123,25 @@ public class Formulario_asignar_registro extends Formulario{
         //              Carga Exitosa
         /************************************************/
         /************************************************/    
+        
+        subpestaña_listar.add(lista_tec,"0");
+        subpestaña_listar.add(lista_maq,"1");
+        subpestaña_listar.add(formulario,"2");
+        
+        pestaña_cargar.add(titulo);
+        pestaña_cargar.add(subpestaña_listar);
+        pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
 
-        Carga_Exitosa pantalla_final = new Carga_Exitosa("El registro se cargo correctamente");
         
-        
-        cuerpo.add(lista_tec,"0");
-        cuerpo.add(lista_maq,"1");
-        cuerpo.add(formulario,"2");
-        cuerpo.add(pantalla_final,"3");
-        
-        this.add(cuerpo);
-        this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
     }
-    public void desplegar_listado(Fila f){
+    public void asignar_seleccion(Fila f){
         if(pestaña == 0)
         {
             for(int i = 1; i <= tecnicos.size();i++)
             {
                 Fila temp= (Fila)contenedor_tec.getComponent(i);
                 temp.setSelected(false);
-                temp.setBackground(Color.white);
+                temp.setBackground(null);
             }
             tecnico_seleccionado = f.getIndice();
         }
@@ -168,24 +151,30 @@ public class Formulario_asignar_registro extends Formulario{
             {
                 Fila temp= (Fila)contenedor_maq.getComponent(i);
                 temp.setSelected(false);
-                temp.setBackground(Color.white);
+                temp.setBackground(null);
             }
             maquina_seleccionada = f.getIndice();
         }
     }
+    public void desasignar_seleccion(){
+        if(pestaña == 0)
+            tecnico_seleccionado = -1;
+        else 
+            maquina_seleccionada = -1;
+    }
     public void cambiarListado(int direccion)
     {
-        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
+        CardLayout cl = (CardLayout)(this.subpestaña_listar.getLayout());
         JLabel t = (JLabel)titulo.getComponent(0);
         if(direccion == 1)
         {
             if(pestaña == 0 && tecnico_seleccionado >= 0)
             {
-                cl.show(this.cuerpo, String.valueOf(++pestaña));
+                cl.show(this.subpestaña_listar, String.valueOf(++pestaña));
             }
             else if(pestaña == 1 && maquina_seleccionada >= 0)
             {
-                cl.show(this.cuerpo, String.valueOf(++pestaña));
+                cl.show(this.subpestaña_listar, String.valueOf(++pestaña));
             }
         }
         else
@@ -195,17 +184,17 @@ public class Formulario_asignar_registro extends Formulario{
                 Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
                 this.pestaña = 0;
                 t.setText(indicaciones[pestaña]);
-                cl.show(cuerpo, "0");
+                cl.show(subpestaña_listar, "0");
                 p.cambiar_actual("Agregar Técnico",true);
                 this.cargarTecnico_flag = false;
             }
             else if (pestaña == 1)
             {
-                cl.show(this.cuerpo, String.valueOf(--pestaña));
+                cl.show(this.subpestaña_listar, String.valueOf(--pestaña));
             }
             else if(pestaña == 2 )
             {
-                cl.show(this.cuerpo, String.valueOf(--pestaña));
+                cl.show(this.subpestaña_listar, String.valueOf(--pestaña));
             }
         }
         t.setText(this.indicaciones[pestaña]);
@@ -215,9 +204,10 @@ public class Formulario_asignar_registro extends Formulario{
     public void continuarCambiarTecnico(Tecnico e)
     {
         cargarTecnico_flag = true;
+        layout_cuerpo.show(cuerpo, "Cargar");
         pestaña = 1;
-        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
-        cl.show(this.cuerpo, "1");
+        CardLayout cl = (CardLayout)(this.subpestaña_listar.getLayout());
+        cl.show(this.subpestaña_listar, "1");
         JLabel t = (JLabel)titulo.getComponent(0);
         t.setText(this.indicaciones[pestaña]);
         tecnicos = new ArrayList<Tecnico>();
@@ -225,9 +215,10 @@ public class Formulario_asignar_registro extends Formulario{
         tecnico_seleccionado = 0;
     }
     public void limpiarCampos(){
+        super.limpiarCampos();
         pestaña = 0;
-        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
-        cl.show(this.cuerpo, String.valueOf(pestaña));
+        CardLayout cl = (CardLayout)(this.subpestaña_listar.getLayout());
+        cl.show(this.subpestaña_listar, String.valueOf(pestaña));
         this.cargarTecnico_flag = false;
         ((JLabel)titulo.getComponent(0)).setText(indicaciones[0]);
         
@@ -260,7 +251,6 @@ public class Formulario_asignar_registro extends Formulario{
         return  ret;
     };
     public void enviar(){
-        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
         Registro r = new Registro(fecha_inicio.toString(),fecha_fin.toString(),m, t,turno.getInput().getSelectedIndex() == 0 ? Turno.MAÑANA : turno.getInput().getSelectedIndex() == 1 ? Turno.TARDE:Turno.NOCHE);
@@ -269,16 +259,14 @@ public class Formulario_asignar_registro extends Formulario{
             try {
                 BD.cargarTecnico(t);
             } catch (SQLException ex) {
-                c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+                setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
             }
         }
         BD.asignarRegistro(r);
-        CardLayout cl = (CardLayout)(this.cuerpo.getLayout());
-        cl.show(this.cuerpo,"3");
+        setPantallaCargaExitosa("Asignación de Registro Exitosa.");
     };
     
     public void cargarDesdeBd(){
-        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
             tecnicos = BD.listarTecnico();
             
@@ -293,7 +281,7 @@ public class Formulario_asignar_registro extends Formulario{
                 contenedor_tec.add(f);
             }
         } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
         try {
             maquinas = BD.listarMaquina();
@@ -309,11 +297,17 @@ public class Formulario_asignar_registro extends Formulario{
                 contenedor_maq.add(f);
             }
         } catch (SQLException ex) {
-            c.setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
         }
     };
     public int getPestaña()
     {
         return pestaña;
+    }
+    public void setFormulario(){
+        
+    }
+    public void setPestaña(){
+        
     }
 }
