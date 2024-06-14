@@ -29,11 +29,7 @@ public class Boton_Asignar_volver extends Boton{
         Formulario_asignar_registro p = (Formulario_asignar_registro)this.getParent().getParent().getParent().getParent();
         p.cambiarListado(-1);
     };
-    /*
-    public Formulario_Texto getFormularioActual(){
-        return this.formulario_actual;
-    }
-    */
+
     @Override
     public void mouseEntra(MouseEvent evt, Color c) {                                   
         super.mouseEntra(evt, c);

@@ -22,13 +22,11 @@ public class Modal extends JDialog{
         JPanel modal = new JPanel();
 
         JLabel text = new JLabel(s);
-
         JPanel div_boton = new JPanel();
         Boton_modal aceptar = new Boton_modal("Aceptar",this);
         Boton_modal cancelar = new Boton_modal("Cancelar",this);
         div_boton.add(aceptar);
         div_boton.add(cancelar);
-
         div_boton.setLayout(new BoxLayout(div_boton, BoxLayout.X_AXIS));
 
         modal.setLayout(new BoxLayout(modal,BoxLayout.PAGE_AXIS));
