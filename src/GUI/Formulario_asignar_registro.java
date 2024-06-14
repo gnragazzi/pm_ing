@@ -263,7 +263,7 @@ public class Formulario_asignar_registro extends Formulario{
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
-        Registro r = new Registro(fecha_inicio.toString(),fecha_fin.toString(),m, t,Turno.NOCHE);
+        Registro r = new Registro(fecha_inicio.toString(),fecha_fin.toString(),m, t,turno.getInput().getSelectedIndex() == 0 ? Turno.MAÑANA : turno.getInput().getSelectedIndex() == 1 ? Turno.TARDE:Turno.NOCHE);
         if(cargarTecnico_flag)
         {
             try {
@@ -304,7 +304,6 @@ public class Formulario_asignar_registro extends Formulario{
             for(int i = 0; i < maquinas.size();i++)
             {
                 Maquina temp = maquinas.get(i);
-                //String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),temp.getPlanta().getColor(),String.valueOf(temp.getEstado())};
                 String aux[] = {String.valueOf(temp.getNroID()),temp.getMarca(),temp.getModelo(),String.valueOf(temp.getEstado())};
                 Fila f = new Fila(aux,false,i,this);
                 contenedor_maq.add(f);
