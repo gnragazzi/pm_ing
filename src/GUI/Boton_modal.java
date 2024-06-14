@@ -26,7 +26,7 @@ public class Boton_modal extends Boton{
 
     @Override
     public void mouseClick(MouseEvent evt){
-        if(this.getNombre().getText() == "Aceptar")
+        if(this.getTextoNombre()== "Aceptar")
             diag.getActual().enviar();
         diag.setVisible(false);
     };

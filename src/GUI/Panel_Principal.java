@@ -20,6 +20,7 @@ public class Panel_Principal extends JPanel{
     public Panel_Principal() {
         //set layout
         this.setLayout(new GridBagLayout());
+        this.setBackground(Constantes.COLOR_FONDO);
         //configuración de la barra superior
         barraSuperior = new JPanel();
         barraSuperior.setBackground(Color.green);
@@ -27,14 +28,13 @@ public class Panel_Principal extends JPanel{
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
-        c.weightx = 1;
+        c.weightx = 0.5;
         c.weighty = 0.04;
         c.gridwidth = 2;
         this.add(barraSuperior,c);
         
         //Menú Lateral
         menuLateral = new Menu_Lateral();
-        menuLateral.setBackground(Color.RED);
         menuLat.fill = GridBagConstraints.BOTH;
         menuLat.weightx = 0.5;
         menuLat.weighty = 0.950;
@@ -50,7 +50,7 @@ public class Panel_Principal extends JPanel{
         formulario.gridy = 1;
         formulario.gridwidth = GridBagConstraints.REMAINDER;
         formulario.gridheight = GridBagConstraints.REMAINDER;
-        formulario.weightx = 0.5;
+        formulario.weightx = 0.1;
         formulario.weighty = 0.950;
         formulario.fill = GridBagConstraints.BOTH;
         //formulario.anchor = GridBagConstraints.LAST_LINE_END;

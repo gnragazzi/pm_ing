@@ -24,7 +24,7 @@ public class Boton_Header extends Boton{
     }
     @Override
     public void mouseClick(MouseEvent evt){
-        switch(this.getNombre().getText()){
+        switch(this.getTextoNombre()){
             case "Cargar":
             {
                 ((Administrar)padre.getParent()).limpiarCampos();

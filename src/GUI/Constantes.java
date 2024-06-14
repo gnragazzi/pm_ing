@@ -17,27 +17,30 @@ import javax.swing.JPanel;
  * @author gera
  */
 public class Constantes {
-    private static final String fuente = "Andale Mono";
+    private static final String fuente = "Open Sans";
     private static final GridLayout LAYOUT_CENTRADO= new GridLayout(1,1);
-    private static Color COLOR_MENU = new Color(0, 0, 0);
-    private static Color COLOR_SECUNDARIO = new Color(244, 237, 234);
+    public static Color COLOR_BORDE = new Color(202, 202, 202);
+    public static Color COLOR_FONDO = new Color(242, 242, 242);
+    public static Color COLOR_PRINCIPAL = new Color(31, 32, 65);
+    public static Color COLOR_SECUNDARIO = new Color(147, 229, 171);
+    public static Color COLOR_SELECCIÓN = new Color(127, 209, 151);
+    
+    
+    private static Color COLOR_MENU = new Color(11, 79, 108);
     private static Color COLOR_MENU_HIGHLIGHT = new Color(99, 72, 110);
     private static Color COLOR_MENU_SELECCION = new Color(84, 57, 95);
     private static Color COLOR_Header = new Color(229, 218, 230);
-    private static Color COLOR_MENU_DARK = new Color(25, 25, 35);
-    private static Color COLOR_SECUNDARIO_DARK = new Color(244, 237, 234);
-    private static Color COLOR_MENU_HIGHLIGHT_DARK = new Color(99, 72, 110);
-    private static Color COLOR_MENU_SELECCION_DARK = new Color(84, 57, 95);
-    private static Color COLOR_Header_DARK = new Color(229, 218, 230);
-    private static final int TAM = 1200;
     private static final int LIM = 20;
     private static final int ALT = 70;
+    /*
+    private static final int TAM = 1200;
     private static final float PROPORCION = 16/9;
+    */
     //private static final Font FUENTE_HEADER = new Font(fuente,0,48);
     private static final Font FUENTE_HEADER = new Font(fuente,Font.BOLD,48);
     private static final Font FUENTE_INFO = new Font(fuente,Font.PLAIN,32);
     private static final Font FUENTE_CAMPO = new Font(fuente, Font.BOLD, 30);
-    private static final Font FUENTE_BOTON_LATERAL = new Font(fuente, Font.PLAIN, 28);
+    private static final Font FUENTE_BOTON_LATERAL = new Font(fuente, Font.BOLD, 18);
     private static final Font FUENTE_BOTON_HEADER = new Font(fuente,0,22);
     private static final Font FUENTE_TARJETA = new Font(fuente, Font.PLAIN, 24);
     private static final Font FUENTE_TARJETA_PEQUE = new Font(fuente, Font.PLAIN, 18);
@@ -64,7 +67,7 @@ public class Constantes {
     public static Color getCOLOR_MENU_HIGHLIGHT() {
         return COLOR_MENU_HIGHLIGHT;
     }
-
+    /*
     public static int getTAM() {
         return TAM;
     }
@@ -72,7 +75,7 @@ public class Constantes {
     public static float getPROPORCION() {
         return PROPORCION;
     }
-
+    */
     public static Font getFUENTE_HEADER() {
         return FUENTE_HEADER;
     }
@@ -87,11 +90,9 @@ public class Constantes {
     public static Dimension getAREA_RIGIDA() {
         return AREA_RIGIDA;
     }
-
     public static int getLIM() {
         return LIM;
     }
-
     public static Dimension getAREA_RIGIDA_PEQUEÑA() {
         return AREA_RIGIDA_PEQUEÑA;
     }
@@ -121,11 +122,9 @@ public class Constantes {
     public static Font getFUENTE_TARJETA() {
         return FUENTE_TARJETA;
     }
-
     public static int getALT() {
         return ALT;
     }
-
     public static Font getFUENTE_BOTON_LATERAL() {
         return FUENTE_BOTON_LATERAL;
     }
@@ -157,32 +156,7 @@ public class Constantes {
     public static Font getFUENTE_TARJETA_PEQUE() {
         return FUENTE_TARJETA_PEQUE;
     }
-    public static void cambiarColores(){
-        Color aux;
-        
-        aux =COLOR_MENU;
-        COLOR_MENU = COLOR_MENU_DARK;
-        COLOR_MENU_DARK = aux;
-        
-        aux =COLOR_SECUNDARIO;
-        COLOR_SECUNDARIO = COLOR_SECUNDARIO_DARK;
-        COLOR_SECUNDARIO_DARK = aux;
-        
-        aux =COLOR_Header;
-        COLOR_Header = COLOR_Header_DARK;
-        COLOR_Header_DARK = aux;
-        
-        aux =COLOR_MENU_SELECCION;
-        COLOR_MENU_SELECCION = COLOR_MENU_SELECCION_DARK;
-        COLOR_MENU_SELECCION_DARK = aux;
-        
-        aux =COLOR_MENU_HIGHLIGHT;
-        COLOR_MENU_HIGHLIGHT = COLOR_MENU_HIGHLIGHT_DARK;
-        COLOR_MENU_HIGHLIGHT_DARK = aux;
-        
 
-    }
-    
     
     
     

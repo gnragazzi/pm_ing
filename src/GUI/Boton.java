@@ -12,22 +12,25 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 /**
  *
  * @author gera
  */
 public class Boton extends JPanel{
-    private final JLabel nombre;
+    protected final JLabel nombre;
+    protected final String texto_nombre;
     static private Ventana ventana;
-    //static private Cuerpo cuerpo;
     private final BoxLayout layout = new BoxLayout(this, BoxLayout.LINE_AXIS);
     private static Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
+    protected boolean selección = false;
     
     //Constructor sin ícono
     public Boton(String n, Font f){
-        this.nombre = new JLabel();
-        nombre.setText(n);
+        texto_nombre = n;
+        this.nombre = new JLabel("<html><div style='text-align: center;'>" + texto_nombre + "</div></html>",SwingConstants.CENTER);
+        
         nombre.setFont(f);
         this.setCursor(cursor);
         this.setBackground(null);
@@ -50,13 +53,12 @@ public class Boton extends JPanel{
         // LAYOUT********************
         this.setLayout(layout);
     }
+    /*
     public Boton(String n, Font f, JLabel i){
-        this.nombre = new JLabel();
+        this.nombre = new JLabel(n,SwingConstants.CENTER);
         
-        nombre.setText(n);
         nombre.setFont(f);
         this.setCursor(cursor);
-        this.setBackground(null);
         this.add(Box.createRigidArea(Constantes.getAREA_RIGIDA_PEQUEÑA()));
         this.add(i);
         this.add(Box.createRigidArea(Constantes.getAREA_RIGIDA_PEQUEÑA()));
@@ -79,8 +81,14 @@ public class Boton extends JPanel{
         
         this.setLayout(layout);
     }
+    */
     public JLabel getNombre(){
         return this.nombre;
+    }
+    
+    public String getTextoNombre()
+    {
+        return texto_nombre;
     }
     
     public void mouseEntra(MouseEvent evt, Color c) {                                   
@@ -88,7 +96,8 @@ public class Boton extends JPanel{
     }                                  
 
     public void mouseSale(MouseEvent evt, Color c) {                                  
-        this.setBackground(c);
+        if(!selección)
+            this.setBackground(c);
     }    
     public void mouseClick(MouseEvent evt){};
     public Color getCol(){
@@ -106,11 +115,9 @@ public class Boton extends JPanel{
     public static Ventana getVentana() {
         return ventana;
     }
-    /*
-    public static Cuerpo getCuerpo() {
-        return cuerpo;
+    public void setSeleccion(boolean b){
+        selección = b;
     }
-    */
     
 }
     
