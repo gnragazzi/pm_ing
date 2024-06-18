@@ -6,12 +6,10 @@ package GUI;
 
 import Connection.BD;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pm_ingsw1.Tecnico;
 
@@ -20,11 +18,11 @@ import pm_ingsw1.Tecnico;
  * @author gera
  */
 public class Administrar_técnico extends Administrar{
-    private Campo_Texto nombre;
-    private Campo_Texto apellido;
-    private Campo_Num dni;
-    private Campo_fecha fecha_nac;
-    private Campo_Num contacto;
+    private final Campo_Texto nombre;
+    private final Campo_Texto apellido;
+    private final Campo_Num dni;
+    private final Campo_fecha fecha_nac;
+    private final Campo_Num contacto;
     private ArrayList<Tecnico> tecnicos;
     
     public Administrar_técnico(String t){
@@ -58,6 +56,7 @@ public class Administrar_técnico extends Administrar{
         pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
     }
     
+    @Override
     public void limpiarCampos(){
         super.limpiarCampos();
         this.nombre.limpiarCampo();
@@ -67,6 +66,7 @@ public class Administrar_técnico extends Administrar{
         this.fecha_nac.limpiarCampo();
     }
         
+    @Override
     public boolean esValido(){
         boolean ret = true;
         if(!nombre.validarCampo())
@@ -93,18 +93,19 @@ public class Administrar_técnico extends Administrar{
             ret = false;
         return  ret;
     };
+    @Override
     public void enviar(){
         Tecnico t = new Tecnico(nombre.getInput().getText(),apellido.getInput().getText(),Integer.parseInt(dni.getInput().getText()),fecha_nac.toString(),contacto.getInput().getText(),null);
         Contenedor_MenuPrincipal p = (Contenedor_MenuPrincipal) this.getParent();
         p.continuar_carga_Tecnico(t);  
     };
     
+    @Override
     public void cargarDesdeBd(){
-        Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
             tecnicos = BD.listarTecnico();
         } catch (SQLException ex) {
-            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantalla("ERROR DE BD: " + ex.getMessage());
         }
     }
 

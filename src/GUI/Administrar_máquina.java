@@ -6,7 +6,6 @@ package GUI;
 
 import Connection.BD;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -22,14 +21,13 @@ import pm_ingsw1.Planta;
  * @author gera
  */
 public class Administrar_máquina extends Administrar{
-    private Campo_Texto marca;
-    private Campo_Texto modelo;
-    private Campo_Num id;
+    private final Campo_Texto marca;
+    private final Campo_Texto modelo;
+    private final Campo_Num id;
     private ArrayList<Planta> plantas_Cargadas;
     private ArrayList<Maquina> maquinas;
-    private Campo_combo_box estado;
-    private Campo_combo_box plantas_combo;
-    private JDialog confirmación;
+    private final Campo_combo_box estado;
+    private final Campo_combo_box plantas_combo;
     
     public Administrar_máquina(String t){
         super(t);
@@ -76,9 +74,9 @@ public class Administrar_máquina extends Administrar{
         Maquina m = new Maquina(Integer.parseInt(id.getInput().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
         try {
             BD.cargarMaquina(m);
-            setPantallaCargaExitosa("Se cargo con Éxito la Máquina.");
+            setPantalla("Se cargo con Éxito la Máquina.");
         } catch (SQLException ex) {
-            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantalla("ERROR DE BD: " + ex.getMessage());
         }
     };
     
@@ -118,15 +116,16 @@ public class Administrar_máquina extends Administrar{
         estado.limpiarCampo();
         plantas_combo.limpiarCampo();
     }
+    @Override
     public void cargarDesdeBd(){
         plantas_combo.getInput().removeAllItems();
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
             plantas_Cargadas = BD.listarPlanta();
         } catch (SQLException ex) {
-            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantalla("ERROR DE BD: " + ex.getMessage());
         }
-        if(plantas_Cargadas.size()==0)
+        if(plantas_Cargadas.isEmpty())
         {
             c.error("ERROR No hay Plantas Cargadas.");
         }
@@ -143,7 +142,7 @@ public class Administrar_máquina extends Administrar{
                 maquinas = BD.listarMaquina();
 
             } catch (SQLException ex) {
-                setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+                setPantalla("ERROR DE BD: " + ex.getMessage());
             }
         }
     }

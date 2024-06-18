@@ -23,22 +23,22 @@ import pm_ingsw1.Turno;
  * @author gera
  */
 public class Administrar_registro extends Administrar{
-    private JPanel titulo;
-    private JPanel subpestaña_listar;
-    private JPanel lista_tec;
-    private JPanel lista_maq;
+    private final JPanel titulo;
+    private final JPanel subpestaña_listar;
+    private final JPanel lista_tec;
+    private final JPanel lista_maq;
     private ArrayList<Tecnico> tecnicos;
     private ArrayList<Maquina> maquinas;
     private int tecnico_seleccionado = -1;
     private int maquina_seleccionada = -1;
     private short pestaña = 0;
-    private Campo_fecha fecha_inicio;
-    private Campo_fecha fecha_fin;
-    private Campo_combo_box turno;
-    private String indicaciones[] = {"Seleccione un Técnico de la Lista", "Seleccione una Máquina de la Lista", "Para terminar, rellene el formulario"};
+    private final Campo_fecha fecha_inicio;
+    private final Campo_fecha fecha_fin;
+    private final Campo_combo_box turno;
+    private final String indicaciones[] = {"Seleccione un Técnico de la Lista", "Seleccione una Máquina de la Lista", "Para terminar, rellene el formulario"};
     private boolean cargarTecnico_flag = false;
-    private JPanel contenedor_maq;
-    private JPanel contenedor_tec;
+    private final JPanel contenedor_maq;
+    private final JPanel contenedor_tec;
     
     public Administrar_registro(String t) {
         super(t);
@@ -208,10 +208,11 @@ public class Administrar_registro extends Administrar{
         cl.show(this.subpestaña_listar, "1");
         JLabel t = (JLabel)titulo.getComponent(0);
         t.setText(this.indicaciones[pestaña]);
-        tecnicos = new ArrayList<Tecnico>();
+        tecnicos = new ArrayList<>();
         tecnicos.add(e);
         tecnico_seleccionado = 0;
     }
+    @Override
     public void limpiarCampos(){
         super.limpiarCampos();
         pestaña = 0;
@@ -247,6 +248,7 @@ public class Administrar_registro extends Administrar{
         
         return  ret;
     };
+    @Override
     public void enviar(){
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
@@ -256,13 +258,14 @@ public class Administrar_registro extends Administrar{
             try {
                 BD.cargarTecnico(t);
             } catch (SQLException ex) {
-                setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+                setPantalla("ERROR DE BD: " + ex.getMessage());
             }
         }
         BD.asignarRegistro(r);
-        setPantallaCargaExitosa("Asignación de Registro Exitosa.");
+        setPantalla("Asignación de Registro Exitosa.");
     };
     
+    @Override
     public void cargarDesdeBd(){
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
@@ -278,7 +281,7 @@ public class Administrar_registro extends Administrar{
                 contenedor_tec.add(f);
             }
         } catch (SQLException ex) {
-            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantalla("ERROR DE BD: " + ex.getMessage());
         }
         try {
             maquinas = BD.listarMaquina();
@@ -294,13 +297,13 @@ public class Administrar_registro extends Administrar{
                 contenedor_maq.add(f);
             }
         } catch (SQLException ex) {
-            setPantallaCargaExitosa("ERROR DE BD: " + ex.getMessage());
+            setPantalla("ERROR DE BD: " + ex.getMessage());
         }
-        if(maquinas.size()==0)
+        if(maquinas.isEmpty())
         {
             c.error("ERROR: No Hay Máquinas Cargadas");
         }
-        else if(tecnicos.size()==0 && !cargarTecnico_flag)
+        else if(tecnicos.isEmpty() && !cargarTecnico_flag)
         {
             c.error("ERROR: No Hay Técnicos Cargados");
         }
@@ -309,10 +312,5 @@ public class Administrar_registro extends Administrar{
     {
         return pestaña;
     }
-    public void setFormulario(){
-        
-    }
-    public void setPestaña(){
-        
-    }
+
 }

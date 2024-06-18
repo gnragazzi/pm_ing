@@ -8,7 +8,6 @@ import java.awt.CardLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
@@ -46,10 +45,6 @@ public abstract class Administrar extends JPanel{
         this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
     }
 
-    public Administrar() {
-    }
-    
-    
     public void limpiarCampos(){
         layout_cuerpo.show(cuerpo, "blank");
     };
@@ -61,7 +56,7 @@ public abstract class Administrar extends JPanel{
     public JPanel getCuerpo(){
         return cuerpo;
     }
-    public void setPantallaCargaExitosa(String s)
+    public void setPantalla(String s)
     {
         pantalla_mensaje.setTexto(s);
         layout_cuerpo.show(cuerpo,"mensaje");

@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import GUI.Constantes;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 public abstract class Campo extends JPanel{
 
     private JLabel Nombre = new JLabel();
-    private JPanel underline = new JPanel();
     protected JTextField input = new JTextField();
     private GridLayout layout = new GridLayout(1,4);
     
