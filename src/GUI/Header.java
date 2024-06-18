@@ -51,7 +51,7 @@ public class Header extends JPanel{
         this.botonera.setLayout(new GridLayout(1,botones.length));
         for (var botone : botones) {
             this.botonera.add(botone);
-            botone.getNombre().setHorizontalAlignment(JLabel.CENTER);
+            botone.nombre.setHorizontalAlignment(JLabel.CENTER);
         }
         div.add(info);
         info.setFont(Constantes.FUENTE_INFO);

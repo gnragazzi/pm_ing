@@ -48,8 +48,8 @@ public class Administrar_técnico extends Administrar{
         //div_botones
         
         JPanel div_botones = new JPanel();
-        Boton_Formulario_Agregar_ct boton = new Boton_Formulario_Agregar_ct("Confirmar", this);
-        Boton_Formulario_Cancelar_ct b_limp = new Boton_Formulario_Cancelar_ct("Cancelar", this);
+        Boton_Tec boton = new Boton_Tec("Confirmar", this);
+        Boton_Tec b_limp = new Boton_Tec("Cancelar", this);
         div_botones.add(boton);
         div_botones.add(b_limp);
         pestaña_cargar.add(div_botones);

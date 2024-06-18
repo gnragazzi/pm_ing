@@ -59,8 +59,8 @@ public class Administrar_máquina extends Administrar{
         //div_botones
         
         JPanel div_botones = new JPanel();
-        Boton_Formulario_Confirmar boton = new Boton_Formulario_Confirmar("Confirmar", this);
-        Boton_Formulario_Cancelar b_limp = new Boton_Formulario_Cancelar("Cancelar", this);
+        Boton_Maq boton = new Boton_Maq(Constantes.CONFIRMAR, this);
+        Boton_Maq b_limp = new Boton_Maq(Constantes.CANCELAR, this);
         div_botones.add(boton);
         div_botones.add(b_limp);
         pestaña_cargar.add(div_botones);

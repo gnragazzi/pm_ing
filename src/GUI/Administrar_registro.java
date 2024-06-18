@@ -68,7 +68,7 @@ public class Administrar_registro extends Administrar{
         lista_tec.add(contenedor_tec);
         
         JPanel div_botones = new JPanel();
-        Boton_Asignar_siguiente boton = new Boton_Asignar_siguiente("Siguiente",this);
+        Boton_Nav boton = new Boton_Nav(Constantes.SIGUIENTE,this);
         div_botones.add(boton);
         lista_tec.add(div_botones);
 
@@ -85,8 +85,8 @@ public class Administrar_registro extends Administrar{
 
         lista_maq.add(contenedor_maq);
         JPanel div_botones_maq = new JPanel();
-        Boton_Asignar_siguiente boton_maq = new Boton_Asignar_siguiente("Siguiente",this);
-        Boton_Asignar_volver boton_volver_maq = new Boton_Asignar_volver("Volver",this);
+        Boton_Nav boton_maq = new Boton_Nav(Constantes.SIGUIENTE,this);
+        Boton_Nav boton_volver_maq = new Boton_Nav(Constantes.VOLVER,this);
         div_botones_maq.add(boton_volver_maq);
         div_botones_maq.add(boton_maq);
         lista_maq.add(div_botones_maq);
@@ -111,8 +111,8 @@ public class Administrar_registro extends Administrar{
         formulario.add(turno);
         formulario.setLayout(new BoxLayout(formulario,BoxLayout.PAGE_AXIS));
         JPanel div_botones_form = new JPanel();
-        Boton_Formulario_Agregar_ar boton_form = new Boton_Formulario_Agregar_ar("Confirmar", this);
-        Boton_Asignar_volver boton_volver_form = new Boton_Asignar_volver("Volver",this);
+        Boton_Nav boton_form = new Boton_Nav(Constantes.CONFIRMAR, this);
+        Boton_Nav boton_volver_form = new Boton_Nav(Constantes.VOLVER,this);
         div_botones_form.add(boton_volver_form);
         div_botones_form.add(boton_form);
         formulario.add(div_botones_form);

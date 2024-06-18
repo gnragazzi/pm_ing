@@ -1,6 +1,5 @@
 package GUI;
 
-import static GUI.Boton.getVentana;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;

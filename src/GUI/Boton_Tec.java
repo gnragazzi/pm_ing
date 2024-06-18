@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import GUI.Constantes;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -13,20 +13,23 @@ import javax.swing.JLabel;
  *
  * @author gera
  */
-public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
+public class Boton_Tec extends Boton_Maq{
     protected Administrar form;
-    public Boton_Formulario_Agregar_ct(String n, Administrar f)
+    public Boton_Tec(String n, Administrar f)
     {
         super(n,f);
         this.form = f;
         this.setLayout(Constantes.LAYOUT_CENTRADO);
-        this.getNombre().setHorizontalAlignment(JLabel.CENTER);
-        this.getNombre().setVerticalAlignment(JLabel.CENTER);
+        this.nombre.setHorizontalAlignment(JLabel.CENTER);
+        this.nombre.setVerticalAlignment(JLabel.CENTER);
         
     }
     @Override
     public void mouseClick(MouseEvent evt){
-        System.out.println("Retorno: " + String.valueOf(form.esValido()));
+        if(this.getTextoNombre().equals(Constantes.CANCELAR))
+        {
+            ((CardLayout)form.getCuerpo().getLayout()).show(form.getCuerpo(),"blank");            
+        }
         if(form.esValido())
         {
             form.enviar();
@@ -43,18 +46,7 @@ public class Boton_Formulario_Agregar_ct extends Boton_Formulario_Confirmar{
     @Override
     public void mouseSale(MouseEvent evt, Color c) {                                  
         super.mouseEntra(evt, c);
-        this.getNombre().setForeground(Constantes.COLOR_PRINCIPAL);
+        this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);
     }    
         
-    @Override
-    public Color getCol(){
-        return null;
-    }
-    
-    @Override
-    public Color getHighlight(){
-        //setear color
-        return Constantes.COLOR_PRINCIPAL;
-    }
-
 }

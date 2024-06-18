@@ -4,8 +4,6 @@
  */
 package GUI;
 
-import GUI.Boton;
-import GUI.Constantes;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -16,14 +14,14 @@ import javax.swing.JPanel;
  * @author gera
  */
 public class Boton_Header extends Boton{
-    private JPanel padre;
-    private Header header;
+    private final JPanel padre;
+    private final Header header;
     public Boton_Header(String nombre, JPanel cuerpo,Header h){
         super(nombre, Constantes.FUENTE_BOTON_HEADER);
         padre = cuerpo;
         header = h;
         this.setLayout(Constantes.LAYOUT_CENTRADO);
-        this.getNombre().setForeground(Constantes.COLOR_PRINCIPAL);
+        this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);
     }
     @Override
     public void mouseClick(MouseEvent evt){
@@ -43,15 +41,6 @@ public class Boton_Header extends Boton{
             }break;
         }
     }
-    
-    @Override
-    public void mouseEntra(MouseEvent evt, Color c) {                                   
-        super.mouseEntra(evt, Constantes.COLOR_SECUNDARIO);
-    }                                  
-    @Override
-    public void mouseSale(MouseEvent evt, Color c) {                                  
-        super.mouseSale(evt, c);
-    }    
         
     @Override
     public Color getCol(){
@@ -61,7 +50,7 @@ public class Boton_Header extends Boton{
     @Override
     public Color getHighlight(){
         //setear color
-        return Constantes.COLOR_PRINCIPAL;
+        return Constantes.COLOR_SECUNDARIO;
     }
     /*
     */

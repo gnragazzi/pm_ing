@@ -9,7 +9,6 @@ import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 /**
  *
  * @author gera
@@ -18,8 +17,8 @@ public class Boton_Menu extends Boton {
 
     public Boton_Menu(String texto, JLabel icono){
         super(texto, Constantes.FUENTE_BOTON_LATERAL);
-        this.getNombre().setBorder(new EmptyBorder(10, 10, 10, 10));
-        this.getNombre().setForeground(Constantes.COLOR_PRINCIPAL);
+        this.nombre.setBorder(new EmptyBorder(10, 10, 10, 10));
+        this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);
     };
     @Override
     public void mouseClick(MouseEvent evt){

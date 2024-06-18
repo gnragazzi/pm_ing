@@ -25,8 +25,8 @@ public class Modal extends JDialog{
         JLabel text = new JLabel(s,SwingConstants.CENTER);
         text.setFont(Constantes.FUENTE_HEADER);
         JPanel div_boton = new JPanel();
-        Boton_modal aceptar = new Boton_modal("Aceptar",this);
-        Boton_modal cancelar = new Boton_modal("Cancelar",this);
+        Boton_modal aceptar = new Boton_modal(Constantes.ACEPTAR,this);
+        Boton_modal cancelar = new Boton_modal(Constantes.CANCELAR,this);
         div_boton.add(aceptar);
         div_boton.add(cancelar);
         div_boton.setLayout(new BoxLayout(div_boton, BoxLayout.X_AXIS));

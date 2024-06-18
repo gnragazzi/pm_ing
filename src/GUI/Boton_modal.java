@@ -19,36 +19,26 @@ public class Boton_modal extends Boton{
         super(n,Constantes.FUENTE_BOTON_LATERAL);
         this.diag = d;
         this.setLayout(Constantes.LAYOUT_CENTRADO);
-        this.getNombre().setHorizontalAlignment(JLabel.CENTER);
-        this.getNombre().setVerticalAlignment(JLabel.CENTER);
-        
+        this.nombre.setHorizontalAlignment(JLabel.CENTER);
+        this.nombre.setVerticalAlignment(JLabel.CENTER);
     }
 
     @Override
     public void mouseClick(MouseEvent evt){
-        if(this.getTextoNombre()== "Aceptar")
+        if(this.getTextoNombre().equals(Constantes.ACEPTAR))
             diag.getActual().enviar();
         diag.setVisible(false);
     };
-    @Override
-    public void mouseEntra(MouseEvent evt, Color c) {                                   
-        super.mouseEntra(evt, Constantes.COLOR_SECUNDARIO);
-    }                                  
-    @Override
-    public void mouseSale(MouseEvent evt, Color c) {                                  
-        super.mouseSale(evt, null);
 
-    }    
-        
     @Override
     public Color getCol(){
-        return null;
+        return Constantes.COLOR_FONDO;
     }
     
     @Override
     public Color getHighlight(){
         //setear color
-        return Constantes.COLOR_PRINCIPAL;
+        return Constantes.COLOR_SECUNDARIO;
     }
     
 
