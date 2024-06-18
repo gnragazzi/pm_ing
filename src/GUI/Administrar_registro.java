@@ -101,10 +101,10 @@ public class Administrar_registro extends Administrar{
         fecha_inicio = new Campo_fecha("Fecha Inicio",2034,2024,1);
         fecha_fin = new Campo_fecha("Fecha Finalización",2034,2024,1);
         turno = new Campo_combo_box("Turno");
-        turno.getInput().addItem(Turno.MAÑANA);
-        turno.getInput().addItem(Turno.TARDE);
-        turno.getInput().addItem(Turno.NOCHE);
-        turno.getInput().setSelectedIndex(-1);
+        turno.getComboInput().addItem(Turno.MAÑANA);
+        turno.getComboInput().addItem(Turno.TARDE);
+        turno.getComboInput().addItem(Turno.NOCHE);
+        turno.getComboInput().setSelectedIndex(-1);
         
         formulario.add(fecha_inicio);
         formulario.add(fecha_fin);
@@ -252,7 +252,7 @@ public class Administrar_registro extends Administrar{
     public void enviar(){
         Tecnico t = tecnicos.get(tecnico_seleccionado);
         Maquina m = maquinas.get(maquina_seleccionada);
-        Registro r = new Registro(fecha_inicio.toString(),fecha_fin.toString(),m, t,turno.getInput().getSelectedIndex() == 0 ? Turno.MAÑANA : turno.getInput().getSelectedIndex() == 1 ? Turno.TARDE:Turno.NOCHE);
+        Registro r = new Registro(fecha_inicio.toString(),fecha_fin.toString(),m, t,turno.getComboInput().getSelectedIndex() == 0 ? Turno.MAÑANA : turno.getComboInput().getSelectedIndex() == 1 ? Turno.TARDE:Turno.NOCHE);
         if(cargarTecnico_flag)
         {
             try {

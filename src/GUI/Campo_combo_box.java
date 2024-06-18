@@ -16,58 +16,39 @@ import javax.swing.border.EmptyBorder;
  * @author gera
  */
 
-public class Campo_combo_box extends JPanel{
+public class Campo_combo_box extends Campo{
 
-    private JLabel Nombre = new JLabel();
-    private JComboBox<String> input = new JComboBox<String>();
-    private GridLayout layout = new GridLayout(1,4);
+    private JComboBox<String> input_combo = new JComboBox<String>();
     
     public Campo_combo_box(String n){
-        this.setBackground(null);
-        Nombre.setText(n);
-        Nombre.setFont(Constantes.FUENTE_CAMPO);
-        Nombre.setForeground(Constantes.COLOR_PRINCIPAL);
-        Nombre.setHorizontalAlignment(JLabel.LEFT);
-        Nombre.setVerticalAlignment(JLabel.BOTTOM);
+        super(n);
+        this.remove(input);
         
-        /*
-        input.setMinimumSize(new Dimension(20,20));
-        input.setDocument(new JTextFieldLimit(Constantes.getLIM()));
-        input.setFont(Constantes.FUENTE_CAMPO);
-        input.setBorder(null);
-        input.setBackground(null);
-        input.setForeground(Constantes.COLOR_PRINCIPAL);
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-        */
-        
-        this.add(Nombre);
-        Nombre.setBorder(new EmptyBorder(0, 15, 0, 0));
-
-        this.add(input);
-        
+        this.add(input_combo);
         this.setLayout(layout);
+    }
 
+    public JComboBox getComboInput(){
+        return input_combo;
     }
-    
-    public JComboBox getInput(){
-        return input;
-    }
+    @Override
     public boolean validarCampo(){
-        if(input.getSelectedIndex() < 0)
+        if(input_combo.getSelectedIndex() < 0)
         {
-            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
             return false;
         }
         else
         {
-            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+            input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
             return true;
         }
     }
+    @Override
     public void limpiarCampo()
     {
-        input.setSelectedIndex(-1);
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+        input_combo.setSelectedIndex(-1);
+        input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
     }
     
 }

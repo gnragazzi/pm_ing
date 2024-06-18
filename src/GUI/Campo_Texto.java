@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import GUI.Constantes;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -19,64 +18,12 @@ import javax.swing.border.EmptyBorder;
  * @author gera
  */
 
-public class Campo_Texto extends JPanel{
+public class Campo_Texto extends Campo{
 
-    private JLabel Nombre = new JLabel();
-    private JPanel input_panel = new JPanel();
-    private JPanel underline = new JPanel();
-    private JTextField input = new JTextField();
-    private GridLayout layout = new GridLayout(1,4);
+    private final JLabel Nombre = new JLabel();
     
     public Campo_Texto(String n){
-        this.setBackground(null);
-        Nombre.setText(n);
-        Nombre.setFont(Constantes.FUENTE_CAMPO);
-        Nombre.setForeground(Constantes.COLOR_PRINCIPAL);
-        Nombre.setHorizontalAlignment(JLabel.LEFT);
-        Nombre.setVerticalAlignment(JLabel.BOTTOM);
-        
-        
-        input.setMinimumSize(new Dimension(20,10));
-        input.setPreferredSize(new Dimension(20,10));
-        input.setMaximumSize(new Dimension(20,10));
-        input.setDocument(new JTextFieldLimit(Constantes.LIM));
-        input.setFont(Constantes.FUENTE_CAMPO);
-        input.setBorder(null);
-        input.setBackground(null);
-        input.setForeground(Constantes.COLOR_PRINCIPAL);
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-        
-        
-        this.add(Nombre);
-        Nombre.setBorder(new EmptyBorder(0, 15, 0, 0));
-
-        this.add(input);
-        
-        this.setLayout(layout);
-
-    }
-    
-    public void setInput(JTextField t){
-        this.input = t;
-    }
-    public JTextField getInput(){
-        return input;
-    }
-    
-    public JLabel getNombre(){
-        return this.Nombre;
-    }
-    public void cambiaInput(JFormattedTextField t){
-        this.remove(input);
-        t.setMinimumSize(new Dimension(20,20));
-        t.setDocument(new JTextFieldLimit(Constantes.LIM));
-        t.setFont(Constantes.FUENTE_CAMPO);
-        t.setBorder(null);
-        t.setBackground(null);
-        t.setForeground(Constantes.COLOR_PRINCIPAL);
-        t.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-        this.add(t);
-        
+        super(n);
     }
     public boolean validarCampo(){
         if(this.getInput().getText().equals(""))
@@ -90,10 +37,6 @@ public class Campo_Texto extends JPanel{
             return true;
         }
     }
-    public void limpiarCampo()
-    {
-        input.setText("");
-        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-    }
+
     
 }

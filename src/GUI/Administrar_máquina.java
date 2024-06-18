@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JDialog;
 import javax.swing.JPanel;
 import pm_ingsw1.Estado;
 import pm_ingsw1.Maquina;
@@ -47,9 +46,9 @@ public class Administrar_máquina extends Administrar{
         
         //el estado en que se encuentra. (E-2)        
         estado = new Campo_combo_box("Estado");
-        estado.getInput().addItem("Activo");
-        estado.getInput().addItem("En Reparación");
-        estado.getInput().setSelectedIndex(-1);
+        estado.getComboInput().addItem("Activo");
+        estado.getComboInput().addItem("En Reparación");
+        estado.getComboInput().setSelectedIndex(-1);
         pestaña_cargar.add(estado);
 
         // Asignar planta
@@ -69,9 +68,9 @@ public class Administrar_máquina extends Administrar{
     
     @Override
     public void enviar(){
-        Planta p = plantas_Cargadas.get(plantas_combo.getInput().getSelectedIndex());
+        Planta p = plantas_Cargadas.get(plantas_combo.getComboInput().getSelectedIndex());
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
-        Maquina m = new Maquina(Integer.parseInt(id.getInput().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
+        Maquina m = new Maquina(Integer.parseInt(id.getInput().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getComboInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
         try {
             BD.cargarMaquina(m);
             setPantalla("Se cargo con Éxito la Máquina.");
@@ -118,7 +117,7 @@ public class Administrar_máquina extends Administrar{
     }
     @Override
     public void cargarDesdeBd(){
-        plantas_combo.getInput().removeAllItems();
+        plantas_combo.getComboInput().removeAllItems();
         Contenedor_MenuPrincipal c = ((Contenedor_MenuPrincipal)this.getParent());
         try {
             plantas_Cargadas = BD.listarPlanta();
@@ -134,9 +133,9 @@ public class Administrar_máquina extends Administrar{
             for(int i = 0; i < plantas_Cargadas.size(); i++){
                 Planta p = plantas_Cargadas.get(i);
                 String st = "id: "+ i +" color: " + p.getColor() + " superficie: " + p.getSuperficie() ;
-                plantas_combo.getInput().addItem(st);
+                plantas_combo.getComboInput().addItem(st);
             }
-            plantas_combo.getInput().setSelectedIndex(-1);
+            plantas_combo.getComboInput().setSelectedIndex(-1);
             //Cargar Máquinas
             try {
                 maquinas = BD.listarMaquina();

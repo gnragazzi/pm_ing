@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GUI;
 
 import java.awt.Dimension;
@@ -12,16 +9,13 @@ import javax.swing.JFormattedTextField;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.border.EmptyBorder;
-/**
- *
- * @author gera
- */
+
 
 public abstract class Campo extends JPanel{
 
-    private JLabel Nombre = new JLabel();
+    protected final JLabel Nombre = new JLabel();
     protected JTextField input = new JTextField();
-    private GridLayout layout = new GridLayout(1,4);
+    protected final GridLayout layout = new GridLayout(1,4);
     
     public Campo(String n){
         this.setBackground(null);
@@ -49,10 +43,6 @@ public abstract class Campo extends JPanel{
         this.setLayout(layout);
 
     }
-    
-    public void setInput(JTextField t){
-        this.input = t;
-    }
     public JTextField getInput(){
         return input;
     }
@@ -60,17 +50,10 @@ public abstract class Campo extends JPanel{
     public JLabel getNombre(){
         return this.Nombre;
     }
-    public void cambiaInput(JFormattedTextField t){
-        this.remove(input);
-        t.setMinimumSize(new Dimension(20,20));
-        t.setDocument(new JTextFieldLimit(Constantes.LIM));
-        t.setFont(Constantes.FUENTE_CAMPO);
-        t.setBorder(null);
-        t.setBackground(null);
-        t.setForeground(Constantes.COLOR_PRINCIPAL);
-        t.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-        this.add(t);
-        
-    }
     public boolean validarCampo(){return false;}
+    public void limpiarCampo()
+    {
+        input.setText("");
+        input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+    }
 }

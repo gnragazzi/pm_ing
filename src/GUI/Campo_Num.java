@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GUI;
 
 import java.awt.Color;
@@ -11,14 +7,11 @@ import javax.swing.BorderFactory;
  *
  * @author gera
  */
-public class Campo_Num extends Campo_Texto{
-    //private JTextField num = new JTextField();
+public class Campo_Num extends Campo{
     
     public Campo_Num(String n){
         super(n);
         this.getInput().setDocument(new JTextFieldLimit(20));
-        //this.cambiaInput(num);
-        
     }
     @Override
     public boolean validarCampo(){
