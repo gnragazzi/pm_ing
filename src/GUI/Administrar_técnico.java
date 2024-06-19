@@ -5,7 +5,6 @@
 package GUI;
 
 import Connection.BD;
-import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -81,7 +80,8 @@ public class Administrar_técnico extends Administrar{
             {
                 if (tecnicos.get(i).getDni()== Integer.parseInt(dni.getInput().getText()))
                 {
-                    dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                    dni.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+                    dni.setMsjValidacion("Ya hay un técnico con este DNI.");
                     ret = false;
                     break;
                 }

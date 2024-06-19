@@ -94,7 +94,8 @@ public class Administrar_máquina extends Administrar{
             {
                 if (maquinas.get(i).getNroID() == Integer.parseInt(id.getInput().getText()))
                 {
-                    id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+                    id.getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+                    id.setMsjValidacion("Ya hay una máquina con este número de identificación.");
                     ret = false;
                     break;
                 }

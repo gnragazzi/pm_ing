@@ -5,14 +5,8 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
-import java.awt.GridLayout;
 import javax.swing.BorderFactory;
-import javax.swing.border.EmptyBorder;
 /**
  *
  * @author gera
@@ -28,12 +22,14 @@ public class Campo_Texto extends Campo{
     public boolean validarCampo(){
         if(this.getInput().getText().equals(""))
         {
-            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+            setMsjValidacion("Este Campo no puede estar vacío");
             return false;
         }
         else
         {
             input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+            setMsjValidacion("");
             return true;
         }
     }

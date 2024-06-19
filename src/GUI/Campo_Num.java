@@ -19,11 +19,13 @@ public class Campo_Num extends Campo{
         if(!number.isEmpty() && number.equals(this.getInput().getText()))
         {
             getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+            setMsjValidacion("");
             return true;
         }
         else
         {
-            getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+            setMsjValidacion("Este Campo no puede estar vacío");
             return false;
         }
     }

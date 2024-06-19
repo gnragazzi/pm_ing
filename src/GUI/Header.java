@@ -26,7 +26,7 @@ public class Header extends JPanel{
         this.setMinimumSize(new Dimension(800,130));
         this.setPreferredSize(new Dimension(800,130));
         this.setMaximumSize(new Dimension(1600,130));
-        this.titulo.setText(t);
+        //this.titulo.setText(t);
         this.setBorder(new EmptyBorder(20, 20, 0, 20));
         titulo.setFont(Constantes.FUENTE_HEADER);
         titulo.setForeground(Constantes.COLOR_PRINCIPAL);
@@ -42,7 +42,6 @@ public class Header extends JPanel{
         botones[3] = new Boton_Header("Consultar",cuerpo,this);
         this.configurarDiv();
         this.add(div);
-        
     }
     private void configurarDiv()
     {
