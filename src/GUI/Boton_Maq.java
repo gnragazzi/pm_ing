@@ -30,6 +30,7 @@ public class Boton_Maq extends Boton{
     public void mouseClick(MouseEvent evt){
         if(this.getTextoNombre().equals(Constantes.CANCELAR))
         {
+            form.header.limpiarSelección();
             ((CardLayout)form.getCuerpo().getLayout()).show(form.getCuerpo(),"blank");
         }
         else

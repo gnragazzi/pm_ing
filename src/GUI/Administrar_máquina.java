@@ -114,6 +114,7 @@ public class Administrar_máquina extends Administrar{
         modelo.limpiarCampo();
         estado.limpiarCampo();
         plantas_combo.limpiarCampo();
+        
     }
     @Override
     public void cargarDesdeBd(){

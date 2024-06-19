@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -22,8 +23,14 @@ public class Modal extends JDialog{
     public Modal(JFrame f, String s) {
         super(f,s);
         JPanel modal = new JPanel();
+        JPanel text_container = new JPanel();
         JLabel text = new JLabel(s,SwingConstants.CENTER);
+        text_container.add(text);
+        text_container.setBackground(Constantes.COLOR_PRINCIPAL);
         text.setFont(Constantes.FUENTE_HEADER);
+        text.setForeground(Constantes.COLOR_FONDO);
+        
+        
         JPanel div_boton = new JPanel();
         Boton_modal aceptar = new Boton_modal(Constantes.ACEPTAR,this);
         Boton_modal cancelar = new Boton_modal(Constantes.CANCELAR,this);
@@ -31,10 +38,11 @@ public class Modal extends JDialog{
         div_boton.add(cancelar);
         div_boton.setLayout(new BoxLayout(div_boton, BoxLayout.X_AXIS));
 
-        modal.add(text);
+        modal.add(text_container);
         modal.add(div_boton);
         modal.setLayout(new GridLayout(2, 1));
-
+        modal.setBorder(new LineBorder(Constantes.COLOR_PRINCIPAL,1));
+        
         this.setContentPane(modal);
         this.setUndecorated(true);
         this.setMinimumSize(new Dimension(400,80));

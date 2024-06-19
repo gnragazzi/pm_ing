@@ -6,7 +6,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
 
 /**
  *
@@ -19,8 +18,7 @@ public class Boton_modal extends Boton{
         super(n,Constantes.FUENTE_BOTON_LATERAL);
         this.diag = d;
         this.setLayout(Constantes.LAYOUT_CENTRADO);
-        this.nombre.setHorizontalAlignment(JLabel.CENTER);
-        this.nombre.setVerticalAlignment(JLabel.CENTER);
+        this.nombre.setForeground(Constantes.COLOR_PRINCIPAL);
     }
 
     @Override

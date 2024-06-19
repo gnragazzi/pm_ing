@@ -28,6 +28,7 @@ public class Boton_Tec extends Boton_Maq{
     public void mouseClick(MouseEvent evt){
         if(this.getTextoNombre().equals(Constantes.CANCELAR))
         {
+            form.header.limpiarSelección();
             ((CardLayout)form.getCuerpo().getLayout()).show(form.getCuerpo(),"blank");            
         }
         if(form.esValido())
