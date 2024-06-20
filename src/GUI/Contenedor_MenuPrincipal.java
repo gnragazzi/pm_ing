@@ -3,12 +3,15 @@ package GUI;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import pm_ingsw1.Tecnico;
 
 public class Contenedor_MenuPrincipal extends JPanel{
+    private JPanel principal = new JPanel(new GridLayout(1,1));
     private Administrar_máquina c_m = new Administrar_máquina("Administrar Máquina");
     private Administrar_técnico c_t = new Administrar_técnico("Administrar Técnico");
     private Administrar_registro l_t = new Administrar_registro("Administrar Registros");
@@ -27,6 +30,13 @@ public class Contenedor_MenuPrincipal extends JPanel{
         error = new Pantalla_Mensaje("");
         
         actual = c_m;
+        
+        JLabel texto = new JLabel("Bienvenido", SwingConstants.CENTER);
+        texto.setFont(Constantes.FUENTE_HEADER);
+        principal.add(texto);
+        principal.setBackground(Constantes.COLOR_FONDO);
+        
+        this.add(principal,"Bienvenido");
         this.add(c_m,"Administrar Máquina");
         this.add(c_t,"Administrar Técnico");
         this.add(l_t,"Administrar Registros");
@@ -44,6 +54,10 @@ public class Contenedor_MenuPrincipal extends JPanel{
             actual = l_t;
         else if(s.equals("Salir"))
             ((Ventana)this.getTopLevelAncestor()).dispatchEvent(new WindowEvent((Ventana)this.getTopLevelAncestor(), WindowEvent.WINDOW_CLOSING));
+        else if(s.equals("Bienvenido"))
+        {
+
+        }
         else
         {
             s = "default";

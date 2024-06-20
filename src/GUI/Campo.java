@@ -1,27 +1,23 @@
 
 package GUI;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JFormattedTextField;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 
 public abstract class Campo extends JPanel{
 
     protected final JLabel nombre = new JLabel();
     protected JTextField input = new JTextField();
-    protected final GridLayout layout = new GridLayout(1,4);
-    protected final JLabel msj_validacion = new JLabel("");
+    protected final GridBagLayout layout = new GridBagLayout();
+    protected final JLabel msj_validacion = new JLabel(" ");
+    protected final GridBagConstraints c;
     
     public Campo(String n){
         nombre.setText(n);
@@ -39,9 +35,9 @@ public abstract class Campo extends JPanel{
         msj_validacion.setFont(Constantes.FUENTE_INFO_VALIDACIÓN);
         msj_validacion.setForeground(Constantes.COLOR_ERROR);
         
-        GridBagConstraints c = new GridBagConstraints();
+        c = new GridBagConstraints();
         
-        this.setLayout(new GridBagLayout());
+        this.setLayout(layout);
         
         c.gridx = 0;
         c.gridy = 0;
@@ -63,9 +59,9 @@ public abstract class Campo extends JPanel{
         c.weighty = 0.1;
         c.weightx = 1.0;
         c.insets = new Insets(0, 0, 0, 0);
+        this.setBorder(new EmptyBorder(0,50,0,50));
         this.add(msj_validacion,c);
         
-
     }
     public JTextField getInput(){
         return input;
@@ -78,7 +74,7 @@ public abstract class Campo extends JPanel{
     public void limpiarCampo()
     {
         input.setText("");
-        msj_validacion.setText("");
+        msj_validacion.setText(" ");
         input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
     }
     public void setMsjValidacion(String s)

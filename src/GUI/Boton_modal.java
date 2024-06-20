@@ -25,7 +25,12 @@ public class Boton_modal extends Boton{
     public void mouseClick(MouseEvent evt){
         if(this.getTextoNombre().equals(Constantes.ACEPTAR))
             diag.getActual().enviar();
-        diag.setVisible(false);
+        else if(this.getTextoNombre().equals(Constantes.CANCELAR)) 
+            diag.setVisible(false);
+        else{
+            diag.setVisible(false);
+            diag.getCuerpo().cambiarPanel("Bienvenido");
+        }
     };
 
     @Override

@@ -6,8 +6,6 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import javax.swing.JLabel;
-
 /**
  *
  * @author gera

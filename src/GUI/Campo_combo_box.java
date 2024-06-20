@@ -4,13 +4,10 @@
  */
 package GUI;
 
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
-import javax.swing.border.EmptyBorder;
 /**
  *
  * @author gera
@@ -24,8 +21,17 @@ public class Campo_combo_box extends Campo{
         super(n);
         this.remove(input);
         
-        this.add(input_combo);
-        this.setLayout(layout);
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 3;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.ipadx = 10;
+        c.ipady = 10;
+        c.insets = new Insets(10, 10, 10, 10);
+        this.add(input_combo,c);
     }
 
     public JComboBox getComboInput(){
@@ -35,12 +41,15 @@ public class Campo_combo_box extends Campo{
     public boolean validarCampo(){
         if(input_combo.getSelectedIndex() < 0)
         {
-            input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.RED));
+            input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+            setMsjValidacion("Elija una Opción de la lista.");
             return false;
         }
         else
         {
             input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+            setMsjValidacion(" ");
+
             return true;
         }
     }
@@ -48,6 +57,7 @@ public class Campo_combo_box extends Campo{
     public void limpiarCampo()
     {
         input_combo.setSelectedIndex(-1);
+        setMsjValidacion(" ");
         input_combo.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
     }
     

@@ -27,22 +27,22 @@ public class Administrar_técnico extends Administrar{
     public Administrar_técnico(String t){
         super(t);
         nombre = new Campo_Texto("Nombre");
-        pestaña_cargar.add(nombre);
+        contenedor_campos.add(nombre);
         //Apellido
         apellido = new Campo_Texto("Apellido");
-        pestaña_cargar.add(apellido);
+        contenedor_campos.add(apellido);
         
         //dni
         dni = new Campo_Num("DNI");
-        pestaña_cargar.add(dni);
+        contenedor_campos.add(dni);
         
         //fecha nac
         fecha_nac = new Campo_fecha("Fecha de Nacimiento(d/m/a)",2006,1954,-1);
-        pestaña_cargar.add(fecha_nac);
+        contenedor_campos.add(fecha_nac);
         
         //contacto
         contacto = new Campo_Num("Contacto");
-        pestaña_cargar.add(contacto);
+        contenedor_campos.add(contacto);
 
         //div_botones
         
@@ -51,8 +51,10 @@ public class Administrar_técnico extends Administrar{
         Boton_Tec b_limp = new Boton_Tec("Cancelar", this);
         div_botones.add(boton);
         div_botones.add(b_limp);
-        pestaña_cargar.add(div_botones);
+        
         pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
+        pestaña_cargar.add(contenedor_campos);
+        pestaña_cargar.add(div_botones);
     }
     
     @Override

@@ -4,7 +4,7 @@ import java.awt.Dimension;
 
 public class Ventana extends javax.swing.JFrame {
     public Panel_Principal cuerpo = new Panel_Principal();
-    private Modal modal = new Modal(this,"Confirmar");
+    private Modal modal = new Modal(this,"Confirmar", cuerpo);
     
     public Ventana(){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -22,5 +22,6 @@ public class Ventana extends javax.swing.JFrame {
     {
         return modal;
     }
+
 
 }

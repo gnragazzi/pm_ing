@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.Color;
 import javax.swing.BorderFactory;
 
 /**
@@ -19,13 +18,15 @@ public class Campo_Num extends Campo{
         if(!number.isEmpty() && number.equals(this.getInput().getText()))
         {
             getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-            setMsjValidacion("");
+            setMsjValidacion(" ");
             return true;
         }
         else
         {
+            System.out.println("number: "+number);
+            System.out.println("This.getInput: "+this.getInput().getText());
             getInput().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
-            setMsjValidacion("Este Campo no puede estar vacío");
+            setMsjValidacion("Campo Obligatorio");
             return false;
         }
     }

@@ -5,6 +5,7 @@
 package GUI;
 
 import java.awt.CardLayout;
+import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,8 @@ public abstract class Administrar extends JPanel{
     protected CardLayout layout_cuerpo;
     private Pantalla_Mensaje pantalla_mensaje;
     protected JLabel error_carga = new JLabel("",SwingConstants.CENTER);
+    protected JPanel contenedor_campos = new JPanel();
+
     
     public Administrar(String t) {
         pestaña_blank = new JPanel();
@@ -31,6 +34,7 @@ public abstract class Administrar extends JPanel{
         pantalla_mensaje = new Pantalla_Mensaje("");
 
 
+        contenedor_campos.setLayout(new GridLayout(5,1,10,0));
         cuerpo = new JPanel();
         layout_cuerpo = new CardLayout();
         cuerpo.setLayout(layout_cuerpo);

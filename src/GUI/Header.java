@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JLabel;

@@ -6,13 +6,13 @@ package GUI;
 
 import Connection.BD;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import pm_ingsw1.Maquina;
 import pm_ingsw1.Registro;
 import pm_ingsw1.Tecnico;
@@ -43,11 +43,8 @@ public class Administrar_registro extends Administrar{
     public Administrar_registro(String t) {
         super(t);
         titulo=new JPanel();
-        titulo.setMaximumSize(new Dimension(6000,4000));
-        titulo.setMinimumSize(new Dimension(600,20));
-        titulo.setPreferredSize(new Dimension(600,40));
         JLabel text = new JLabel(indicaciones[0]);
-        text.setFont(Constantes.FUENTE_HEADER);
+        text.setFont(Constantes.FUENTE_CAMPO);
         text.setForeground(Constantes.COLOR_PRINCIPAL);
         titulo.add(text);
         
@@ -106,15 +103,19 @@ public class Administrar_registro extends Administrar{
         turno.getComboInput().addItem(Turno.NOCHE);
         turno.getComboInput().setSelectedIndex(-1);
         
-        formulario.add(fecha_inicio);
-        formulario.add(fecha_fin);
-        formulario.add(turno);
+        contenedor_campos.add(fecha_inicio);
+        contenedor_campos.add(fecha_fin);
+        contenedor_campos.add(turno);
+        
+
         formulario.setLayout(new BoxLayout(formulario,BoxLayout.PAGE_AXIS));
         JPanel div_botones_form = new JPanel();
         Boton_Nav boton_form = new Boton_Nav(Constantes.CONFIRMAR, this);
         Boton_Nav boton_volver_form = new Boton_Nav(Constantes.VOLVER,this);
         div_botones_form.add(boton_volver_form);
         div_botones_form.add(boton_form);
+        
+        formulario.add(contenedor_campos);
         formulario.add(div_botones_form);
         
     
@@ -125,6 +126,7 @@ public class Administrar_registro extends Administrar{
         /************************************************/
         /************************************************/    
         
+        subpestaña_listar.setBorder(new EmptyBorder(0,50,0,50));
         subpestaña_listar.add(lista_tec,"0");
         subpestaña_listar.add(lista_maq,"1");
         subpestaña_listar.add(formulario,"2");
@@ -241,8 +243,10 @@ public class Administrar_registro extends Administrar{
             ret = false;
         else if(!fecha_inicio.esAntes(fecha_fin))
         {
-            fecha_inicio.setBackground(Color.red);
-            fecha_fin.setBackground(Color.red);
+            fecha_inicio.getContenedor().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+            fecha_inicio.setMsjValidacion("La fecha de inicio no puede ser posterior a Fecha de finalización.");
+            fecha_fin.getContenedor().setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+            fecha_fin.setMsjValidacion("La fecha de inicio no puede ser posterior a Fecha de finalización.");
             ret = false;
         }
         
@@ -262,7 +266,7 @@ public class Administrar_registro extends Administrar{
             }
         }
         BD.asignarRegistro(r);
-        setPantalla("Asignación de Registro Exitosa.");
+        ((Ventana)this.getTopLevelAncestor()).getModal().confirmarCarga("Se ha asignado exitosamente el registro.");
     };
     
     @Override

@@ -4,10 +4,12 @@
  */
 package GUI;
 
-import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -82,26 +84,43 @@ public class Campo_fecha extends Campo{
         contenedor.add(dia);
         contenedor.add(mes);
         contenedor.add(año);
+        contenedor.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+        
         contenedor.setLayout(new GridLayout(2,3));
-        this.add(contenedor);
+        
+        
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridwidth = 1;
+        c.gridheight = 3;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        c.fill = GridBagConstraints.BOTH;
+        c.ipadx = 10;
+        c.ipady = 10;
+        c.insets = new Insets(10, 10, 10, 10);
+        this.add(contenedor, c);
     }
     
     public boolean validarCampo(){
         if(dia.getSelectedIndex() < 0 || mes.getSelectedIndex() < 0 || año.getSelectedIndex() < 0)
         {
-            this.setBackground(Color.red);
+            contenedor.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
+            setMsjValidacion("Seleccione una Fecha");
             return false;
         }
         else 
         {
-            this.setBackground(null);
+            contenedor.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+            setMsjValidacion(" ");
             return true;
         }
     }
     
     public void limpiarCampo()
     {
-        this.setBackground(null);
+        contenedor.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
+        setMsjValidacion(" ");
         dia.setSelectedIndex(-1);        
         mes.setSelectedIndex(-1);
         año.setSelectedIndex(-1);
@@ -142,5 +161,9 @@ public class Campo_fecha extends Campo{
                 else 
                     return false;
         }
+    }
+    public JPanel getContenedor()
+    {
+        return contenedor;
     }
 }

@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 /**
@@ -23,13 +22,13 @@ public class Campo_Texto extends Campo{
         if(this.getInput().getText().equals(""))
         {
             input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_ERROR));
-            setMsjValidacion("Este Campo no puede estar vacío");
+            setMsjValidacion("Campo Obligatorio");
             return false;
         }
         else
         {
             input.setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Constantes.COLOR_PRINCIPAL));
-            setMsjValidacion("");
+            setMsjValidacion(" ");
             return true;
         }
     }

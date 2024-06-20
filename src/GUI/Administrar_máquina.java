@@ -5,7 +5,6 @@
 package GUI;
 
 import Connection.BD;
-import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -30,40 +29,41 @@ public class Administrar_máquina extends Administrar{
     
     public Administrar_máquina(String t){
         super(t);
-        
         //construcción del formulario
         //marca de la máquina, 
         marca = new Campo_Texto("Marca");
-        pestaña_cargar.add(marca);
+        contenedor_campos.add(marca);
         
         //el modelo del mismo, 
         modelo = new Campo_Texto("Modelo");
-        pestaña_cargar.add(modelo);
+        contenedor_campos.add(modelo);
         
         //su número de identificación y 
         id = new Campo_Num("Número de Identificación");
-        pestaña_cargar.add(id);
+        contenedor_campos.add(id);
         
         //el estado en que se encuentra. (E-2)        
         estado = new Campo_combo_box("Estado");
         estado.getComboInput().addItem("Activo");
         estado.getComboInput().addItem("En Reparación");
         estado.getComboInput().setSelectedIndex(-1);
-        pestaña_cargar.add(estado);
+        contenedor_campos.add(estado);
 
         // Asignar planta
         plantas_combo = new Campo_combo_box("Plantas");
         cargarDesdeBd();
-        pestaña_cargar.add(plantas_combo);
+        contenedor_campos.add(plantas_combo);
         //div_botones
-        
+
         JPanel div_botones = new JPanel();
         Boton_Maq boton = new Boton_Maq(Constantes.CONFIRMAR, this);
         Boton_Maq b_limp = new Boton_Maq(Constantes.CANCELAR, this);
         div_botones.add(boton);
         div_botones.add(b_limp);
-        pestaña_cargar.add(div_botones);
+        
         pestaña_cargar.setLayout(new BoxLayout(pestaña_cargar,BoxLayout.PAGE_AXIS));
+        pestaña_cargar.add(contenedor_campos);
+        pestaña_cargar.add(div_botones);
     }
     
     @Override
@@ -73,7 +73,8 @@ public class Administrar_máquina extends Administrar{
         Maquina m = new Maquina(Integer.parseInt(id.getInput().getText()), marca.getInput().getText(), modelo.getInput().getText(), p, null, estado.getComboInput().getSelectedIndex() == 0 ? Estado.ACTIVO : Estado.REPARACION);
         try {
             BD.cargarMaquina(m);
-            setPantalla("Se cargo con Éxito la Máquina.");
+            //setPantalla("Se cargo con Éxito la Máquina.");
+            ((Ventana)this.getTopLevelAncestor()).getModal().confirmarCarga("Se ha cargado exitosamente la máquina.");
         } catch (SQLException ex) {
             setPantalla("ERROR DE BD: " + ex.getMessage());
         }

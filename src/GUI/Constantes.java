@@ -29,8 +29,9 @@ public class Constantes {
     public static final Font FUENTE_HEADER = new Font(FUENTE,Font.BOLD,26);
     public static final Font FUENTE_TITULO = new Font(FUENTE,Font.BOLD,12);
     public static final Font FUENTE_INFO = new Font(FUENTE,Font.PLAIN,32);
-    public static final Font FUENTE_INFO_VALIDACIÓN = new Font(FUENTE,Font.BOLD,12);
-    public static final Font FUENTE_CAMPO = new Font(FUENTE, Font.BOLD, 30);
+    public static final Font FUENTE_INFO_VALIDACIÓN = new Font(FUENTE,Font.BOLD,10);
+    public static final Font FUENTE_MSG_MODAL = new Font(FUENTE,Font.BOLD,16);
+    public static final Font FUENTE_CAMPO = new Font(FUENTE, Font.BOLD, 20);
     public static final Font FUENTE_BOTON_LATERAL = new Font(FUENTE, Font.BOLD, 18);
     public static final Font FUENTE_BOTON_HEADER = new Font(FUENTE,0,22);
     
